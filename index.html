@@ -1463,6 +1463,108 @@ input:focus-visible,select:focus-visible,a:focus-visible{
   .brand-splash-screen .qarar-appicon.large{animation:none !important}
   .btn.primary::after,.btn.orange::after{display:none}
 }
+
+/* ═══════════════════════════════════════════════════════════════════════
+ * QARAR — LIVING FINANCIAL COMMAND CENTER (v3.0)
+ * Visual-only layer. Functional selectors, navigation and engine remain intact.
+ * ═══════════════════════════════════════════════════════════════════════ */
+:root{
+  --motion-instant:90ms;--motion-fast:150ms;--motion-normal:260ms;
+  --motion-emphasized:380ms;--motion-hero:520ms;
+  --ease-standard:cubic-bezier(.2,.8,.2,1);--ease-enter:cubic-bezier(.16,1,.3,1);
+  --ease-exit:cubic-bezier(.4,0,1,1);--ease-emphasized:cubic-bezier(.2,.9,.2,1)
+}
+
+/* Opening — abstract intelligence, no text chips */
+.brand-splash-screen{isolation:isolate;min-height:720px;padding-top:62px;background:
+  radial-gradient(circle at 50% 28%,rgba(116,91,255,.22),transparent 27%),
+  linear-gradient(165deg,#061128 0%,#081635 54%,#0b1e43 100%)}
+.brand-splash-screen>*:not(.opening-orbits):not(.opening-shape):not(.opening-aurora){position:relative;z-index:3}
+.opening-orbits{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;opacity:.78}
+.opening-path{fill:none;stroke:url(#openingRoute);stroke-width:1.4;stroke-linecap:round;stroke-dasharray:7 12;opacity:.32;animation:openingPath 14s linear infinite}
+.opening-path-b{opacity:.22;animation-duration:18s}.opening-path-c{opacity:.18;animation-duration:22s}
+.opening-traveller{fill:#fff}.traveller-b{fill:#43D8BC}
+.opening-aurora{position:absolute;z-index:0;width:260px;height:260px;border-radius:45% 55% 62% 38%;filter:blur(54px);opacity:.22;pointer-events:none;animation:openingAurora 14s var(--ease-standard) infinite alternate}
+.opening-aurora-a{top:-65px;left:-80px;background:#7056ff}.opening-aurora-b{right:-110px;bottom:55px;background:#ff884b;animation-delay:-7s}
+.opening-shape{position:absolute;z-index:2;pointer-events:none;opacity:0;animation:openingShapeIn .8s var(--ease-enter) forwards,openingDrift 9s 1s ease-in-out infinite alternate}
+.capsule{width:54px;height:18px;border-radius:999px;background:linear-gradient(90deg,rgba(142,124,255,.2),rgba(255,255,255,.7),rgba(255,154,69,.32));box-shadow:0 0 24px rgba(142,124,255,.28);backdrop-filter:blur(5px)}
+.capsule-a{top:115px;right:38px;transform:rotate(-3deg);animation-delay:.5s,.9s}.capsule-b{bottom:162px;left:35px;width:42px;height:14px;animation-delay:.72s,1.2s}
+.diamond{width:21px;height:21px;border-radius:7px;transform:rotate(45deg);border:1px solid rgba(255,255,255,.55);background:linear-gradient(135deg,rgba(67,216,188,.6),rgba(112,86,255,.2));box-shadow:0 0 22px rgba(67,216,188,.25)}
+.diamond-a{right:48px;bottom:205px;animation-delay:.64s,1.1s}.diamond-b{left:52px;top:238px;width:14px;height:14px;animation-delay:.82s,1.4s}
+.constellation{left:42px;bottom:110px;width:64px;height:42px}.constellation:before,.constellation:after{content:"";position:absolute;height:1px;background:linear-gradient(90deg,transparent,rgba(67,216,188,.65),transparent);transform-origin:left}.constellation:before{width:52px;top:20px;left:4px;transform:rotate(-18deg)}.constellation:after{width:40px;top:8px;left:23px;transform:rotate(35deg)}.constellation i{position:absolute;width:6px;height:6px;border-radius:50%;background:#43d8bc;box-shadow:0 0 12px #43d8bc}.constellation i:nth-child(1){left:0;top:26px}.constellation i:nth-child(2){left:29px;top:13px}.constellation i:nth-child(3){right:0;bottom:0}
+.partial-ring{right:34px;top:260px;width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.18);border-left-color:#ff9a45;border-bottom-color:#8e7cff;animation-delay:.75s,1.25s}
+.brand-splash-screen .qarar-appicon.large{animation:logoWake .95s var(--ease-enter) both;box-shadow:0 28px 70px rgba(0,0,0,.48),0 0 56px rgba(109,93,251,.20),inset 0 1px 0 rgba(255,255,255,.1)}
+.brand-splash-screen:after{content:"";position:absolute;z-index:1;left:50%;top:205px;width:250px;height:250px;transform:translate(-50%,-50%);border-radius:50%;border:1px solid rgba(142,124,255,.18);box-shadow:0 0 0 34px rgba(142,124,255,.025),0 0 0 72px rgba(67,216,188,.018);animation:orbitBreath 6s ease-in-out infinite}
+#splash.starting .opening-shape{animation:openingExit .55s var(--ease-exit) forwards!important}
+#splash.starting .opening-orbits{animation:openingConverge .58s var(--ease-exit) forwards}
+#splash.starting .brand-splash-screen:after{animation:ringExit .62s var(--ease-enter) forwards}
+@keyframes openingPath{to{stroke-dashoffset:-190}}
+@keyframes openingAurora{to{transform:translate3d(14px,10px,0) scale(1.05) rotate(2deg)}}
+@keyframes openingShapeIn{from{opacity:0;filter:blur(7px)}to{opacity:.88;filter:blur(0)}}
+@keyframes openingDrift{to{translate:8px -10px;rotate:3deg}}
+@keyframes logoWake{from{opacity:0;transform:translateY(14px) scale(.88);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
+@keyframes orbitBreath{50%{transform:translate(-50%,-50%) scale(1.04);opacity:.65}}
+@keyframes openingExit{to{opacity:0;transform:translate3d(var(--exit-x,20px),var(--exit-y,-20px),0) scale(.6);filter:blur(5px)}}
+@keyframes openingConverge{to{opacity:0;transform:scale(.72)}}
+@keyframes ringExit{to{transform:translate(-50%,-50%) scale(2.2);opacity:0}}
+
+/* Page atmosphere */
+.main-area{background:
+  radial-gradient(circle at 16% 8%,rgba(109,93,251,.10),transparent 26%),
+  radial-gradient(circle at 80% 34%,rgba(39,199,168,.07),transparent 24%),
+  radial-gradient(circle at 36% 84%,rgba(244,162,97,.07),transparent 25%),#fbf8f3}
+.home-command{position:relative;isolation:isolate;animation:homeReveal var(--motion-normal) var(--ease-enter) both}
+.home-command:before{content:"";position:absolute;inset:-20px;z-index:-2;pointer-events:none;background-image:radial-gradient(circle,rgba(42,53,91,.08) 1px,transparent 1px);background-size:28px 28px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.3),transparent 62%)}
+.home-ambient{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}.home-ambient i{position:absolute;border-radius:50%;filter:blur(36px);opacity:.13;animation:ambientDrift 15s ease-in-out infinite alternate}.home-ambient i:nth-child(1){width:240px;height:240px;background:#735cff;top:60px;left:-100px}.home-ambient i:nth-child(2){width:170px;height:170px;background:#35c7aa;top:430px;right:-40px;animation-delay:-5s}.home-ambient i:nth-child(3){width:150px;height:150px;background:#ff9a45;bottom:30px;left:22%;animation-delay:-9s}
+.demo-banner{padding:10px 14px;border-radius:16px;background:rgba(255,248,239,.72);backdrop-filter:blur(12px);border:1px solid rgba(244,162,97,.2);box-shadow:none;animation:softEnter var(--motion-emphasized) var(--ease-enter) both}.demo-banner b{font-size:13px}.demo-banner span{font-size:12px}.demo-banner .demo-ico{font-size:17px}
+
+/* Hero */
+.command-hero{position:relative;display:grid;grid-template-columns:minmax(0,1.04fr) minmax(390px,.96fr);gap:34px;overflow:hidden;padding:34px!important;border:1px solid rgba(255,255,255,.72)!important;border-right:0!important;border-radius:34px 34px 34px 12px!important;background:linear-gradient(135deg,rgba(255,255,255,.96),rgba(250,249,255,.9) 58%,rgba(240,245,255,.92))!important;box-shadow:0 28px 70px rgba(35,43,74,.12),inset 0 1px 0 #fff!important;animation:heroEnter var(--motion-hero) var(--ease-enter) both!important;margin-top:14px}
+.command-hero:before{content:"";position:absolute;inset:auto -9% -45% 30%;height:74%;border-radius:50%;background:linear-gradient(100deg,rgba(115,92,255,.16),rgba(53,199,170,.10),rgba(255,154,69,.08));filter:blur(36px);animation:ribbonDrift 14s ease-in-out infinite alternate;pointer-events:none}.command-hero:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 20%,rgba(255,255,255,.46) 45%,transparent 64%);transform:translateX(120%);animation:heroSheen 1.05s .25s var(--ease-enter) both}
+.command-copy,.financial-flow{position:relative;z-index:2}.command-copy{display:flex;flex-direction:column;justify-content:center}.command-kicker{display:inline-flex;align-items:center;gap:8px;width:max-content;padding:7px 11px;border-radius:999px;background:rgba(16,23,42,.055);font-size:12px;font-weight:850;color:#3b4664;margin-bottom:18px}.live-dot{width:7px;height:7px;border-radius:50%;background:#35c7aa;box-shadow:0 0 0 5px rgba(53,199,170,.12)}
+.command-hero .st-head{align-items:center}.status-seal{display:grid;place-items:center;width:56px;height:56px;border-radius:19px;font-size:24px;font-weight:950;color:#fff;background:#35c7aa;box-shadow:0 14px 28px rgba(53,199,170,.22);animation:statusSeal .55s .25s var(--ease-enter) both}.command-hero.warn .status-seal{background:#f4a261;box-shadow:0 14px 28px rgba(244,162,97,.22)}.command-hero.danger .status-seal{background:#df5a66;box-shadow:0 14px 28px rgba(223,90,102,.22)}
+.command-hero .st-text h2{font-size:clamp(25px,2.25vw,38px);line-height:1.28;max-width:660px}.command-hero .st-text p{font-size:15px}.command-hero .st-alert{width:fit-content;margin-top:20px;background:rgba(255,154,69,.08);border:1px solid rgba(255,154,69,.13)}.event-mark{display:grid;place-items:center;width:31px;height:31px;border-radius:10px;background:#fff;box-shadow:0 6px 15px rgba(30,38,70,.08)}
+.salary-chip{display:flex;align-items:center;gap:11px;margin-top:18px;width:max-content}.salary-chip small,.salary-chip b{display:block}.salary-chip small{font-size:11px;color:var(--muted);font-weight:750}.salary-chip b{font-size:14px;color:var(--ink)}.salary-ring{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(#735cff var(--salary-progress),rgba(115,92,255,.1) 0);animation:ringFill .7s .5s var(--ease-enter) both}.salary-ring:after{content:"";width:32px;height:32px;border-radius:50%;background:#fff}.salary-ring i{position:absolute;width:6px;height:6px;border-radius:50%;background:#ff9a45;z-index:1}.hero-mini-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:18px}.hero-mini{position:relative;padding:14px 15px;border-radius:18px;background:rgba(255,255,255,.84);border:1px solid rgba(20,33,61,.07);box-shadow:0 14px 26px rgba(35,43,74,.06);overflow:hidden}.hero-mini:before{content:"";position:absolute;inset:auto auto -26px -26px;width:78px;height:78px;border-radius:50%;background:rgba(115,92,255,.08)}.hero-mini.safe:before{background:rgba(53,199,170,.10)}.hero-mini small{display:block;font-size:11px;color:var(--muted);font-weight:760;margin-bottom:7px}.hero-mini b{display:block;font-size:24px;line-height:1.15;letter-spacing:-.6px;color:var(--ink);font-variant-numeric:tabular-nums}.hero-mini span{display:block;margin-top:6px;font-size:12px;font-weight:720;color:#55607d}.hero-mini.safe span{color:#157f6d}
+.command-cta{position:relative;overflow:hidden;background:linear-gradient(110deg,#5b48ee,#7c63ff 65%,#e88558)!important;box-shadow:0 16px 30px rgba(91,72,238,.25)!important;transition:transform var(--motion-fast) var(--ease-standard),box-shadow var(--motion-fast),filter var(--motion-fast)!important}.command-cta:before{content:"";position:absolute;inset:1px;border-radius:inherit;border:1px solid rgba(255,255,255,.24);pointer-events:none}.command-cta:hover{transform:translateY(-2px);box-shadow:0 19px 36px rgba(91,72,238,.3)!important;filter:saturate(1.05)}.command-cta span{display:inline-block;transition:transform var(--motion-fast)}.command-cta:hover span{transform:translateX(-3px)}.command-cta:active{transform:scale(.98)}
+
+/* Financial Flow */
+.financial-flow{min-height:390px;padding:20px 18px 12px;border-radius:30px 30px 12px 30px;background:linear-gradient(155deg,#0b1631,#121e43 58%,#152b51);color:#fff;box-shadow:0 24px 50px rgba(11,22,49,.24),inset 0 1px 0 rgba(255,255,255,.08);overflow:hidden}.financial-flow:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 28%,rgba(115,92,255,.29),transparent 34%),radial-gradient(circle at 75% 70%,rgba(53,199,170,.15),transparent 30%);pointer-events:none}.flow-head{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;padding:2px 5px}.flow-head span{font-weight:900;font-size:17px}.flow-head small{color:rgba(255,255,255,.58);font-weight:650}.financial-flow svg{position:relative;z-index:2;width:100%;height:300px;overflow:visible}.flow-range{fill:none;stroke:rgba(255,255,255,.08);stroke-width:21;stroke-linecap:round}.flow-main-path{fill:none;stroke:url(#flowGradient);stroke-width:6;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;animation:drawFlow .85s .2s var(--ease-enter) forwards}.safe-guide{stroke:#43d8bc;stroke-width:2;stroke-dasharray:7 9;opacity:0;animation:fadeIn .35s .52s forwards}.safe-label{fill:#65e2ca;font-size:13px;font-weight:800;opacity:0;animation:fadeIn .35s .58s forwards}.flow-node{opacity:0;animation:nodeEnter .36s var(--ease-enter) forwards}.flow-node text{fill:rgba(255,255,255,.8);font-size:13px;font-weight:750;font-family:inherit}.node-current{animation-delay:.42s}.node-current>circle:first-child{fill:#735cff;stroke:rgba(255,255,255,.6);stroke-width:2}.node-current .node-core{fill:#fff}.node-obligation{animation-delay:.5s}.node-obligation rect{fill:#f4a261;stroke:rgba(255,255,255,.55);stroke-width:2}.node-min{animation-delay:.58s}.node-min path{fill:#35c7aa;stroke:rgba(255,255,255,.7);stroke-width:2}.financial-flow.warn .node-min path{fill:#f4a261}.financial-flow.danger .node-min path{fill:#df5a66}.node-salary{animation-delay:.68s}.node-salary>circle:first-child{fill:#735cff;stroke:#fff;stroke-width:2}.salary-halo{fill:none;stroke:#43d8bc;stroke-width:2;opacity:.55;animation:salaryPulse .8s .9s var(--ease-enter) 1}.flow-traveller{fill:#fff}.flow-legend{position:absolute;z-index:2;bottom:14px;left:18px;right:18px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;color:rgba(255,255,255,.62);font-size:11px;font-weight:700}.flow-legend span{display:flex;align-items:center;gap:5px}.flow-legend i{width:7px;height:7px;border-radius:50%}.flow-legend .now{background:#735cff}.flow-legend .risk{background:#f4a261}.flow-legend .safe{background:#43d8bc}
+
+/* Semantic metric system */
+.metrics-command{display:grid;grid-template-columns:1.24fr .95fr .95fr 1.05fr;gap:14px}.metrics-command .metric-card{position:relative;overflow:hidden;min-height:164px;padding:22px;border:1px solid rgba(20,33,61,.065);box-shadow:0 13px 30px rgba(35,43,74,.075);animation:metricEnter .36s var(--ease-enter) both}.metrics-command .metric-card:nth-child(2){animation-delay:55ms}.metrics-command .metric-card:nth-child(3){animation-delay:110ms}.metrics-command .metric-card:nth-child(4){animation-delay:165ms}.metric-icon{position:absolute;top:18px;left:18px;display:grid;place-items:center;width:36px;height:36px;border-radius:13px;background:rgba(115,92,255,.09);color:#735cff;font-weight:900}.metrics-command .metric-label{font-weight:800}.metrics-command .metric-value{font-variant-numeric:tabular-nums;font-size:clamp(26px,2vw,34px);letter-spacing:-.6px;margin-top:16px}.metric-context{margin-top:10px;color:var(--muted);font-size:12px;font-weight:750}.metric-balance{border-radius:28px 28px 28px 10px!important;background:linear-gradient(145deg,#fff,#f5f2ff)!important}.metric-balance:after{content:"";position:absolute;width:120px;height:120px;border-radius:50%;background:rgba(115,92,255,.08);left:-44px;bottom:-54px}.metric-spark{display:flex;gap:5px;align-items:flex-end;height:24px;margin-top:10px}.metric-spark i{width:10px;border-radius:5px 5px 2px 2px;background:linear-gradient(#8e7cff,#735cff);opacity:.55}.metric-spark i:nth-child(1){height:8px}.metric-spark i:nth-child(2){height:13px}.metric-spark i:nth-child(3){height:10px}.metric-spark i:nth-child(4){height:20px}.metric-spark i:nth-child(5){height:17px}.metric-obligations{border-radius:24px!important}.metric-obligations .metric-icon{background:rgba(244,162,97,.12);color:#c9712e}.obligation-mini{display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding-top:10px;border-top:1px dashed rgba(244,162,97,.22)}.obligation-mini b{color:#c9712e;font-size:18px}.obligation-mini span{font-size:11px;color:var(--muted);font-weight:700}.metric-minimum{border-radius:12px 28px 28px 28px!important}.metric-minimum .metric-icon{background:rgba(53,199,170,.12);color:#168975}.metric-minimum.is-risk .metric-icon{background:rgba(244,162,97,.12);color:#c9712e}.threshold-mini{position:relative;height:7px;margin-top:17px;border-radius:999px;background:linear-gradient(90deg,rgba(223,90,102,.15),rgba(244,162,97,.16),rgba(53,199,170,.18))}.threshold-mini i{position:absolute;top:50%;left:var(--threshold);width:12px;height:12px;border-radius:50%;background:#fff;border:3px solid #35c7aa;transform:translate(-50%,-50%);box-shadow:0 3px 8px rgba(0,0,0,.12)}.is-risk .threshold-mini i{border-color:#f4a261}.threshold-mini span{display:block;padding-top:12px;font-size:11px;font-weight:750;color:var(--muted)}.metric-safe{border-radius:28px 10px 28px 28px!important;background:linear-gradient(145deg,#0d1934,#17294b)!important;color:#fff!important;box-shadow:0 18px 35px rgba(13,25,52,.18)!important}.metric-safe .metric-label,.metric-safe .metric-value{color:#fff}.metric-safe .metric-icon{background:rgba(67,216,188,.13);color:#65e2ca}.metric-safe .metric-context{color:rgba(255,255,255,.64)}
+
+/* Action dock */
+.command-section-title{margin-top:28px}.action-dock{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:8px;border-radius:27px;background:rgba(255,255,255,.66);border:1px solid rgba(255,255,255,.86);box-shadow:0 18px 46px rgba(35,43,74,.09);backdrop-filter:blur(18px);animation:dockEnter .42s .18s var(--ease-enter) both}.action-dock .qa{position:relative;display:grid;grid-template-columns:47px 1fr auto;align-items:center;gap:11px;min-height:90px;padding:14px;text-align:right;border:0;border-radius:20px;background:transparent;box-shadow:none}.action-dock .qa:hover{transform:translateY(-2px);background:#fff;box-shadow:0 12px 25px rgba(35,43,74,.09)}.action-dock .qa-featured{background:linear-gradient(135deg,rgba(115,92,255,.1),rgba(142,124,255,.04));box-shadow:inset 0 0 0 1px rgba(115,92,255,.12)}.action-dock .qa-ico{margin:0;width:45px;height:45px}.action-dock .qa b{font-size:14px}.action-dock .qa small{display:block;font-size:10.5px;margin-top:3px}.qa-arrow{font-style:normal;color:var(--muted);opacity:0;transform:translateX(5px);transition:opacity var(--motion-fast),transform var(--motion-fast)}.qa:hover .qa-arrow{opacity:1;transform:none}.command-insight{display:flex;align-items:flex-start;gap:14px;margin-top:18px!important;padding:18px 20px;border-radius:21px;background:linear-gradient(135deg,rgba(115,92,255,.055),rgba(53,199,170,.04));border:1px solid rgba(115,92,255,.08)}.command-insight h4{margin:0 0 4px}.command-insight p{margin:0}.insight-orb{display:grid;place-items:center;width:38px;height:38px;border-radius:14px;background:#fff;color:#735cff;box-shadow:0 8px 18px rgba(35,43,74,.08)}
+
+/* Focus and responsive */
+.command-cta:focus-visible,.action-dock .qa:focus-visible{outline:3px solid rgba(67,216,188,.72)!important;outline-offset:3px}
+@media(max-width:1180px){.command-hero{grid-template-columns:1fr;padding:28px!important}.financial-flow{min-height:365px}.metrics-command{grid-template-columns:repeat(2,1fr)}.action-dock{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.brand-splash-screen{min-height:620px;padding-top:46px}.opening-orbits{opacity:.5}.capsule-a,.diamond-b,.partial-ring{display:none}.command-hero{padding:20px!important;border-radius:27px 27px 27px 10px!important;gap:22px}.command-hero .st-head{align-items:flex-start}.status-seal{width:47px;height:47px;border-radius:16px}.command-hero .st-text h2{font-size:23px}.command-hero .st-alert{align-items:flex-start}.salary-chip{width:100%}.hero-mini-grid{grid-template-columns:1fr}.financial-flow{min-height:330px;padding:16px 10px 8px;border-radius:24px 24px 9px 24px}.financial-flow svg{height:260px}.flow-node text{font-size:11px}.flow-legend{display:none}.metrics-command{grid-template-columns:1fr}.metrics-command .metric-card{min-height:142px}.action-dock{grid-template-columns:repeat(2,1fr);padding:6px}.action-dock .qa{grid-template-columns:1fr;justify-items:center;text-align:center;min-height:126px;gap:7px}.qa-arrow{display:none}.command-insight{padding:16px}.demo-banner{align-items:center;flex-direction:row}.demo-banner span{line-height:1.45}}
+@media(max-width:360px){.action-dock{grid-template-columns:1fr}.action-dock .qa{grid-template-columns:45px 1fr;text-align:right;justify-items:stretch;min-height:82px}.command-hero .st-head{gap:10px}.financial-flow{margin-inline:-5px}.flow-head small{display:none}}
+
+@keyframes homeReveal{from{opacity:0;transform:translateY(8px);filter:blur(4px)}to{opacity:1;transform:none;filter:none}}
+@keyframes softEnter{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+@keyframes heroEnter{from{opacity:0;transform:translateY(18px) scale(.985);filter:blur(5px)}to{opacity:1;transform:none;filter:none}}
+@keyframes ribbonDrift{to{transform:translate3d(14px,-9px,0) scale(1.03) rotate(1.5deg)}}
+@keyframes heroSheen{to{transform:translateX(-140%)}}
+@keyframes statusSeal{from{opacity:0;transform:scale(.72) rotate(-8deg)}to{opacity:1;transform:none}}
+@keyframes ringFill{from{transform:scale(.82);opacity:0}to{transform:none;opacity:1}}
+@keyframes drawFlow{to{stroke-dashoffset:0}}
+@keyframes fadeIn{to{opacity:1}}
+@keyframes nodeEnter{from{opacity:0;transform:translate(var(--x,0),var(--y,0)) scale(.72)}to{opacity:1}}
+@keyframes salaryPulse{from{transform:scale(.65);opacity:.8}to{transform:scale(1.35);opacity:0}}
+@keyframes metricEnter{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes dockEnter{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes ambientDrift{to{transform:translate3d(13px,-9px,0) scale(1.04)}}
+
+@media(prefers-reduced-motion:reduce){
+  .opening-orbits,.opening-shape,.opening-aurora,.brand-splash-screen:after,.home-ambient i,.command-hero:before,.salary-halo{animation:none!important}
+  .flow-main-path{stroke-dashoffset:0!important;animation:none!important}.safe-guide,.safe-label,.flow-node{opacity:1!important;animation:none!important}.flow-traveller{display:none}
+  .home-command,.demo-banner,.command-hero,.status-seal,.salary-ring,.metrics-command .metric-card,.action-dock{animation:reducedFade 120ms linear both!important}
+  *{scroll-behavior:auto!important}
+}
+@keyframes reducedFade{from{opacity:0}to{opacity:1}}
+
 </style>
 </head>
 <body>
@@ -1479,6 +1581,25 @@ input:focus-visible,select:focus-visible,a:focus-visible{
       <div class="sky-stars" aria-hidden="true"></div>
       <div class="skyline" aria-hidden="true"></div>
       <div class="pattern-glow" aria-hidden="true"></div>
+      <div class="opening-aurora opening-aurora-a" aria-hidden="true"></div>
+      <div class="opening-aurora opening-aurora-b" aria-hidden="true"></div>
+      <svg class="opening-orbits" viewBox="0 0 460 760" aria-hidden="true" focusable="false">
+        <defs>
+          <linearGradient id="openingRoute" x1="0" x2="1"><stop stop-color="#8E7CFF"/><stop offset=".55" stop-color="#43D8BC"/><stop offset="1" stop-color="#FF9A45"/></linearGradient>
+          <filter id="openingGlow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <path class="opening-path opening-path-a" d="M-25 212 C70 118 126 145 190 209 S330 277 486 142"/>
+        <path class="opening-path opening-path-b" d="M-30 545 C92 440 152 505 230 558 S364 625 490 492"/>
+        <path class="opening-path opening-path-c" d="M64 710 C54 579 108 508 180 454 S301 339 396 45"/>
+        <circle class="opening-traveller traveller-a" r="5" filter="url(#openingGlow)"><animateMotion dur="9s" repeatCount="indefinite" path="M-25 212 C70 118 126 145 190 209 S330 277 486 142"/></circle>
+        <circle class="opening-traveller traveller-b" r="4" filter="url(#openingGlow)"><animateMotion dur="11s" begin="-4s" repeatCount="indefinite" path="M-30 545 C92 440 152 505 230 558 S364 625 490 492"/></circle>
+      </svg>
+      <div class="opening-shape capsule capsule-a" aria-hidden="true"></div>
+      <div class="opening-shape capsule capsule-b" aria-hidden="true"></div>
+      <div class="opening-shape diamond diamond-a" aria-hidden="true"></div>
+      <div class="opening-shape diamond diamond-b" aria-hidden="true"></div>
+      <div class="opening-shape constellation constellation-a" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="opening-shape partial-ring ring-a" aria-hidden="true"></div>
 
       <div class="qarar-appicon large" aria-hidden="true"><img src="assets/logo.png" alt="شعار منصة قرار" class="brand-logo-img"></div>
 
@@ -1671,6 +1792,7 @@ input:focus-visible,select:focus-visible,a:focus-visible{
        يُستخدم *فقط* لو فشل تحميل data-store.js الحقيقي.
        يضمن أن لوحة التحكم تُعرض كاملة في كل الأحوال.
        ═══════════════════════════════════════════════════════════════════ -->
+       
   <script>
 /* ============================================================================
  * QARAR — FALLBACK STORE  (شبكة أمان البيانات)
@@ -2956,101 +3078,87 @@ const views = {
     const p    = snap.profile;
     const bal  = snap.balanceMinor;
     const obs  = snap.obligations;
-    const obsTotal = obs.reduce((s,o)=>s+o.amount,0);
+    const obsTotal = obs.reduce((sum,o)=>sum+o.amount,0);
     const r = QararEngine.analyzeDecision(QararStore.buildEngineInput(null));
     const probe = QararEngine.analyzeDecision(QararStore.buildEngineInput({
       type:'purchase', name:'probe', amount:100,
       targetDate:p.asOfDate, isEssential:false, paymentMode:'one_time'
     }));
     const safeMax = probe.safeMaximumAmount;
-
-    const daysToSalary = DateU.diffDays(p.asOfDate, p.salaryDate);
+    const daysToSalary = Math.max(0, DateU.diffDays(p.asOfDate, p.salaryDate));
     const tight = r.minimumBalance < p.safeBalanceMinor;
     const critical = r.minimumBalance < 0;
-
-    /* ── المستوى ١: الحالة المالية بجملة واحدة ── */
-    const state = critical
-      ? { tone:'danger',  icon:'⚠️',
-          line:'وضعك المالي حرج قبل الراتب.',
-          sub:`أقل رصيد متوقع <b>${riyal(r.minimumBalance)}</b> — تحت الصفر.` }
-      : tight
-      ? { tone:'warn',    icon:'⚠️',
-          line:'وضعك المالي يحتاج انتباهًا قبل الراتب.',
-          sub:`أقل رصيد متوقع <b>${riyal(r.minimumBalance)}</b> — تحت حدك الآمن (${riyal(p.safeBalanceMinor)}).` }
-      : { tone:'safe',    icon:'✓',
-          line:'وضعك المالي مستقر حتى نزول الراتب.',
-          sub:`أقل رصيد متوقع <b>${riyal(r.minimumBalance)}</b> — فوق حدك الآمن.` };
-
-    /* ── المستوى ٢: أقوى تنبيه (من المحرك، لا نص ثابت) ── */
-    const topReason = r.riskReasons?.[0]?.text || '';
     const nextObs = obs[0];
+    const topReason = r.riskReasons?.[0]?.text || '';
+    const state = critical
+      ? { tone:'danger', icon:'!', line:'وضعك المالي حرج قبل الراتب.', sub:`أقل رصيد متوقع <b>${riyal(r.minimumBalance)}</b> — تحت الصفر.` }
+      : tight
+      ? { tone:'warn', icon:'!', line:'وضعك المالي يحتاج انتباهًا قبل الراتب.', sub:`أقل رصيد متوقع <b>${riyal(r.minimumBalance)}</b> — تحت حدك الآمن (${riyal(p.safeBalanceMinor)}).` }
+      : { tone:'safe', icon:'✓', line:'وضعك المالي مستقر حتى نزول الراتب.', sub:`أقل رصيد متوقع <b>${riyal(r.minimumBalance)}</b> — فوق حدك الآمن.` };
+    const flowTone = critical ? 'danger' : tight ? 'warn' : 'safe';
+    const salaryProgress = Math.max(8, Math.min(92, 100 - Math.min(daysToSalary,30)/30*100));
 
     return `
-    ${demoBanner()}
+    <div class="home-command" data-home-entry="initial">
+      ${demoBanner()}
 
-    <!-- ⭐ المستوى ١+٢: الحالة + التنبيه + الإجراء الأساسي -->
-    <section class="state-card ${state.tone}" aria-live="polite">
-      <div class="st-head">
-        <span class="st-icon" aria-hidden="true">${state.icon}</span>
-        <div class="st-text">
-          <h2>${state.line}</h2>
-          <p>${state.sub}</p>
+      <section class="state-card ${state.tone} command-hero" aria-live="polite">
+        <div class="command-copy">
+          <span class="command-kicker"><span class="live-dot" aria-hidden="true"></span> الحالة المالية الحالية</span>
+          <div class="st-head">
+            <span class="st-icon status-seal" aria-hidden="true">${state.icon}</span>
+            <div class="st-text"><h2>${state.line}</h2><p>${state.sub}</p></div>
+          </div>
+          ${nextObs ? `<div class="st-alert"><span class="event-mark" aria-hidden="true">${nextObs.icon}</span><span>أقرب التزام: <b>${esc(nextObs.name)}</b> — ${riyal(nextObs.amount)} في ${DateU.formatArabic(nextObs.dueDate)}.</span></div>` : ''}
+          <div class="salary-chip"><span class="salary-ring" style="--salary-progress:${salaryProgress}%" aria-hidden="true"><i></i></span><span><small>المحطة القادمة</small><b>الراتب بعد ${daysToSalary.toLocaleString('ar-SA')} أيام</b></span></div>
+          <div class="st-cta">
+            <button class="btn primary command-cta" data-goto="decision">اختبر قرارًا ماليًا الآن <span aria-hidden="true">←</span></button>
+            <span class="st-hint">اعرف الأثر الحقيقي قبل أن تدفع</span>
+          </div>
+          <div class="hero-mini-grid" aria-label="ملخص سريع">
+            <div class="hero-mini safe"><small>حدك الآمن</small><b data-financial-value>${riyal(p.safeBalanceMinor)}</b><span>الحد الأدنى الذي اخترته</span></div>
+            <div class="hero-mini"><small>أقصى مبلغ آمن</small><b data-financial-value>${riyal(safeMax)}</b><span>يمكنك دفعه الآن بثقة</span></div>
+          </div>
         </div>
+
+        <div style="max-height: 400px; padding-right:60px; " class="financial-flow ${flowTone}" aria-label="المسار المالي حتى موعد الراتب">
+          <div class="flow-head"><span>أفق القرار</span><small>من اليوم حتى الراتب</small></div>
+          <svg viewBox="0 0 560 330" role="img" aria-label="الرصيد الحالي والالتزام القادم والحد الآمن وأقل رصيد متوقع وموعد الراتب">
+            <defs>
+              <linearGradient id="flowGradient" x1="1" x2="0"><stop offset="0" stop-color="#735CFF"/><stop offset=".55" stop-color="${critical?'#E45A64':tight?'#F4A261':'#35C7AA'}"/><stop offset="1" stop-color="#8E7CFF"/></linearGradient>
+              <filter id="flowGlow"><feGaussianBlur stdDeviation="3" result="g"/><feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            </defs>
+            <path class="flow-range" d="M500 75 C425 88 382 145 318 170 S197 251 65 112"/>
+            <path class="flow-main-path" pathLength="1" d="M500 75 C425 88 382 145 318 170 S197 251 65 112"/>
+            <line class="safe-guide" x1="35" y1="225" x2="525" y2="225"/>
+            <text class="safe-label" x="500" y="247" text-anchor="end">الحد الآمن ${riyal(p.safeBalanceMinor)}</text>
+            <g class="flow-node node-current" transform="translate(500 75)"><circle r="18"/><circle class="node-core" r="7"/><text x="0" y="-30" text-anchor="middle">اليوم</text><text x="0" y="39" text-anchor="middle">${riyal(bal)}</text></g>
+            ${nextObs ? `<g class="flow-node node-obligation" transform="translate(360 145)"><rect x="-16" y="-16" width="32" height="32" rx="10"/><text x="0" y="-28" text-anchor="middle">${esc(nextObs.name)}</text><text x="0" y="38" text-anchor="middle">− ${riyal(nextObs.amount)}</text></g>` : ''}
+            <g class="flow-node node-min" transform="translate(220 235)"><path d="M0 -19 L19 0 L0 19 L-19 0 Z"/><text x="0" y="-31" text-anchor="middle">أقل رصيد متوقع</text><text x="0" y="42" text-anchor="middle">${riyal(r.minimumBalance)}</text></g>
+            <g class="flow-node node-salary" transform="translate(65 112)"><circle r="22"/><circle class="salary-halo" r="30"/><text x="0" y="-36" text-anchor="middle">الراتب</text><text x="0" y="48" text-anchor="middle">بعد ${daysToSalary.toLocaleString('ar-SA')} أيام</text></g>
+            <circle class="flow-traveller" r="5" filter="url(#flowGlow)"><animateMotion dur="1.7s" begin=".45s" fill="freeze" repeatCount="1" path="M500 75 C425 88 382 145 318 170 S197 251 65 112"/></circle>
+          </svg>
+          <div class="flow-legend"><span><i class="now"></i>الرصيد الحالي</span><span><i class="risk"></i>التزامات</span><span><i class="safe"></i>حد الأمان</span></div>
+        </div>
+      </section>
+
+      <div class="metrics-command" style="margin-top:var(--sp-5)">
+        <div class="card metric-card metric-balance"><span class="metric-icon" aria-hidden="true">◉</span><span class="metric-label">الرصيد الحالي</span><div class="metric-value" data-financial-value>${riyal(bal)}</div><div class="metric-context">من عملياتك المحفوظة</div><div class="metric-spark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div></div>
+        <div class="card metric-card metric-obligations"><span class="metric-icon" aria-hidden="true">⌁</span><span class="metric-label">الالتزامات القادمة</span><div class="metric-value" data-financial-value>${riyal(obsTotal)}</div><div class="obligation-mini"><b>${obs.length.toLocaleString('ar-SA')}</b><span>قبل ${DateU.formatArabic(p.salaryDate)}</span></div></div>
+        <div class="card metric-card metric-minimum ${tight?'is-risk':'is-safe'}"><span class="metric-icon" aria-hidden="true">◇</span><span class="metric-label">أقل رصيد متوقع</span><div class="metric-value" data-financial-value>${riyal(r.minimumBalance)}</div><div class="threshold-mini"><i style="--threshold:${Math.max(8,Math.min(92,(r.minimumBalance/(p.safeBalanceMinor||1))*50+50))}%"></i><span>${tight?'تحت الحد الآمن':'فوق الحد الآمن'}</span></div></div>
+        <div class="card metric-card metric-safe"><span class="metric-icon" aria-hidden="true">✦</span><span class="metric-label">أقصى مبلغ آمن</span><div class="metric-value" data-financial-value>${riyal(safeMax)}</div><div class="metric-context">يمكنك دفعه الآن بأمان</div></div>
       </div>
 
-      ${nextObs ? `
-        <div class="st-alert">
-          <span aria-hidden="true">${nextObs.icon}</span>
-          <span>أقرب التزام: <b>${esc(nextObs.name)}</b> — ${riyal(nextObs.amount)}
-          في ${DateU.formatArabic(nextObs.dueDate)}.
-          الراتب بعد ${daysToSalary.toLocaleString('ar-SA')} أيام.</span>
-        </div>` : ''}
-
-      <!-- ⭐ المستوى ٣: الإجراء الأساسي -->
-      <div class="st-cta">
-        <button class="btn primary" data-goto="decision">
-          اختبر قرارًا ماليًا الآن ←
-        </button>
-        <span class="st-hint">اعرف الأثر قبل أن تدفع</span>
+      <div class="section-title command-section-title"><h3>ماذا تريد أن تفعل الآن؟</h3><p>كل خطوة تنعكس فورًا على تحليلك</p></div>
+      <div class="action-dock" role="group" aria-label="إجراءات سريعة">
+        <button class="qa" data-goto="sandbox"><span class="qa-ico expense" aria-hidden="true">−</span><span><b>إضافة مصروف</b><small>سجّل عملية وشاهد أثرها</small></span><i class="qa-arrow" aria-hidden="true">←</i></button>
+        <button class="qa" data-goto="sandbox"><span class="qa-ico income" aria-hidden="true">＋</span><span><b>إضافة دخل</b><small>راتب أو مكافأة أو بيع</small></span><i class="qa-arrow" aria-hidden="true">←</i></button>
+        <button class="qa qa-featured" data-goto="decision"><span class="qa-ico decide" aria-hidden="true">↯</span><span><b>اختبار قرار</b><small>اختبره قبل أن تدفع</small></span><i class="qa-arrow" aria-hidden="true">←</i></button>
+        <button class="qa" data-goto="assistant"><span class="qa-ico ai" aria-hidden="true">✦</span><span><b>اسأل المساعد</b><small>احصل على تفسير واضح</small></span><i class="qa-arrow" aria-hidden="true">←</i></button>
       </div>
-    </section>
-
-    <!-- ⭐ المستوى ٤: الأرقام الأساسية -->
-    <div class="grid four" style="margin-top:var(--sp-5)">
-      ${metric('الرصيد الحالي', riyal(bal), 'من عملياتك المحفوظة', 'violet')}
-      ${metric('الالتزامات القادمة', riyal(obsTotal),
-        `${obs.length.toLocaleString('ar-SA')} قبل ${DateU.formatArabic(p.salaryDate)}`, 'orange')}
-      ${metric('أقل رصيد متوقع', riyal(r.minimumBalance),
-        tight ? '⚠️ تحت الحد الآمن' : '✓ فوق الحد الآمن', tight?'orange':'mint')}
-      ${metric('أقصى مبلغ آمن', riyal(safeMax), 'يمكنك إنفاقه الآن', 'mint')}
+      ${topReason ? `<div class="why-box command-insight"><span class="insight-orb" aria-hidden="true">✦</span><div><h4>قراءة المحرك</h4><p>${esc(topReason)}</p></div></div>` : ''}
+      <div class="home-ambient" aria-hidden="true"><i></i><i></i><i></i></div>
     </div>
-
-    <!-- ⭐ المستوى ٥: إجراءات سريعة -->
-    <div class="section-title"><h3>إجراءات سريعة</h3><p>ابدأ من هنا</p></div>
-    <div class="quick-actions">
-      <button class="qa" data-goto="sandbox">
-        <span class="qa-ico expense" aria-hidden="true">−</span>
-        <b>إضافة مصروف</b><small>سجّل عملية · شاهد الأثر</small>
-      </button>
-      <button class="qa" data-goto="sandbox">
-        <span class="qa-ico income" aria-hidden="true">＋</span>
-        <b>إضافة دخل</b><small>راتب · مكافأة · بيع</small>
-      </button>
-      <button class="qa" data-goto="decision">
-        <span class="qa-ico decide" aria-hidden="true">↯</span>
-        <b>اختبار قرار</b><small>قبل أن تدفع</small>
-      </button>
-      <button class="qa" data-goto="assistant">
-        <span class="qa-ico ai" aria-hidden="true">✦</span>
-        <b>اسأل المساعد</b><small>بلغتك الطبيعية</small>
-      </button>
-    </div>
-
-    ${topReason ? `
-      <div class="why-box" style="margin-top:var(--sp-5)">
-        <h4>قراءة المحرك</h4>
-        <p>${esc(topReason)}</p>
-      </div>` : ''}
     `},
 
   status(){return `
@@ -5190,6 +5298,132 @@ try{
     + ' | دوال مفقودة: ' + missing.length);
 })();
 
+</script>
+<script>
+  (function() {
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+
+    function forceScrollTop() {
+      window.scrollTo(0, 0);
+      if (document.documentElement) document.documentElement.scrollTop = 0;
+      if (document.body) document.body.scrollTop = 0;
+
+      // Reset scroll on all nested wrappers
+      document.querySelectorAll('*').forEach(el => {
+        if (el.scrollTop > 0) el.scrollTop = 0;
+      });
+    }
+
+    // Global listener ensures it never breaks during page transitions
+    document.addEventListener('click', (e) => {
+      
+      // 1. Detect if the click happened inside a sidebar or navigation container
+      const isSideNavContainer = e.target.closest('aside, nav, [class*="sidebar"], [class*="sidenav"], [class*="side-nav"], [class*="menu"], .side-bar, .side-nav');
+      
+      // 2. Detect if the clicked element itself is a link or button
+      const isClickable = e.target.closest('a, button, [role="button"]');
+
+      // 3. Only run if BOTH conditions are met (clicked a link/button INSIDE the side nav)
+      if (isSideNavContainer && isClickable) {
+        forceScrollTop();
+
+        // Repeatedly forces the scroll to 0 over 600ms to override page load lag
+        let attempts = 0;
+        const scrollLock = setInterval(() => {
+          forceScrollTop();
+          attempts++;
+          if (attempts > 12) clearInterval(scrollLock);
+        }, 50);
+      }
+    }, true); 
+  })();
+</script>
+<script>
+  (function() {
+    const toWestern = (s) => s.replace(/[٠-٩]/g, d => d.charCodeAt(0) - 1632).replace(/[۰-۹]/g, d => d.charCodeAt(0) - 1776);
+    const toArabic = (s) => s.replace(/[0-9]/g, d => String.fromCharCode(d.charCodeAt(0) + 1584));
+    const numRegex = /[0-9٠-٩۰-۹]+([.,٫٬][0-9٠-٩۰-۹]+)*/;
+
+    function initCounter(el) {
+      if (el.dataset.counting === "true") return;
+      el.dataset.counting = "true";
+
+      const text = el.innerText.trim();
+      const match = text.match(numRegex);
+      if (!match) return;
+
+      const originalStr = match[0];
+      const prefix = text.substring(0, match.index);
+      const suffix = text.substring(match.index + originalStr.length);
+      const isArabic = /[٠-٩۰-۹]/.test(originalStr);
+
+      let cleanStr = toWestern(originalStr).replace(/[,٬]/g, '').replace(/٫/g, '.');
+      const target = parseFloat(cleanStr);
+      if (isNaN(target)) return;
+
+      const decimals = target % 1 !== 0;
+      
+      // Forces transition override so CSS doesn't block the animation frames
+      const originalTransition = el.style.transition;
+      el.style.transition = 'none';
+
+      let start = null;
+      const duration = 2000; 
+
+      function animate(timestamp) {
+        if (!start) start = timestamp;
+        const progress = Math.min((timestamp - start) / duration, 1);
+        const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+        const current = ease * target;
+
+        let formatted = decimals ? current.toFixed(2) : Math.floor(current).toLocaleString('en-US');
+        if (isArabic) {
+          formatted = toArabic(formatted).replace(/,/g, '٬').replace(/\./g, '٫');
+        }
+
+        el.innerHTML = prefix + formatted + suffix;
+
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        } else {
+          let finalStr = decimals ? target.toFixed(2) : target.toLocaleString('en-US');
+          if (isArabic) finalStr = toArabic(finalStr).replace(/,/g, '٬').replace(/\./g, '٫');
+          el.innerHTML = prefix + finalStr + suffix;
+          el.style.transition = originalTransition;
+        }
+      }
+      requestAnimationFrame(animate);
+    }
+
+    // Comprehensive selector list. Added "[data-countup]" as a backup hook.
+    const selectors = '.metric-value, .sc-num, .hm-val, .cmp-val, .qcard-balance b, .score-number b, .bill-expected b, .count-up, [data-countup]';
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          initCounter(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.05 });
+
+    function scanAndObserve() {
+      document.querySelectorAll(selectors).forEach(el => observer.observe(el));
+    }
+
+    // Fires instantly, on load, and tracks dynamically updated DOM nodes (SPA protection)
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', scanAndObserve);
+    } else {
+      scanAndObserve();
+    }
+    window.addEventListener('load', scanAndObserve);
+
+    const mutObserver = new MutationObserver(scanAndObserve);
+    mutObserver.observe(document.body, { childList: true, subtree: true });
+  })();
 </script>
 </body>
 </html>
