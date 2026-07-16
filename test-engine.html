@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>اختبار محرك القرار — منصة قرار</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  body{font-family:"IBM Plex Sans Arabic","Segoe UI",Tahoma,sans-serif;
+    background:linear-gradient(135deg,#fbf7ef,#f5efe4);margin:0;padding:24px;color:#162038}
+  .wrap{max-width:900px;margin:0 auto}
+  h1{color:#10172A;letter-spacing:-1px}
+  .sub{color:#718096;font-weight:600;margin-bottom:24px}
+  .card{background:#fff;border-radius:24px;padding:22px;margin-bottom:16px;
+    box-shadow:0 16px 35px rgba(16,23,42,.10);border:1px solid rgba(20,33,61,.07)}
+  h2{font-size:19px;margin:0 0 14px;color:#10172A}
+  .row{display:flex;align-items:center;gap:10px;padding:9px 0;
+    border-bottom:1px solid rgba(20,33,61,.05);font-weight:600}
+  .row:last-child{border:0}
+  .ok{color:#11806E}.bad{color:#C85435}
+  .badge{display:inline-flex;align-items:center;gap:6px;border-radius:999px;
+    padding:6px 12px;font-weight:800;font-size:13px}
+  .badge.pass{background:rgba(39,199,168,.13);color:#11806E}
+  .badge.fail{background:rgba(255,122,89,.13);color:#C85435}
+  .num{font-family:monospace;font-size:15px;font-weight:700}
+  .star{background:linear-gradient(135deg,rgba(109,93,251,.08),rgba(39,199,168,.08));
+    border:2px solid rgba(39,199,168,.3)}
+  .calc{font-family:monospace;background:#F9FAFC;padding:12px 14px;border-radius:12px;
+    margin:10px 0;line-height:1.9;font-size:14px;direction:ltr;text-align:left}
+  .summary{font-size:22px;font-weight:900;text-align:center;padding:18px;border-radius:20px}
+  .summary.pass{background:rgba(39,199,168,.12);color:#11806E}
+  .summary.fail{background:rgba(255,122,89,.12);color:#C85435}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>اختبار محرك القرار المالي</h1>
+  <p class="sub">هذه الصفحة تُثبت أن الأرقام <b>محسوبة من المحرك</b>، ولم تُكتب يدويًا.</p>
+  <div id="out"></div>
+</div>
+
+<script src="src/decision-engine.js"></script>
+<script src="src/demo-data.js"></script>
+<script>
+const M = QararEngine.Money;
+let pass=0, fail=0;
+const out = document.getElementById('out');
+
+function card(title, cls=''){
+  const d=document.createElement('div');
+  d.className='card '+cls;
+  d.innerHTML='<h2>'+title+'</h2>';
+  out.appendChild(d);
+  return d;
+}
+function check(card, label, actual, expected){
+  const ok = actual === expected;
+  ok ? pass++ : fail++;
+  const r=document.createElement('div');
+  r.className='row';
+  r.innerHTML = `<span class="${ok?'ok':'bad'}">${ok?'✓':'✗'}</span>
+    <span style="flex:1">${label}</span>
+    <span class="num ${ok?'ok':'bad'}">${M.format(actual)} ر.س</span>`;
+  card.appendChild(r);
+}
+
+/* ── التحليل ── */
+const input = {
+  asOfDate:       QararDemo.PROFILE.asOfDate,
+  currentBalance: QararDemo.PROFILE.currentBalance,
+  safeFloor:      QararDemo.PROFILE.safeFloor,
+  monthlyIncome:  QararDemo.PROFILE.monthlyIncome,
+  nextSalaryDate: QararDemo.PROFILE.nextSalaryDate,
+  obligations:    QararDemo.PROFILE.obligations,
+  newDecision:    QararDemo.LAPTOP_DECISION
+};
+const r = QararEngine.analyzeDecision(input);
+
+/* ── المدخلات ── */
+const c0 = card('المدخلات');
+c0.innerHTML += `<div class="calc">
+الرصيد الحالي   = 4,200 ر.س
+سعر اللابتوب    = 3,000 ر.س
+كهرباء          =   650 ر.س
+ماء             =   180 ر.س
+إنترنت          =   300 ر.س
+الحد الآمن      = 1,500 ر.س
+</div>`;
+
+/* ── الاختبار المرجعي ── */
+const c1 = card('⭐ سيناريو اللابتوب — الأرقام المحسوبة', 'star');
+c1.innerHTML += `<div class="calc">
+4,200 − 3,000 = 1,200   ← الرصيد بعد الشراء
+1,200 − 1,130 =    70   ← أقل رصيد قبل الراتب ⭐
+4,200 − 1,130 − 1,500 = 1,570   ← أقصى مبلغ آمن ⭐
+</div>`;
+check(c1, 'الرصيد بعد القرار',        r.balanceAfterDecision,   M.fromRiyal(1200));
+check(c1, 'مجموع الالتزامات',          r.obligationsBeforeSalary, M.fromRiyal(1130));
+check(c1, '⭐ أقل رصيد متوقع',          r.minimumBalance,         M.fromRiyal(70));
+check(c1, 'الفرق عن الحد الآمن',       r.gapFromSafeFloor,       M.fromRiyal(-1430));
+check(c1, '⭐ أقصى مبلغ آمن',           r.safeMaximumAmount,      M.fromRiyal(1570));
+
+const rr=document.createElement('div');
+rr.className='row';
+rr.innerHTML = `<span class="${r.riskLevel==='high'?'ok':'bad'}">${r.riskLevel==='high'?'✓':'✗'}</span>
+  <span style="flex:1">مستوى الخطر / التوصية</span>
+  <span class="badge ${r.riskLevel==='high'?'pass':'fail'}">${r.riskLevelAr} — ${r.recommendationAr}</span>`;
+c1.appendChild(rr);
+r.riskLevel==='high' ? pass++ : fail++;
+
+/* ── إثبات أن الأرقام محسوبة ── */
+const c2 = card('إثبات أن الأرقام محسوبة (تغيير المدخلات يغيّر النتيجة)');
+const rich = QararEngine.analyzeDecision(Object.assign({},input,{currentBalance:M.fromRiyal(10000)}));
+c2.innerHTML += `<div class="calc">
+لو كان الرصيد 10,000 بدل 4,200:
+10,000 − 3,000 − 1,130 = 5,870   (ليس 70!)
+10,000 − 1,130 − 1,500 = 7,370   (ليس 1,570!)
+</div>`;
+check(c2, 'رصيد 10,000 → أقل رصيد',  rich.minimumBalance,    M.fromRiyal(5870));
+check(c2, 'رصيد 10,000 → أقصى آمن',  rich.safeMaximumAmount, M.fromRiyal(7370));
+
+/* ── الحتمية ── */
+const c3 = card('الحتمية — نفس المدخلات تعطي نفس النتيجة');
+const a=QararEngine.analyzeDecision(input), b=QararEngine.analyzeDecision(input);
+const same = JSON.stringify(a)===JSON.stringify(b);
+same?pass++:fail++;
+c3.innerHTML += `<div class="row"><span class="${same?'ok':'bad'}">${same?'✓':'✗'}</span>
+  <span style="flex:1">تشغيلان متتاليان → نتيجة متطابقة تمامًا</span>
+  <span class="badge ${same?'pass':'fail'}">${same?'حتمي ✓':'غير حتمي ✗'}</span></div>`;
+
+/* ── الخط الزمني ── */
+const c4 = card('الخط الزمني المحسوب');
+let tl='<div class="calc">';
+r.timeline.slice(0,6).forEach(t=>{
+  tl += `${t.date}  ${t.label.padEnd(20,' ')} ${t.amount<0?'−':'+'}${M.format(Math.abs(t.amount)).padStart(8)}  →  ${M.format(t.balanceAfter)}\n`;
+});
+c4.innerHTML += tl+'</div>';
+
+/* ── الخلاصة ── */
+const s=document.createElement('div');
+s.className='summary '+(fail===0?'pass':'fail');
+s.textContent = fail===0
+  ? `✓ نجحت جميع الاختبارات: ${pass}/${pass+fail}`
+  : `✗ فشل ${fail} من ${pass+fail}`;
+out.appendChild(s);
+</script>
+</body>
+</html>

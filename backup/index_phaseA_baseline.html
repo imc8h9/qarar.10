@@ -1,0 +1,1544 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#10172A" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <title>منصة قرار — Financial Intelligence Platform</title>  <style>
+:root{
+  --ink:#10172A;
+  --ink2:#18243F;
+  --navy:#14213D;
+  --violet:#6D5DFB;
+  --violet2:#8C7BFF;
+  --amber:#F4A261;
+  --coral:#FF7A59;
+  --mint:#27C7A8;
+  --sage:#7BAE9B;
+  --sand:#F7F1E8;
+  --sand2:#EFE6D8;
+  --paper:#FFFDF8;
+  --soft:#F9FAFC;
+  --line:#E8DFD2;
+  --text:#162038;
+  --muted:#718096;
+  --white:#fff;
+  --shadow:0 22px 55px rgba(16,23,42,.12);
+  --shadow2:0 16px 35px rgba(16,23,42,.10);
+  --radius:28px;
+  --ease:cubic-bezier(.2,.9,.2,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:"IBM Plex Sans Arabic","Noto Sans Arabic","Segoe UI",Tahoma,system-ui,-apple-system,sans-serif;
+  background:linear-gradient(135deg,#fbf7ef 0%,#f5efe4 42%,#f9fafb 100%);
+  color:var(--text);
+  overflow-x:hidden;
+}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer;border:0;background:none;color:inherit}
+.ambient{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:-2;background:
+  radial-gradient(circle at 85% 12%,rgba(109,93,251,.20),transparent 32%),
+  radial-gradient(circle at 10% 20%,rgba(255,122,89,.18),transparent 30%),
+  radial-gradient(circle at 70% 90%,rgba(39,199,168,.12),transparent 35%);
+}
+.orb{position:absolute;border-radius:999px;filter:blur(22px);opacity:.72;animation:float 12s var(--ease) infinite alternate}
+.orb-one{width:360px;height:360px;right:-90px;top:120px;background:rgba(109,93,251,.22)}
+.orb-two{width:320px;height:320px;left:-95px;top:30px;background:rgba(255,122,89,.20);animation-delay:-3s}
+.orb-three{width:280px;height:280px;left:14%;bottom:-120px;background:rgba(39,199,168,.16);animation-delay:-6s}
+.grid-glow{position:absolute;inset:0;background-image:linear-gradient(rgba(20,33,61,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(20,33,61,.035) 1px,transparent 1px);background-size:58px 58px;mask-image:linear-gradient(to bottom,transparent,black 18%,black 78%,transparent)}
+.route-line{position:absolute;right:18%;top:10%;width:720px;height:720px;border:1px solid rgba(109,93,251,.12);border-radius:42% 58% 49% 51%;transform:rotate(-18deg);animation:rotate 42s linear infinite}
+@keyframes float{to{transform:translate3d(20px,-22px,0) scale(1.05)}}
+@keyframes rotate{to{transform:rotate(342deg)}}
+.splash,.loading{position:fixed;inset:0;display:grid;place-items:center;z-index:100;background:rgba(3,10,27,.60);backdrop-filter:blur(22px);transition:opacity .45s var(--ease),visibility .45s var(--ease)}
+.splash.hide,.loading.hide{opacity:0;visibility:hidden;pointer-events:none}
+.splash-card,.loading-panel{width:min(92vw,460px);border-radius:38px;background:linear-gradient(180deg,#09142C 0%,#0A1735 55%,#0C1D43 100%);border:1px solid rgba(255,255,255,.10);box-shadow:0 28px 90px rgba(2,8,23,.55), inset 0 1px 0 rgba(255,255,255,.08);padding:34px 32px 28px;text-align:center;position:relative;overflow:hidden;color:#fff}
+.brand-splash-screen{min-height:760px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:72px}
+.brand-loading-screen{padding:28px 26px 22px;background:linear-gradient(180deg,#0B1835 0%,#09142C 100%)}
+.sky-stars,.skyline,.pattern-glow{position:absolute;inset:0;pointer-events:none}
+.sky-stars{background-image:radial-gradient(circle at 15% 20%,rgba(255,255,255,.85) 0 1.5px,transparent 1.5px),radial-gradient(circle at 35% 15%,rgba(255,255,255,.65) 0 1.2px,transparent 1.2px),radial-gradient(circle at 68% 26%,rgba(255,255,255,.55) 0 1.3px,transparent 1.3px),radial-gradient(circle at 80% 12%,rgba(255,255,255,.78) 0 1.4px,transparent 1.4px),radial-gradient(circle at 55% 32%,rgba(255,255,255,.35) 0 1px,transparent 1px);opacity:.55}
+.skyline{background:linear-gradient(180deg,transparent 58%,rgba(4,13,30,.05) 58%), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 160'%3E%3Cg fill='%23152748' opacity='.9'%3E%3Cpath d='M0 160V118h28v42zm34 0V84h22v76zm28 0V104h26v56zm34 0V72h18v88zm26 0V92h28v68zm36 0V60h20v100zm28 0V115h36v45zm46 0V102h20v58zm30 0V78h24v82zm32 0V98h32v62zm38 0V65h18v95zm24 0V42h44v118zm50 0V92h28v68zm38 0V70h20v90zm28 0V34h38v126zm44 0V82h24v78zm32 0V106h30v54z'/%3E%3C/g%3E%3Cg fill='none' stroke='%23233B72' stroke-width='2' opacity='.45'%3E%3Cpath d='M0 132H600'/%3E%3C/g%3E%3C/svg%3E") center bottom/100% auto no-repeat;opacity:.95;mask-image:linear-gradient(180deg,transparent,black 40%)}
+.pattern-glow{background:radial-gradient(circle at 50% 96%,rgba(108,93,251,.45),transparent 26%), radial-gradient(circle at 50% 72%,rgba(255,154,69,.14),transparent 34%)}
+.pattern-glow:before{content:"";position:absolute;left:0;right:0;bottom:0;height:170px;background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:24px 24px;opacity:.18;mask-image:linear-gradient(180deg,transparent,black 32%)}
+.qarar-appicon{display:grid;place-items:center;background:linear-gradient(180deg,#0B1B49 0%,#08153A 100%);box-shadow:0 22px 55px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.07);border-radius:28px}
+.qarar-appicon.large{width:168px;height:168px;padding:22px;margin-bottom:28px}
+.qarar-appicon.small{width:72px;height:72px;padding:11px;border-radius:22px}
+.qarar-appicon svg{width:100%;height:100%;display:block}
+.brand-partnership{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;position:relative;z-index:1}
+.brand-side{display:flex;align-items:center;gap:10px}
+.brand-partnership .brand-title,.brand-partnership .alinma-name{font-size:32px;font-weight:800;letter-spacing:-.5px;color:#fff;white-space:nowrap}
+.brand-partnership.compact .brand-title,.brand-partnership.compact .alinma-name{font-size:22px}
+.brand-x{font-size:34px;font-weight:700;color:#FF9A45;line-height:1}
+.alinma-side{gap:12px}
+.alinma-mark{width:34px;height:34px;border-radius:8px;background:#6B1F19;display:grid;place-items:center;box-shadow:0 10px 20px rgba(0,0,0,.2)}
+.alinma-mark i{display:block;width:8px;height:22px;background:#fff;border-radius:2px}
+.splash-tagline{margin:18px 0 8px;color:rgba(255,255,255,.92);font-size:18px;font-weight:500;position:relative;z-index:1}
+.splash-loading-text,#loadingMessage{margin:0 0 12px;color:#F4D8BA;font-size:17px;font-weight:600;position:relative;z-index:1}
+.splash-progress,.loader-bar{height:8px;border-radius:999px;background:rgba(255,255,255,.16);overflow:hidden;width:100%;margin-top:16px;position:relative;z-index:1;box-shadow:inset 0 1px 2px rgba(0,0,0,.18)}
+.splash-progress i,.loader-bar i{display:block;height:100%;width:38%;border-radius:inherit;background:linear-gradient(90deg,#6D5DFB 0%,#8E7CFF 52%,#FF9A45 100%);box-shadow:0 0 16px rgba(109,93,251,.75);animation:load 1.12s var(--ease) infinite}
+.loading-top-branding{display:grid;gap:16px;justify-items:center}
+@keyframes load{0%{transform:translateX(160%)}100%{transform:translateX(-280%)}}
+
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(25px);background:var(--ink);color:#fff;padding:13px 20px;border-radius:999px;box-shadow:0 16px 36px rgba(16,23,42,.22);z-index:90;opacity:0;transition:.35s var(--ease);font-weight:700}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.app-shell{display:grid;grid-template-columns:292px 1fr;gap:24px;min-height:100vh;padding:22px;max-width:1700px;margin:0 auto}
+.side-nav{position:sticky;top:22px;height:calc(100vh - 44px);border-radius:34px;background:linear-gradient(160deg,rgba(16,23,42,.96),rgba(24,36,63,.92));color:#fff;box-shadow:var(--shadow);padding:18px;display:flex;flex-direction:column;gap:18px;overflow:hidden}
+.side-nav:before{content:"";position:absolute;inset:-60% -40% auto auto;width:520px;height:520px;background:radial-gradient(circle,rgba(109,93,251,.35),transparent 60%);z-index:-1}.brand-button{display:flex;align-items:center;gap:13px;text-align:right;padding:12px;border-radius:24px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);transition:.3s var(--ease)}.brand-button:hover{background:rgba(255,255,255,.13);transform:translateY(-2px)}.brand-button b{font-size:25px;letter-spacing:-1px}.brand-button small{display:block;color:rgba(255,255,255,.64);margin-top:3px}
+#desktopNav{display:grid;gap:8px}.nav-item{display:flex;align-items:center;gap:12px;text-align:right;width:100%;padding:13px 14px;border-radius:18px;color:rgba(255,255,255,.70);transition:.28s var(--ease);position:relative}.nav-item .ico{width:36px;height:36px;display:grid;place-items:center;border-radius:14px;background:rgba(255,255,255,.08);transition:.28s var(--ease)}.nav-item:hover{background:rgba(255,255,255,.08);color:#fff;transform:translateX(-3px)}.nav-item.active{background:linear-gradient(90deg,rgba(109,93,251,.28),rgba(255,122,89,.15));color:#fff}.nav-item.active .ico{background:#fff;color:var(--violet);box-shadow:0 12px 26px rgba(109,93,251,.25)}.nav-card{margin-top:auto;padding:18px;border-radius:26px;background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.06));border:1px solid rgba(255,255,255,.13)}.nav-card small,.nav-card span{display:block;color:rgba(255,255,255,.65)}.nav-card strong{font-size:38px;line-height:1.1}.mini-meter{height:7px;margin-top:12px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden}.mini-meter i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--mint),var(--amber))}
+.main-area{min-width:0;border-radius:36px;background:rgba(255,253,248,.66);box-shadow:inset 0 0 0 1px rgba(255,255,255,.68);backdrop-filter:blur(18px);padding:22px;min-height:calc(100vh - 44px)}.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:22px}.eyebrow{font-size:13px;font-weight:800;letter-spacing:.8px;color:var(--violet);text-transform:uppercase}.topbar h2{margin:4px 0 0;font-size:32px;letter-spacing:-1px;color:var(--ink)}.top-actions{display:flex;align-items:center;gap:10px}.icon-btn,.profile-chip,.btn{border-radius:18px;background:#fff;box-shadow:0 12px 26px rgba(16,23,42,.08);border:1px solid rgba(20,33,61,.06);transition:.25s var(--ease);font-weight:800}.icon-btn{width:48px;height:48px}.profile-chip{height:48px;padding:0 18px;background:var(--ink);color:#fff}.icon-btn:hover,.profile-chip:hover,.btn:hover{transform:translateY(-2px);box-shadow:0 18px 32px rgba(16,23,42,.12)}.icon-btn:active,.profile-chip:active,.btn:active{transform:scale(.97)}
+.view{animation:viewIn .45s var(--ease);min-height:640px}.view.out{opacity:.0;transform:translateY(10px)}@keyframes viewIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.grid{display:grid;gap:18px}.grid.two{grid-template-columns:1.3fr .9fr}.grid.three{grid-template-columns:repeat(3,1fr)}.grid.four{grid-template-columns:repeat(4,1fr)}.grid.auto{grid-template-columns:repeat(auto-fit,minmax(235px,1fr))}.card{background:rgba(255,255,255,.74);border:1px solid rgba(20,33,61,.07);box-shadow:var(--shadow2);border-radius:var(--radius);padding:20px;position:relative;overflow:hidden;transition:.28s var(--ease)}.card:hover{transform:translateY(-3px);box-shadow:0 22px 45px rgba(16,23,42,.12)}.card.dark{background:linear-gradient(145deg,var(--ink),#223257);color:#fff;border-color:rgba(255,255,255,.10)}.card.soft{background:rgba(255,253,248,.82)}.section-title{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin:22px 0 13px}.section-title h3{margin:0;font-size:22px;color:var(--ink);letter-spacing:-.5px}.section-title p{margin:0;color:var(--muted);font-weight:600}.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:20px;min-height:365px}.hero-main{padding:28px;border-radius:36px;background:linear-gradient(145deg,#111A35,#1C2A4C 55%,#263B68);color:#fff;overflow:hidden;position:relative}.hero-main:before{content:"";position:absolute;left:-90px;top:-90px;width:300px;height:300px;background:radial-gradient(circle,rgba(109,93,251,.42),transparent 67%)}.hero-main:after{content:"";position:absolute;right:-70px;bottom:-80px;width:260px;height:260px;background:radial-gradient(circle,rgba(255,122,89,.24),transparent 65%)}.hero-content{position:relative;z-index:1}.hero h1{margin:0;font-size:46px;line-height:1.16;letter-spacing:-1.4px}.hero p{color:rgba(255,255,255,.72);font-size:16px;line-height:1.85;max-width:650px}.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:46px;padding:0 18px}.btn.primary{background:linear-gradient(135deg,var(--violet),var(--violet2));color:#fff;border-color:transparent;box-shadow:0 16px 30px rgba(109,93,251,.25)}.btn.orange{background:linear-gradient(135deg,var(--coral),var(--amber));color:#fff;border-color:transparent;box-shadow:0 16px 30px rgba(255,122,89,.20)}.btn.mint{background:linear-gradient(135deg,var(--mint),#73D6B8);color:#07352E;border-color:transparent}.btn.ghost{background:rgba(255,255,255,.10);color:#fff;border:1px solid rgba(255,255,255,.18)}.btn.light{background:#fff;color:var(--ink)}.btn.outline{background:transparent;border:1px solid rgba(16,23,42,.13);box-shadow:none}.metric-card{min-height:140px}.metric-label{color:var(--muted);font-weight:800;font-size:14px}.metric-value{font-size:32px;font-weight:900;color:var(--ink);margin-top:9px;letter-spacing:-1px}.metric-note{display:flex;align-items:center;gap:6px;color:var(--muted);font-size:13px;font-weight:700;margin-top:9px}.pill{display:inline-flex;align-items:center;gap:7px;border-radius:999px;background:rgba(109,93,251,.10);color:var(--violet);font-weight:900;padding:7px 10px;font-size:13px}.pill.orange{background:rgba(255,122,89,.12);color:#C85435}.pill.mint{background:rgba(39,199,168,.13);color:#11806E}.score-wrap{display:grid;place-items:center;position:relative}.score-ring{--p:78;width:220px;height:220px;border-radius:50%;background:conic-gradient(var(--mint) calc(var(--p)*1%),rgba(255,255,255,.18) 0);display:grid;place-items:center;box-shadow:inset 0 0 0 18px rgba(255,255,255,.05)}.score-ring:before{content:"";width:154px;height:154px;border-radius:50%;background:linear-gradient(145deg,rgba(255,255,255,.15),rgba(255,255,255,.06));box-shadow:inset 0 0 0 1px rgba(255,255,255,.10)}.score-number{position:absolute;text-align:center;color:#fff}.score-number b{font-size:46px;display:block}.score-number span{color:rgba(255,255,255,.65);font-weight:700}.visual-path{height:160px;position:relative;margin-top:20px}.visual-path svg{width:100%;height:100%;overflow:visible}.path-dot{filter:drop-shadow(0 8px 16px rgba(109,93,251,.25))}.chart-card h4,.card h4{margin:0 0 14px;font-size:18px;color:var(--ink)}.dark h4,.dark .metric-value{color:#fff}.chart-card p,.card p{color:var(--muted);line-height:1.7}.donut{width:180px;height:180px;border-radius:50%;background:conic-gradient(var(--violet) 0 29%,var(--coral) 29% 47%,var(--mint) 47% 64%,var(--amber) 64% 79%,#9CA3AF 79% 100%);display:grid;place-items:center;position:relative}.donut:after{content:"";width:112px;height:112px;background:#fff;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(20,33,61,.06)}.donut-label{position:absolute;text-align:center;z-index:1}.donut-label b{font-size:28px;color:var(--ink)}.legend{display:grid;gap:10px}.legend-row{display:flex;align-items:center;justify-content:space-between;gap:12px;color:var(--muted);font-weight:700}.legend-row i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-left:7px}.bars{display:flex;align-items:flex-end;gap:12px;height:170px;padding:14px 4px 0}.bar{flex:1;border-radius:14px 14px 6px 6px;background:linear-gradient(180deg,var(--violet),rgba(109,93,251,.20));min-height:22px;position:relative;animation:barGrow .8s var(--ease) both}.bar:nth-child(2){background:linear-gradient(180deg,var(--coral),rgba(255,122,89,.20));animation-delay:.05s}.bar:nth-child(3){background:linear-gradient(180deg,var(--mint),rgba(39,199,168,.20));animation-delay:.1s}.bar:nth-child(4){background:linear-gradient(180deg,var(--amber),rgba(244,162,97,.20));animation-delay:.15s}.bar:nth-child(5){animation-delay:.2s}.bar:nth-child(6){animation-delay:.25s}@keyframes barGrow{from{height:0;opacity:.4}to{opacity:1}}.line-chart{width:100%;height:185px}.line-chart path.line{stroke-dasharray:620;stroke-dashoffset:620;animation:draw 1s var(--ease) forwards}.line-chart .area{opacity:0;animation:fade .8s var(--ease) .5s forwards}@keyframes draw{to{stroke-dashoffset:0}}@keyframes fade{to{opacity:1}}.insight-list{display:grid;gap:12px}.insight{display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:20px;background:rgba(247,241,232,.62);border:1px solid rgba(20,33,61,.06)}.insight .bubble{width:42px;height:42px;border-radius:16px;display:grid;place-items:center;background:#fff;box-shadow:0 10px 22px rgba(16,23,42,.07);flex:0 0 auto}.insight b{display:block;color:var(--ink);margin-bottom:3px}.insight span{color:var(--muted);font-weight:600;line-height:1.55}.timeline{display:grid;gap:12px;position:relative}.timeline:before{content:"";position:absolute;right:18px;top:12px;bottom:12px;width:2px;background:linear-gradient(var(--violet),var(--coral),var(--mint));opacity:.25}.timeline-item{display:grid;grid-template-columns:44px 1fr;gap:12px;position:relative}.timeline-dot{width:38px;height:38px;border-radius:15px;background:#fff;box-shadow:0 12px 24px rgba(16,23,42,.08);display:grid;place-items:center;color:var(--violet);font-weight:900}.timeline-box{padding:14px;border-radius:20px;background:rgba(255,255,255,.72);border:1px solid rgba(20,33,61,.06)}.timeline-box b{display:block;color:var(--ink)}.timeline-box span{color:var(--muted);font-weight:600}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}.tab{padding:10px 14px;border-radius:999px;background:#fff;border:1px solid rgba(20,33,61,.07);font-weight:900;color:var(--muted);transition:.22s var(--ease)}.tab.active{background:var(--ink);color:#fff}.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.field{display:grid;gap:7px}.field label{font-weight:900;color:var(--ink);font-size:14px}.field input,.field select,.field textarea{width:100%;border:1px solid rgba(20,33,61,.10);background:#fff;border-radius:17px;min-height:48px;padding:0 14px;color:var(--ink);outline:none;transition:.2s}.field textarea{padding:12px;min-height:120px}.field input:focus,.field select:focus,.field textarea:focus{border-color:rgba(109,93,251,.5);box-shadow:0 0 0 4px rgba(109,93,251,.10)}.result-card{display:none;margin-top:16px}.result-card.show{display:block;animation:viewIn .45s var(--ease)}.chat{height:520px;display:flex;flex-direction:column}.messages{flex:1;overflow:auto;display:grid;gap:12px;padding:6px}.msg{max-width:82%;padding:14px 16px;border-radius:20px;line-height:1.7;box-shadow:0 10px 22px rgba(16,23,42,.06);animation:viewIn .25s var(--ease)}.msg.ai{justify-self:start;background:#fff;border:1px solid rgba(20,33,61,.06)}.msg.user{justify-self:end;background:linear-gradient(135deg,var(--violet),var(--violet2));color:#fff}.chips{display:flex;gap:8px;flex-wrap:wrap;padding:10px 0}.chip{border-radius:999px;background:rgba(109,93,251,.10);color:var(--violet);font-weight:900;padding:9px 12px;border:1px solid rgba(109,93,251,.12)}.chat-input{display:flex;gap:8px}.chat-input input{flex:1;min-height:50px;border-radius:18px;border:1px solid rgba(20,33,61,.08);padding:0 14px}.report-paper{background:linear-gradient(180deg,#fff,#fffdf8);border-radius:30px;padding:26px;border:1px solid rgba(20,33,61,.08);box-shadow:var(--shadow2)}.report-head{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px dashed rgba(20,33,61,.14);padding-bottom:18px;margin-bottom:18px}.report-head h3{margin:0;font-size:26px;color:var(--ink)}.family-card{display:flex;align-items:center;gap:14px}.avatar{width:56px;height:56px;border-radius:20px;background:linear-gradient(135deg,var(--violet),var(--coral));display:grid;place-items:center;color:#fff;font-size:24px;box-shadow:0 16px 30px rgba(109,93,251,.18)}.account-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px;border-radius:20px;background:rgba(255,255,255,.72);border:1px solid rgba(20,33,61,.07);margin-bottom:10px}.toggle{width:54px;height:30px;border-radius:999px;background:rgba(20,33,61,.12);position:relative;transition:.22s}.toggle:before{content:"";position:absolute;top:4px;right:4px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 4px 12px rgba(16,23,42,.16);transition:.22s}.toggle.on{background:var(--mint)}.toggle.on:before{right:28px}.sheet-backdrop{position:fixed;inset:0;background:rgba(16,23,42,.35);backdrop-filter:blur(8px);z-index:80;display:flex;align-items:flex-end;justify-content:center;opacity:0;visibility:hidden;transition:.25s var(--ease)}.sheet-backdrop.show{opacity:1;visibility:visible}.sheet{width:min(720px,94vw);max-height:82vh;overflow:auto;border-radius:32px 32px 0 0;background:#fff;padding:26px;box-shadow:0 -24px 60px rgba(16,23,42,.22);transform:translateY(24px);transition:.25s var(--ease);position:relative}.sheet-backdrop.show .sheet{transform:translateY(0)}.sheet-close{position:absolute;left:18px;top:16px;width:40px;height:40px;border-radius:14px;background:var(--sand);font-size:22px}.mobile-nav{display:none}.status-badge{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:8px 11px;font-weight:900;background:rgba(39,199,168,.13);color:#11806E}.status-badge.warn{background:rgba(255,122,89,.13);color:#C85435}.illustration{min-height:260px;border-radius:30px;background:linear-gradient(145deg,rgba(255,255,255,.16),rgba(255,255,255,.07));border:1px solid rgba(255,255,255,.12);display:grid;place-items:center;overflow:hidden}.illustration svg{width:92%;max-height:250px}.feature-visual{height:150px;border-radius:24px;background:linear-gradient(145deg,rgba(109,93,251,.10),rgba(255,122,89,.10));display:grid;place-items:center;overflow:hidden;margin-bottom:14px}.feature-visual svg{width:86%;height:86%}.page-hero{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:18px}.page-hero h1{font-size:34px;margin:0;color:var(--ink);letter-spacing:-1px}.page-hero p{margin:8px 0 0;color:var(--muted);font-weight:650;line-height:1.7}.wave-card{background:linear-gradient(135deg,#ffffff,#fff7ed);border-radius:30px;overflow:hidden}.mini-graph{height:70px;width:100%}.risk-meter{height:12px;border-radius:999px;background:rgba(20,33,61,.08);overflow:hidden}.risk-meter i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--mint),var(--amber),var(--coral))}.empty{display:grid;place-items:center;padding:44px;text-align:center;color:var(--muted)}
+@media (max-width:1180px){.app-shell{grid-template-columns:1fr;padding:14px}.side-nav{display:none}.main-area{min-height:100vh;border-radius:28px;padding:16px 16px 92px}.mobile-nav{position:fixed;left:12px;right:12px;bottom:12px;height:72px;background:rgba(16,23,42,.92);backdrop-filter:blur(18px);border-radius:26px;z-index:70;display:grid;grid-template-columns:repeat(5,1fr);padding:8px;box-shadow:0 18px 50px rgba(16,23,42,.28)}.mobile-nav .nav-item{padding:6px;justify-content:center;flex-direction:column;gap:2px;border-radius:18px;font-size:11px;text-align:center;color:rgba(255,255,255,.64)}.mobile-nav .nav-item .ico{width:28px;height:28px;border-radius:12px}.mobile-nav .nav-item span:not(.ico){display:block}.mobile-nav .nav-item.active{background:rgba(255,255,255,.11);color:#fff}.mobile-nav .nav-item.active .ico{background:#fff;color:var(--violet)}.topbar h2{font-size:25px}.hero{grid-template-columns:1fr}.grid.two,.grid.three,.grid.four{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.hero h1{font-size:34px}.score-ring{width:190px;height:190px}.score-ring:before{width:132px;height:132px}.report-head{display:grid}.page-hero{display:grid}.top-actions .icon-btn:nth-child(2){display:none}}
+@media (max-width:620px){body{background:#f8f2e8}.main-area{border-radius:0;box-shadow:none;padding:14px 14px 92px}.app-shell{padding:0}.topbar{align-items:flex-start}.top-actions{gap:6px}.icon-btn,.profile-chip{height:42px}.icon-btn{width:42px}.profile-chip{padding:0 12px}.card{padding:16px;border-radius:24px}.hero-main{padding:20px;border-radius:28px}.hero h1{font-size:28px}.hero-actions .btn{width:100%}.metric-value{font-size:27px}.splash-card,.loading-panel{padding:24px;border-radius:30px}.brand-splash-screen{min-height:620px;padding-top:52px}.qarar-appicon.large{width:128px;height:128px;margin-bottom:22px}.brand-partnership .brand-title,.brand-partnership .alinma-name{font-size:24px}.brand-partnership.compact .brand-title,.brand-partnership.compact .alinma-name{font-size:18px}.brand-x{font-size:26px}.alinma-mark{width:28px;height:28px}.alinma-mark i{width:7px;height:18px}.donut{width:150px;height:150px}.donut:after{width:94px;height:94px}.chat{height:560px}.msg{max-width:92%}}
+
+
+/* Qarar logo integration update */
+.qarar-appicon{
+  padding:0 !important;
+  overflow:hidden;
+  background:transparent !important;
+  border:0 !important;
+  box-shadow:0 24px 70px rgba(0,0,0,.48) !important;
+}
+.qarar-appicon.large{
+  width:170px !important;
+  height:170px !important;
+  border-radius:42px !important;
+}
+.qarar-appicon.small{
+  width:74px !important;
+  height:74px !important;
+  border-radius:22px !important;
+}
+.brand-logo-img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+  filter:drop-shadow(0 18px 28px rgba(0,0,0,.28));
+}
+.qarar-mark{
+  background-image:url("assets/logo.png") !important;
+  background-size:cover !important;
+  background-position:center !important;
+  background-repeat:no-repeat !important;
+  color:transparent !important;
+  overflow:hidden;
+}
+.qarar-mark svg{
+  opacity:0 !important;
+}
+.brand-button .qarar-mark,
+.qarar-mark.navmark{
+  width:58px !important;
+  height:58px !important;
+  border-radius:18px !important;
+  box-shadow:0 14px 32px rgba(0,0,0,.20), inset 0 0 0 1px rgba(255,255,255,.45) !important;
+}
+.brand-partnership{
+  gap:16px !important;
+}
+.brand-partnership .brand-title{
+  font-size:34px;
+}
+.brand-partnership .alinma-name{
+  font-size:30px;
+}
+.brand-partnership.compact .brand-title,
+.brand-partnership.compact .alinma-name{
+  font-size:22px;
+}
+.brand-x{
+  color:#FF9A45;
+  font-weight:900;
+  text-shadow:0 0 18px rgba(255,154,69,.32);
+}
+.alinma-mark{
+  width:38px;
+  height:38px;
+  border-radius:9px;
+  background:linear-gradient(145deg,#7A241D,#4E130F);
+  box-shadow:0 14px 28px rgba(0,0,0,.30), inset 0 1px 0 rgba(255,255,255,.16);
+}
+.alinma-mark i{
+  width:9px;
+  height:25px;
+  border-radius:2px;
+}
+.loading-top-branding .brand-partnership{
+  background:rgba(255,255,255,.075);
+  border:1px solid rgba(255,255,255,.10);
+  padding:10px 14px;
+  border-radius:22px;
+}
+@media (max-width:620px){
+  .qarar-appicon.large{
+    width:140px !important;
+    height:140px !important;
+    border-radius:34px !important;
+  }
+  .qarar-appicon.small{
+    width:66px !important;
+    height:66px !important;
+  }
+  .brand-partnership .brand-title,
+  .brand-partnership .alinma-name{
+    font-size:22px !important;
+  }
+  .brand-partnership.compact .brand-title,
+  .brand-partnership.compact .alinma-name{
+    font-size:16px !important;
+  }
+  .alinma-mark{
+    width:30px;
+    height:30px;
+  }
+  .alinma-mark i{
+    width:7px;
+    height:20px;
+  }
+}
+
+
+/* Start gate update: user must choose to enter before platform opens */
+.app-shell.prelaunch{
+  opacity:0;
+  transform:scale(.985);
+  filter:blur(10px);
+  pointer-events:none;
+}
+.app-shell{
+  transition:opacity .65s var(--ease), transform .65s var(--ease), filter .65s var(--ease);
+}
+.brand-splash-screen{
+  justify-content:center !important;
+  padding-top:34px !important;
+}
+.brand-splash-screen .qarar-appicon.large{
+  margin-bottom:24px;
+  animation:logoFloat 4.2s var(--ease) infinite alternate;
+}
+@keyframes logoFloat{
+  from{transform:translateY(0) scale(1)}
+  to{transform:translateY(-8px) scale(1.015)}
+}
+.start-experience-btn{
+  position:relative;
+  z-index:2;
+  margin-top:22px;
+  min-height:58px;
+  padding:0 22px 0 16px;
+  border-radius:22px;
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  color:#fff;
+  font-weight:900;
+  font-size:17px;
+  background:linear-gradient(135deg,#6D5DFB 0%,#8E7CFF 55%,#FF9A45 130%);
+  box-shadow:0 18px 42px rgba(109,93,251,.32), inset 0 1px 0 rgba(255,255,255,.22);
+  border:1px solid rgba(255,255,255,.16);
+  transition:transform .22s var(--ease), box-shadow .22s var(--ease), opacity .22s var(--ease);
+}
+.start-experience-btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 24px 54px rgba(109,93,251,.42), inset 0 1px 0 rgba(255,255,255,.26);
+}
+.start-experience-btn:active{transform:translateY(0) scale(.97)}
+.start-experience-btn i{
+  width:34px;
+  height:34px;
+  border-radius:13px;
+  display:grid;
+  place-items:center;
+  background:rgba(255,255,255,.18);
+  font-style:normal;
+}
+.start-experience-btn:disabled{
+  opacity:.72;
+  cursor:default;
+  transform:none;
+}
+#splash .splash-progress{
+  opacity:0;
+  transform:translateY(8px);
+  transition:opacity .35s var(--ease), transform .35s var(--ease);
+  max-width:340px;
+}
+#splash.starting .splash-progress{
+  opacity:1;
+  transform:translateY(0);
+}
+#splash.starting .start-experience-btn{
+  opacity:0;
+  transform:translateY(8px) scale(.98);
+  pointer-events:none;
+}
+#splash.starting .splash-loading-text{
+  color:#F4D8BA;
+}
+.splash-loading-text{
+  max-width:390px;
+  line-height:1.8;
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+@media (max-width:620px){
+  .start-experience-btn{
+    min-height:54px;
+    width:100%;
+    justify-content:center;
+    max-width:310px;
+  }
+  .splash-loading-text{font-size:15px !important;}
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════
+ * أنماط جديدة — محرك القرار، Sandbox، البانرات
+ * (تستخدم نفس متغيرات الألوان الأصلية — لا تغيير في الهوية)
+ * ═══════════════════════════════════════════════════════════════════ */
+
+/* بانر البيئة التجريبية */
+.demo-banner{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:20px;
+  background:linear-gradient(135deg,rgba(244,162,97,.14),rgba(255,122,89,.10));
+  border:1px solid rgba(244,162,97,.35);margin-bottom:16px}
+.demo-banner .demo-ico{font-size:20px;flex:0 0 auto}
+.demo-banner b{display:block;color:#8A4B22;font-size:14px;margin-bottom:3px}
+.demo-banner span{color:var(--muted);font-size:13px;font-weight:600;line-height:1.6}
+.demo-note{padding:10px 12px;border-radius:14px;background:rgba(244,162,97,.12);
+  color:#8A4B22;font-weight:700;font-size:13px;margin-bottom:12px}
+
+/* لافتة نتيجة القرار */
+.result-banner{display:flex;align-items:center;gap:16px;padding:18px 20px;border-radius:24px;
+  background:#fff;box-shadow:var(--shadow2);margin-bottom:6px}
+.result-banner h3{font-size:24px;color:var(--ink);letter-spacing:-.5px}
+.result-banner p{color:var(--muted);font-weight:600}
+
+/* ملاحظة المحرك */
+.engine-note{margin-top:18px;padding:12px 14px;border-radius:16px;
+  background:rgba(39,199,168,.10);border:1px solid rgba(39,199,168,.25);
+  color:#11806E;font-weight:700;font-size:13px;line-height:1.7}
+.engine-note-dark{margin-top:16px;padding:12px 14px;border-radius:16px;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);
+  color:rgba(255,255,255,.82);font-weight:700;font-size:13px;line-height:1.7}
+.engine-steps{display:grid;gap:10px;margin-top:14px}
+.engine-steps .insight{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.12)}
+.engine-steps .insight b{color:#fff}
+.engine-steps .insight span{color:rgba(255,255,255,.68)}
+.engine-steps .bubble{background:rgba(255,255,255,.14);color:#fff}
+
+/* بطاقات البدائل */
+.alt-card{text-align:right;transition:.25s var(--ease)}
+.alt-card:hover{transform:translateY(-3px);border-color:rgba(109,93,251,.35)}
+.alt-head{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.alt-ico{width:40px;height:40px;border-radius:14px;display:grid;place-items:center;
+  background:rgba(109,93,251,.10);font-size:19px;flex:0 0 auto}
+.alt-card p{font-size:14px;line-height:1.65;margin:0 0 10px}
+
+/* بطاقات السيناريوهات */
+.scenario-card{text-align:center;transition:.25s var(--ease)}
+.scenario-card:hover{transform:translateY(-4px)}
+.scenario-ico{display:block;font-size:34px;margin-bottom:8px}
+.scenario-card h4{margin:0 0 4px;font-size:16px}
+.scenario-card p{margin:0;font-weight:800;color:var(--violet)}
+
+/* بطاقة قرار (Sandbox) */
+.qarar-card{background:linear-gradient(145deg,#111A35,#263B68);color:#fff;
+  border-color:rgba(255,255,255,.10);min-height:250px;display:flex;flex-direction:column}
+.qcard-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.qcard-brand{font-weight:900;font-size:15px}
+.qcard-mode{font-size:11px;font-weight:900;letter-spacing:1.5px;padding:5px 10px;
+  border-radius:999px;background:rgba(244,162,97,.22);color:var(--amber);
+  border:1px solid rgba(244,162,97,.4)}
+.qcard-balance{margin-bottom:auto}
+.qcard-balance span{display:block;color:rgba(255,255,255,.60);font-weight:700;font-size:14px}
+.qcard-balance b{font-size:40px;letter-spacing:-1.5px;display:block;margin-top:4px}
+.qcard-meta{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0 14px}
+.qcard-meta small{display:block;color:rgba(255,255,255,.55);font-weight:700;font-size:12px}
+.qcard-meta b{font-size:16px}
+.qcard-num{font-family:monospace;letter-spacing:3px;color:rgba(255,255,255,.45);font-size:15px}
+
+/* العمليات السريعة */
+.quick-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0}
+.quick{padding:12px 8px;border-radius:16px;background:#fff;border:1px solid rgba(20,33,61,.08);
+  font-weight:800;font-size:13px;transition:.22s var(--ease)}
+.quick:hover{transform:translateY(-2px);border-color:rgba(109,93,251,.35);
+  box-shadow:0 12px 24px rgba(16,23,42,.08)}
+
+/* صفوف العمليات */
+.tx-row{display:flex;align-items:center;gap:12px;padding:13px;border-radius:18px;
+  background:rgba(255,255,255,.72);border:1px solid rgba(20,33,61,.06);margin-bottom:8px}
+.tx-ico{width:42px;height:42px;border-radius:15px;display:grid;place-items:center;
+  background:var(--sand);font-size:19px;flex:0 0 auto}
+.tx-main{flex:1;min-width:0}
+.tx-main b{display:block;color:var(--ink);font-size:15px}
+.tx-main span{color:var(--muted);font-weight:600;font-size:12.5px}
+.tx-amt{font-weight:900;font-size:16px;white-space:nowrap}
+.tx-amt.income{color:#11806E}
+.tx-amt.expense{color:#C85435}
+.tx-del{width:30px;height:30px;border-radius:10px;background:rgba(20,33,61,.05);
+  color:var(--muted);font-size:17px;flex:0 0 auto}
+.tx-del:hover{background:rgba(255,122,89,.15);color:#C85435}
+
+/* بطاقات الالتزامات */
+.obligation-card{text-align:center}
+.ob-ico{display:block;font-size:30px;margin-bottom:6px}
+.obligation-card h4{margin:0 0 6px;font-size:15px}
+.obligation-card .metric-value{font-size:24px;margin:0}
+.obligation-card p{margin:6px 0 0;font-size:13px}
+
+/* قائمة «المزيد» للجوال */
+.more-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}
+.more-item{display:flex;align-items:center;gap:11px;padding:15px;border-radius:18px;
+  background:var(--soft);border:1px solid rgba(20,33,61,.07);font-weight:800;text-align:right;
+  transition:.22s var(--ease)}
+.more-item:hover{background:#fff;transform:translateY(-2px);box-shadow:0 12px 24px rgba(16,23,42,.08)}
+.more-item .ico{width:36px;height:36px;border-radius:13px;display:grid;place-items:center;
+  background:rgba(109,93,251,.10);color:var(--violet);flex:0 0 auto}
+
+/* زر داكن شبحي */
+.btn.ghost-dark{background:transparent;border:1px solid rgba(255,122,89,.4);color:#C85435;box-shadow:none}
+.btn.ghost-dark:hover{background:rgba(255,122,89,.08)}
+
+/* مؤشر الكتابة في الشات */
+.msg.typing{opacity:.6;font-style:italic}
+.msg b{font-weight:900;color:var(--ink)}
+.msg.user b{color:#fff}
+
+/* تحسينات الجوال */
+@media (max-width:620px){
+  .quick-grid{grid-template-columns:repeat(2,1fr)}
+  .more-grid{grid-template-columns:1fr}
+  .qcard-balance b{font-size:32px}
+  .result-banner{flex-direction:column;align-items:flex-start}
+  .tx-amt{font-size:14px}
+  .demo-banner{flex-direction:column;gap:8px}
+}
+</style>
+</head>
+<body>
+  <div class="ambient" aria-hidden="true">
+    <span class="orb orb-one"></span>
+    <span class="orb orb-two"></span>
+    <span class="orb orb-three"></span>
+    <span class="grid-glow"></span>
+    <span class="route-line"></span>
+  </div>
+
+  <div id="splash" class="splash">
+    <div class="splash-card brand-splash-screen">
+      <div class="sky-stars" aria-hidden="true"></div>
+      <div class="skyline" aria-hidden="true"></div>
+      <div class="pattern-glow" aria-hidden="true"></div>
+
+      <div class="qarar-appicon large" aria-hidden="true"><img src="assets/logo.png" alt="شعار منصة قرار" class="brand-logo-img"></div>
+
+      <div class="brand-partnership">
+        <div class="brand-side">
+          <span class="brand-title">منصة قرار</span>
+        </div>
+        <span class="brand-x">×</span>
+        <div class="brand-side alinma-side">
+          <span class="alinma-name">مصرف الإنماء</span>
+          <span class="alinma-mark" title="شعار مصرف الإنماء" aria-hidden="true"><i></i></span>
+        </div>
+      </div>
+
+      <p class="splash-tagline">قرارك المالي... قبل أن يصبح مفاجأة.</p>
+      <p id="loadingText" class="splash-loading-text">ابدأ تجربة مالية ذكية تحلل وضعك، تتوقع القادم، وتساعدك تختار القرار الأفضل.</p>
+      <button class="start-experience-btn" data-action="startExperience">
+        <span>ابدأ التجربة الآن</span>
+        <i>↗</i>
+      </button>
+      <div class="splash-progress branded"><i></i></div>
+    </div>
+  </div>
+
+  <div id="loading" class="loading" aria-live="polite">
+    <div class="loading-panel brand-loading-screen">
+      <div class="loading-top-branding">
+        <div class="qarar-appicon small" aria-hidden="true"><img src="assets/logo.png" alt="شعار منصة قرار" class="brand-logo-img"></div>
+        <div class="brand-partnership compact">
+          <div class="brand-side"><span class="brand-title">منصة قرار</span></div>
+          <span class="brand-x">×</span>
+          <div class="brand-side alinma-side">
+            <span class="alinma-name">مصرف الإنماء</span>
+            <span class="alinma-mark" aria-hidden="true"><i></i></span>
+          </div>
+        </div>
+      </div>
+      <p id="loadingMessage">جارٍ تجهيز تجربتك المالية...</p>
+      <div class="loader-bar branded"><i></i></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">تم بنجاح</div>
+
+  <div class="app-shell prelaunch">
+    <aside class="side-nav">
+      <button class="brand-button" data-goto="home" data-load="جارٍ فتح لوحة قرار...">
+        <span class="qarar-mark navmark" aria-hidden="true"><svg viewBox="0 0 92 92"><path d="M20 61c18 0 26-8 26-26" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round"/><path d="M46 35c0 22 12 34 34 34" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round"/><path d="M46 35V14" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round"/><circle cx="46" cy="35" r="10" fill="white" stroke="#10172A" stroke-width="4"/></svg></span>
+        <span><b>قرار</b><small>منصة الذكاء المالي</small></span>
+      </button>
+      <nav id="desktopNav"></nav>
+      <div class="nav-card">
+        <small>مؤشر اليوم</small>
+        <strong>78%</strong>
+        <span>مستقر بحذر</span>
+        <div class="mini-meter"><i style="width:78%"></i></div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div>
+          <span class="eyebrow">Qarar Financial OS</span>
+          <h2 id="pageTitle">الرئيسية</h2>
+        </div>
+        <div class="top-actions">
+          <button class="icon-btn" data-action="notifications" title="التنبيهات">🔔</button>
+          <button class="icon-btn" data-goto="sandbox" data-load="جارٍ فتح الربط البنكي..." title="الربط البنكي">🏦</button>
+          <button class="profile-chip" data-goto="family" data-load="جارٍ فتح الملف المالي...">أحمد</button>
+        </div>
+      </header>
+      <section id="view" class="view"></section>
+    </main>
+  </div>
+
+  <nav id="mobileNav" class="mobile-nav"></nav>
+
+  <div id="sheet" class="sheet-backdrop">
+    <div class="sheet">
+      <button class="sheet-close" data-action="closeSheet">×</button>
+      <div id="sheetContent"></div>
+    </div>
+  </div>
+
+  <!-- محرك القرار المالي وطبقة البيانات (ملفات منفصلة عن الواجهة) -->
+  <script src="src/decision-engine.js"></script>
+  <script src="src/demo-data.js"></script>
+  <script src="src/data-store.js"></script>
+
+  <script>
+/* ملاحظة: DATA أصبحت بيانات عرض ثانوية فقط (رسوم توضيحية).
+   كل الأرقام المالية الحقيقية تأتي الآن من QararStore + QararEngine. */
+const DATA = {
+  user: 'أحمد',
+  income: 18000,
+  balance: 23540,
+  expenses: 11280,
+  obligations: 6750,
+  stability: 78,
+  schoolReserve: 1350,
+  categories: [
+    ['السكن', 3500, '#6D5DFB'], ['الغذاء', 2050, '#FF7A59'], ['التعليم', 2200, '#27C7A8'], ['النقل', 1100, '#F4A261'], ['الفواتير', 910, '#8C7BFF'], ['الترفيه', 850, '#94A3B8']
+  ],
+  trend: [8200, 9400, 8700, 10300, 11280, 12600],
+  forecast: [
+    ['7 أيام', 'فاتورة الكهرباء', 'متوقعة بين 540–620 ريال', '⚡'],
+    ['14 يوم', 'اشتراكات شهرية', '420 ريال متوقع خصمها تلقائيًا', '🔁'],
+    ['18 يوم', 'مصاريف المدرسة', 'يُنصح بتخصيص 1,350 ريال', '🎒'],
+    ['30 يوم', 'تحديث الاستقرار', 'قد ينخفض إلى 71% دون احتياطي', '📉']
+  ]
+};
+
+const navItems = [
+  {id:'home',      title:'الرئيسية',        icon:'⌂', load:'جارٍ فتح لوحة قرار...'},
+  {id:'decision',  title:'اختبار القرار',   icon:'↯', load:'جارٍ تجهيز محرك القرار...'},
+  {id:'sandbox',   title:'البيئة التجريبية', icon:'▣', load:'جارٍ فتح البيئة المصرفية...'},
+  {id:'assistant', title:'المساعد',         icon:'✦', load:'جارٍ فتح مساعد قرار...'},
+  {id:'forecast',  title:'التوقعات',        icon:'⟡', load:'جارٍ بناء خط الزمن...'},
+  {id:'analysis',  title:'التحليل',         icon:'▧', load:'جارٍ تحليل بياناتك...'},
+  {id:'status',    title:'الوضع الحالي',    icon:'◉', load:'جارٍ قراءة الوضع الحالي...'},
+  {id:'reports',   title:'التقارير',        icon:'▤', load:'جارٍ توليد التقرير...'},
+  {id:'family',    title:'الملف العائلي',   icon:'◌', load:'جارٍ فتح الملف المالي...'},
+  {id:'settings',  title:'الإعدادات',       icon:'⚙', load:'جارٍ فتح الإعدادات...'}
+];
+
+const titles = Object.fromEntries(navItems.map(n => [n.id, n.title]));
+let currentView = 'home';
+let chatBooted = false;
+
+const $ = sel => document.querySelector(sel);
+const fmt = n => Number(n).toLocaleString('ar-SA');
+
+function iconLogo(className=''){
+  return `<span class="qarar-mark ${className}" aria-hidden="true"><svg viewBox="0 0 92 92"><defs><linearGradient id="mark${Math.random().toString(36).slice(2)}" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#6D5DFB"/><stop offset=".55" stop-color="#FF7A59"/><stop offset="1" stop-color="#27C7A8"/></linearGradient></defs><path d="M20 61c18 0 26-8 26-26" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round"/><path d="M46 35c0 22 12 34 34 34" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round"/><path d="M46 35V14" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round"/><circle cx="46" cy="35" r="10" fill="white" stroke="#10172A" stroke-width="4"/><circle cx="20" cy="61" r="7" fill="#6D5DFB"/><circle cx="80" cy="69" r="7" fill="#FF7A59"/><circle cx="46" cy="14" r="7" fill="#27C7A8"/></svg></span>`;
+}
+
+function renderNav(){
+  const desktop = $('#desktopNav');
+  const mobile = $('#mobileNav');
+  desktop.innerHTML = navItems.map(item => navButton(item)).join('');
+  // شريط الجوال: 4 أقسام أساسية + زر «المزيد» يفتح البقية
+  // (الإصلاح: سابقًا كانت 5 أقسام فقط متاحة على الجوال والباقي محجوب تمامًا)
+  mobile.innerHTML = navItems.slice(0,4).map(item => navButton(item)).join('')
+    + `<button class="nav-item" data-action="moreNav">
+         <span class="ico">⋯</span><span>المزيد</span>
+       </button>`;
+}
+function navButton(item){
+  return `<button class="nav-item ${item.id===currentView?'active':''}" data-goto="${item.id}" data-load="${item.load}"><span class="ico">${item.icon}</span><span>${item.title}</span></button>`;
+}
+
+function navigate(id, message){
+  if(!views[id]) id = 'home';
+  showLoading(message || 'جارٍ فتح الصفحة...');
+  setTimeout(() => {
+    currentView = id;
+    $('#pageTitle').textContent = titles[id] || 'منصة قرار';
+    $('#view').classList.add('out');
+    setTimeout(()=>{
+      $('#view').innerHTML = views[id]();
+      $('#view').classList.remove('out');
+      renderNav();
+      hideLoading();
+      afterRender(id);
+    }, 160);
+  }, 780);
+}
+function showLoading(text){
+  $('#loadingMessage').textContent = text;
+  $('#loading').classList.remove('hide');
+}
+function hideLoading(){ $('#loading').classList.add('hide'); }
+function toast(text='تم بنجاح'){
+  const t = $('#toast');
+  t.textContent = text;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2200);
+}
+function openSheet(html){
+  $('#sheetContent').innerHTML = html;
+  $('#sheet').classList.add('show');
+}
+function closeSheet(){ $('#sheet').classList.remove('show'); }
+
+function lineChart(values, color='#6D5DFB'){
+  const max = Math.max(...values), min = Math.min(...values);
+  const pts = values.map((v,i)=>{
+    const x = 20 + i*(320/(values.length-1));
+    const y = 150 - ((v-min)/(max-min || 1))*110;
+    return [x,y];
+  });
+  const d = pts.map((p,i)=>`${i?'L':'M'}${p[0]},${p[1]}`).join(' ');
+  const area = `${d} L340,165 L20,165 Z`;
+  return `<svg class="line-chart" viewBox="0 0 360 190" preserveAspectRatio="none">
+    <defs><linearGradient id="lg${Math.random().toString(36).slice(2)}" x1="0" x2="0" y1="0" y2="1"><stop stop-color="${color}" stop-opacity=".25"/><stop offset="1" stop-color="${color}" stop-opacity="0"/></linearGradient></defs>
+    <path class="area" d="${area}" fill="rgba(109,93,251,.13)"/>
+    <path class="line" d="${d}" fill="none" stroke="${color}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    ${pts.map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="5" fill="#fff" stroke="${color}" stroke-width="3"/>`).join('')}
+  </svg>`;
+}
+function bars(vals){
+  const max = Math.max(...vals);
+  return `<div class="bars">${vals.map(v=>`<i class="bar" style="height:${Math.max(20, v/max*150)}px"></i>`).join('')}</div>`;
+}
+function donutLegend(){
+  return `<div class="legend">${DATA.categories.map(([n,v,c])=>`<div class="legend-row"><span><i style="background:${c}"></i>${n}</span><b>${fmt(v)} ر.س</b></div>`).join('')}</div>`;
+}
+function featureSvg(type='finance'){
+  const base = {
+    finance:`<svg viewBox="0 0 420 190"><path d="M40 135 C98 55 148 170 206 88 S318 28 382 82" fill="none" stroke="#6D5DFB" stroke-width="14" stroke-linecap="round"/><rect x="70" y="94" width="64" height="56" rx="18" fill="#fff" opacity=".9"/><rect x="178" y="58" width="72" height="92" rx="20" fill="#10172A" opacity=".95"/><rect x="286" y="76" width="66" height="74" rx="20" fill="#FF7A59" opacity=".9"/><circle cx="210" cy="86" r="12" fill="#27C7A8"/><circle cx="102" cy="122" r="10" fill="#6D5DFB"/><circle cx="318" cy="105" r="10" fill="#fff"/></svg>`,
+    family:`<svg viewBox="0 0 420 190"><circle cx="120" cy="70" r="30" fill="#6D5DFB"/><circle cx="210" cy="62" r="36" fill="#FF7A59"/><circle cx="300" cy="76" r="28" fill="#27C7A8"/><rect x="78" y="108" width="84" height="58" rx="22" fill="#fff"/><rect x="162" y="102" width="96" height="70" rx="24" fill="#10172A"/><rect x="266" y="114" width="72" height="52" rx="20" fill="#fff" opacity=".9"/><path d="M82 48 C155 14 260 16 338 49" fill="none" stroke="#F4A261" stroke-width="8" stroke-linecap="round" opacity=".7"/></svg>`,
+    report:`<svg viewBox="0 0 420 190"><rect x="92" y="34" width="236" height="130" rx="26" fill="#fff"/><rect x="124" y="64" width="120" height="12" rx="6" fill="#10172A" opacity=".8"/><rect x="124" y="92" width="170" height="9" rx="5" fill="#6D5DFB" opacity=".55"/><rect x="124" y="116" width="140" height="9" rx="5" fill="#FF7A59" opacity=".6"/><path d="M286 146 v-54 M306 146 v-80 M326 146 v-38" stroke="#27C7A8" stroke-width="12" stroke-linecap="round"/></svg>`,
+    decision:`<svg viewBox="0 0 420 190"><path d="M64 100 H176" stroke="#6D5DFB" stroke-width="12" stroke-linecap="round"/><path d="M244 100 H356" stroke="#FF7A59" stroke-width="12" stroke-linecap="round"/><circle cx="210" cy="100" r="42" fill="#fff"/><path d="M194 101 l14 14 28-34" fill="none" stroke="#27C7A8" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/><circle cx="64" cy="100" r="18" fill="#10172A"/><circle cx="356" cy="100" r="18" fill="#F4A261"/></svg>`
+  };
+  return base[type] || base.finance;
+}
+
+const views = {
+  home(){
+    // بيانات حقيقية من المتجر + المحرك (لا أرقام ثابتة)
+    const p   = QararStore.getProfile();
+    const bal = QararStore.getBalance();
+    const obs = QararStore.getObligations();
+    const obsTotal = obs.reduce((s,o)=>s+o.amount,0);
+    const r = QararEngine.analyzeDecision(QararStore.buildEngineInput(null));
+    // أقصى مبلغ آمن = الرصيد − الالتزامات − الحد الآمن
+    const probe = QararEngine.analyzeDecision(QararStore.buildEngineInput({
+      type:'purchase', name:'probe', amount:100,
+      targetDate:p.asOfDate, isEssential:false, paymentMode:'one_time'
+    }));
+    const _hb = { p, bal, obs, obsTotal, r, safeMax: probe.safeMaximumAmount };
+    return `
+    <div class="hero">
+      <div class="hero-main">
+        <div class="hero-content">
+          <span class="pill mint">منصة مالية ذكية</span>
+          <h1>قرار يحوّل بياناتك المالية إلى خطوة واضحة قبل ما يصير الضغط.</h1>
+          <p>لوحة واحدة تفهم الوضع الحالي، تتوقع الالتزامات القادمة، وتحاكي أثر القرارات قبل تنفيذها. كل شيء هنا مرتب كمنصة فعلية، وليس مجرد أرقام مبعثرة.</p>
+          <div class="hero-actions">
+            <button class="btn primary" data-goto="analysis" data-load="جارٍ تحليل بياناتك المالية...">عرض التحليل الكامل</button>
+            <button class="btn orange" data-goto="decision" data-load="جارٍ تجهيز محاكي القرار...">اختبر قرار الآن</button>
+            <button class="btn ghost" data-goto="assistant" data-load="جارٍ فتح مساعد قرار...">اسأل المساعد</button>
+          </div>
+          <div class="visual-path">${decisionPath()}</div>
+        </div>
+      </div>
+      <div class="card dark score-wrap">
+        <div class="score-ring" style="--p:${DATA.stability}"></div>
+        <div class="score-number"><b>${DATA.stability}%</b><span>مؤشر الاستقرار</span></div>
+      </div>
+    </div>
+    ${demoBanner()}
+    <div class="grid four" style="margin-top:18px">
+      ${metric('الرصيد الحالي', riyal(_hb.bal), 'من عملياتك المحفوظة', 'mint')}
+      ${metric('الالتزامات القادمة', riyal(_hb.obsTotal), `قبل ${DateU.formatArabic(_hb.p.nextSalaryDate)}`, 'orange')}
+      ${metric('أقل رصيد متوقع', riyal(_hb.r.minimumBalance), _hb.r.gapFromSafeFloor<0?'⚠️ تحت الحد الآمن':'✓ فوق الحد الآمن', _hb.r.gapFromSafeFloor<0?'orange':'mint')}
+      ${metric('أقصى مبلغ آمن', riyal(_hb.safeMax), 'يمكنك إنفاقه الآن', 'violet')}
+    </div>
+    <div class="section-title"><h3>مركز القرار</h3><p>مختصر ذكي لما يحدث الآن وما سيحدث لاحقًا</p></div>
+    <div class="grid two">
+      <div class="card">
+        <h4>قراءة وضعك الحالي</h4>
+        <p>هذه القراءة محسوبة الآن من رصيدك الفعلي والتزاماتك القادمة — وليست نصًا ثابتًا.</p>
+        <div class="insight-list">
+          ${insight('💰','الرصيد الحالي', riyal(_hb.bal))}
+          ${insight('📅','أقل رصيد متوقع', `${riyal(_hb.r.minimumBalance)} في ${DateU.formatArabic(_hb.r.minimumBalanceDate)}`)}
+          ${_hb.obs.slice(0,2).map(o=>insight(o.icon, o.name, `${riyal(o.amount)} — ${DateU.formatArabic(o.dueDate)}`)).join('')}
+          ${insight('↯','الإجراء المقترح', `أقصى مبلغ يمكنك إنفاقه الآن بأمان: ${riyal(_hb.safeMax)}`)}
+        </div>
+        <div class="hero-actions">
+          <button class="btn primary" data-goto="decision" data-load="جارٍ فتح محرك القرار...">اختبر قرارًا الآن</button>
+        </div>
+      </div>
+      <div class="card wave-card">
+        <h4>توزيع المصروفات</h4>
+        <div style="display:grid;grid-template-columns:190px 1fr;gap:18px;align-items:center">
+          <div class="donut"><div class="donut-label"><b>11.2K</b><br><span>ر.س</span></div></div>
+          ${donutLegend()}
+        </div>
+      </div>
+    </div>
+    <div class="section-title"><h3>رسومات وتمثيل بصري</h3><p>كل معلومة مربوطة برسم يساعد الحكم يفهمها بسرعة</p></div>
+    <div class="grid three">
+      ${visualCard('مسار الإنفاق', 'كيف تحرك الإنفاق خلال الشهور الماضية مع توقع الشهر القادم.', lineChart(DATA.trend))}
+      ${visualCard('أكثر الفئات ضغطًا', 'السكن والتعليم والغذاء تمثل الجزء الأكبر من الإنفاق.', bars([3500,2050,2200,1100,910,850]))}
+      ${visualCard('خط الزمن القادم', 'الأحداث المالية القادمة مرتبة حسب قرب تأثيرها.', timeline(DATA.forecast.slice(0,3)))}
+    </div>`},
+  status(){return `
+    ${pageHero('الوضع الحالي', 'صفحة تشرح أين تقف ماليًا الآن، وما الإجراء الأفضل قبل ظهور الضغط.', '◉')}
+    <div class="grid two">
+      <div class="card dark">
+        <span class="status-badge warn">مستقر بحذر</span>
+        <h4 style="font-size:32px;margin-top:18px">مؤشر الاستقرار قد ينخفض من 78% إلى 71%</h4>
+        <p>السبب ليس ضعف الدخل، بل تزامن الفواتير ومصاريف المدرسة والاشتراكات في نفس الفترة. المنصة تقترح احتياطيًا بسيطًا بدل التعامل مع الضغط بعد حدوثه.</p>
+        <div class="risk-meter"><i style="width:78%"></i></div>
+        <div class="hero-actions">
+          <button class="btn light" data-action="statusPlan">ماذا أفعل الآن؟</button>
+          <button class="btn ghost" data-goto="decision" data-load="جارٍ فتح محاكي القرار...">اختبر قرار جديد</button>
+        </div>
+      </div>
+      <div class="card">${featureSvg('decision')}<h4>غرفة المناورة المالية</h4><p>بعد خصم الالتزامات المتوقعة، يبقى لديك هامش مريح لكنه حساس لأي قسط أو اشتراك جديد خلال هذا الشهر.</p>${bars([62,78,71,84,76])}</div>
+    </div>
+    <div class="section-title"><h3>الإجراء المقترح</h3><p>خطة قصيرة بدل نصائح عامة</p></div>
+    <div class="grid four">
+      ${actionCard('خصص احتياطي', '1,350 ريال', 'قبل 18 يوم')}
+      ${actionCard('قلل غير الأساسي', '12%', 'لمدة شهر')}
+      ${actionCard('راجع الاشتراكات', '420 ريال', 'قابلة للتقليل')}
+      ${actionCard('أجل القرارات', '14 يوم', 'لأي التزام جديد')}
+    </div>`},
+  analysis(){return `
+    ${pageHero('التحليل الذكي', 'بيانات مرتبة، رسومات واضحة، وتفسير عملي بدل أرقام صامتة.', '▧')}
+    <div class="tabs">
+      <button class="tab active" data-tab="overview">نظرة عامة</button><button class="tab" data-tab="spending">المصروفات</button><button class="tab" data-tab="obligations">الالتزامات</button><button class="tab" data-tab="forecastTab">التوقعات</button>
+    </div>
+    <div id="tabContent">${analysisOverview()}</div>`},
+  decision(){
+    const p = QararStore.getProfile();
+    const bal = QararStore.getBalance();
+    const obs = QararStore.getObligations();
+    const obsTotal = obs.reduce((s,o)=>s+o.amount,0);
+    return `
+    ${pageHero('اختبار القرار', 'قبل أن تدفع، اعرف الأثر الحقيقي على رصيدك والتزاماتك القادمة.', '↯')}
+    ${demoBanner()}
+
+    <div class="grid four" style="margin-bottom:18px">
+      ${metric('رصيدك الحالي', riyal(bal), 'من بياناتك المحفوظة','violet')}
+      ${metric('التزاماتك القادمة', riyal(obsTotal), `${obs.length.toLocaleString('ar-SA')} التزامات قبل الراتب`,'orange')}
+      ${metric('حدك الآمن', riyal(p.safeFloor), 'الذي حددته أنت','mint')}
+      ${metric('الراتب القادم', DateU.formatArabic(p.nextSalaryDate), riyal(p.monthlyIncome),'mint')}
+    </div>
+
+    <div class="grid two">
+      <div class="card">
+        <h4>أدخل القرار المراد اختباره</h4>
+        <div class="form-grid">
+          <div class="field">
+            <label>اسم القرار</label>
+            <input id="decisionName" type="text" value="شراء لابتوب" />
+          </div>
+          <div class="field">
+            <label>نوع القرار</label>
+            <select id="decisionType">
+              <option value="purchase">شراء</option>
+              <option value="travel">سفر</option>
+              <option value="subscription">اشتراك</option>
+              <option value="installment">قسط</option>
+              <option value="education">تعليم</option>
+              <option value="general">قرار عام</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>المبلغ (ريال)</label>
+            <input id="decisionAmount" type="number" min="1" value="3000" />
+          </div>
+          <div class="field">
+            <label>تاريخ التنفيذ</label>
+            <input id="decisionDate" type="date" value="${p.asOfDate}" />
+          </div>
+          <div class="field">
+            <label>هل هو ضروري؟</label>
+            <select id="decisionEssential">
+              <option value="no">غير ضروري</option>
+              <option value="yes">ضروري</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>طريقة الدفع</label>
+            <select id="decisionPayMode" data-action="togglePayMode">
+              <option value="one_time">دفعة واحدة</option>
+              <option value="installment">تقسيط</option>
+            </select>
+          </div>
+          <div class="field" id="monthsField" style="display:none">
+            <label>عدد الأشهر</label>
+            <select id="decisionMonths">
+              <option value="3">3 أشهر</option>
+              <option value="6" selected>6 أشهر</option>
+              <option value="12">12 شهرًا</option>
+            </select>
+          </div>
+        </div>
+        <div class="hero-actions">
+          <button class="btn primary" data-action="simulateDecision">تحليل الأثر</button>
+        </div>
+      </div>
+
+      <div class="card dark">
+        <h4>كيف يفكر «قرار»؟</h4>
+        <p>المحرك يبني خطًا زمنيًا ليومياتك المالية: يطرح كل فاتورة والتزام في موعده،
+        يضيف راتبك في موعده، ثم يضيف قرارك — ويحسب <b>أقل رصيد ستصل إليه</b> ومتى.</p>
+        <div class="engine-steps">
+          ${insight('①','الرصيد الحالي','من عملياتك المحفوظة فعلًا.')}
+          ${insight('②','الالتزامات','كل فاتورة في موعدها الدقيق.')}
+          ${insight('③','القرار','يُضاف كحدث — لا يُخصم كعملية منفذة.')}
+          ${insight('④','النتيجة','أقل رصيد + مستوى الخطر + البدائل.')}
+        </div>
+        <p class="engine-note-dark">🔒 محرك حتمي — نفس المدخلات تعطي نفس النتيجة دائمًا.
+        لا يُستخدم الذكاء الاصطناعي في الحساب.</p>
+      </div>
+    </div>
+
+    <div id="decisionResult" class="result-card card soft"></div>
+
+    <div class="section-title"><h3>سيناريوهات جاهزة</h3><p>اضغط أي سيناريو لتعبئة النموذج</p></div>
+    <div class="grid auto">
+      ${QararDemo.SCENARIOS.map(s=>`
+        <button class="card scenario-card" data-action="scenario"
+                data-title="${s.title}" data-amount="${s.amount}"
+                data-type="${s.type}" data-essential="${s.essential}">
+          <span class="scenario-ico">${s.icon}</span>
+          <h4>${s.title}</h4>
+          <p>${s.amount.toLocaleString('ar-SA')} ر.س</p>
+        </button>`).join('')}
+    </div>`},
+  assistant(){return `
+    ${pageHero('مساعد قرار', 'مساعد مالي مرتبط ببياناتك داخل المنصة، وليس دردشة عامة.', '✦')}
+    <div class="grid two">
+      <div class="card chat">
+        <div id="messages" class="messages"></div>
+        <div class="chips">
+          <button class="chip" data-ask="هل أقدر أضيف اشتراك نادي؟">اشتراك نادي</button>
+          <button class="chip" data-ask="كم أحتاج أوفر لبداية المدرسة؟">بداية المدرسة</button>
+          <button class="chip" data-ask="وش أكثر شيء يضغط ميزانيتي؟">مصدر الضغط</button>
+        </div>
+        <div class="chat-input"><input id="chatText" placeholder="اكتب سؤالك المالي..."/><button class="btn primary" data-action="sendChat">إرسال</button></div>
+      </div>
+      <div class="card">
+        <div class="feature-visual">${featureSvg('finance')}</div>
+        <h4>اقتراحات ذكية</h4>
+        <div class="insight-list">
+          ${insight('↯','محاكاة مباشرة','أي رد يمكن تحويله لقرار قابل للتحليل.')}
+          ${insight('▤','تقرير مرتبط','المساعد يشرح التقرير ويختصره.')}
+          ${insight('◉','سياق عائلي','يعتمد على الملف المالي للأسرة والالتزامات.')}
+        </div>
+      </div>
+    </div>`},
+  reports(){return `
+    ${pageHero('التقارير الذكية', 'تقرير تنفيذي مختصر يشرح ماذا حدث، ولماذا، وماذا يجب أن تفعل.', '▤')}
+    <div class="report-paper">
+      <div class="report-head"><div><span class="pill">تقرير شهر يونيو</span><h3>ملخص مالي مولد بالذكاء الاصطناعي</h3></div><button class="btn primary" data-action="exportReport">تحميل PDF تجريبي</button></div>
+      <div class="grid four">
+        ${metric('إجمالي الدخل', '18,000 ر.س', 'ثابت شهريًا','mint')}
+        ${metric('إجمالي الإنفاق', '11,280 ر.س', 'أعلى 9%','orange')}
+        ${metric('المتبقي المتوقع', '3,970 ر.س', 'بعد الالتزامات','violet')}
+        ${metric('أكبر تغير', '+34%', 'مصاريف المطاعم','orange')}
+      </div>
+      <div class="grid two" style="margin-top:18px"><div class="card"><h4>السرد الذكي</h4><p>تشير البيانات إلى احتمال ارتفاع المصروفات الشهر القادم بسبب الالتزامات المدرسية وفاتورة الكهرباء. توصي منصة قرار بتخصيص 1,350 ريال كاحتياطي وتقليل المصروفات غير الأساسية بنسبة 12%.</p><button class="btn outline" data-goto="assistant" data-load="جارٍ إرسال التقرير للمساعد...">إرسال للمساعد</button></div><div class="card"><h4>رسم التقرير</h4>${lineChart([9000,10200,9800,11280,12600], '#FF7A59')}</div></div>
+    </div>`},
+  forecast(){return `
+    ${pageHero('التوقعات القادمة', 'خط زمني لما قد يحدث لاحقًا حتى يكون القرار قبل المفاجأة.', '⟡')}
+    <div class="grid two">
+      <div class="card"><h4>خط الزمن المالي</h4>${timeline(DATA.forecast)}<div class="hero-actions"><button class="btn primary" data-goto="decision" data-load="جارٍ تجهيز خطة الاستعداد...">جهّز خطة الآن</button><button class="btn outline" data-action="reminder">أضف تذكير</button></div></div>
+      <div class="card dark"><h4>توقع الضغط</h4><p>الضغط المتوقع ليس عاليًا بشكل خطر، لكنه يظهر بسبب تزامن عدة التزامات في فترة قصيرة.</p>${bars([45,55,72,62,48])}<button class="btn light" data-goto="analysis" data-load="جارٍ عرض تحليل التوقعات...">عرض أثرها على الميزانية</button></div>
+    </div>`},
+  family(){return `
+    ${pageHero('الملف المالي للأسرة', 'قرار تفهم السياق العائلي، وليس الحساب البنكي فقط.', '◌')}
+    <div class="grid four">
+      ${familyCard('👨‍💼','رب الأسرة','دخل شهري 18,000 ر.س','إيجار، أقساط، فواتير')}
+      ${familyCard('👩','الزوجة','مصروف ثابت 1,500 ر.س','احتياجات منزلية وصحية')}
+      ${familyCard('👦','الابن','مدرسة حكومية','مصروف شهري 400 ر.س')}
+      ${familyCard('👧','البنت','مدرسة خاصة','رسوم فصلية 6,000 ر.س')}
+    </div>
+    <div class="section-title"><h3>الالتزامات الثابتة</h3><p>تستخدمها المنصة لتوقع الضغط القادم</p></div>
+    <div class="grid two"><div class="card">${accountRow('الإيجار','3,500 ر.س','🏠')}${accountRow('الكهرباء','580 ر.س متوقعة','⚡')}${accountRow('الإنترنت','300 ر.س','🌐')}${accountRow('الاشتراكات','420 ر.س','🔁')}<button class="btn primary" data-action="editFamily">تعديل البيانات</button></div><div class="card"><div class="feature-visual">${featureSvg('family')}</div><h4>لماذا هذا مهم؟</h4><p>كل معلومة عائلية تجعل التوصيات أدق: المدارس، الفواتير، العمر، المصروفات المتكررة، والمواسم.</p></div></div>`},
+  sandbox(){
+    const bal  = QararStore.getBalance();
+    const p    = QararStore.getProfile();
+    const txs  = QararStore.getTransactions();
+    const obs  = QararStore.getObligations();
+
+    const txRows = txs.length ? txs.map(t=>`
+      <div class="tx-row">
+        <span class="tx-ico">${t.icon}</span>
+        <div class="tx-main">
+          <b>${t.name}</b>
+          <span>${t.merchant} · ${t.category} · ${DateU.formatArabic(t.date)}</span>
+        </div>
+        <span class="tx-amt ${t.type}">
+          ${t.type==='income'?'+':'−'}${riyal(t.amount)}
+        </span>
+        <button class="tx-del" data-action="deleteTx" data-id="${t.id}" title="حذف">×</button>
+      </div>`).join('')
+      : `<div class="empty">لا توجد عمليات بعد — أضف عملية لترى الرصيد يتغير.</div>`;
+
+    return `
+    ${pageHero('البيئة المصرفية التجريبية', 'أضف عمليات وشاهد رصيدك يتغير فعلًا — ثم اختبر أثرها على قراراتك.', '▣')}
+    ${demoBanner()}
+
+    <div class="grid two">
+      <div class="card qarar-card">
+        <div class="qcard-top">
+          <span class="qcard-brand">بطاقة قرار التجريبية</span>
+          <span class="qcard-mode">SANDBOX</span>
+        </div>
+        <div class="qcard-balance">
+          <span>الرصيد الحالي</span>
+          <b>${riyal(bal)}</b>
+        </div>
+        <div class="qcard-meta">
+          <div><small>الحد الآمن</small><b>${riyal(p.safeFloor)}</b></div>
+          <div><small>الراتب القادم</small><b>${DateU.formatArabic(p.nextSalaryDate)}</b></div>
+        </div>
+        <div class="qcard-num">•••• •••• •••• 1234</div>
+      </div>
+
+      <div class="card">
+        <h4>إضافة عملية</h4>
+        <p>اضغط أي عملية سريعة — ستفتح نموذجًا يمكنك تعديله قبل الحفظ.</p>
+        <div class="quick-grid">
+          <button class="quick" data-action="openAddTx" data-kind="income"
+                  data-preset="الراتب" data-amount="12500">💰 راتب</button>
+          <button class="quick" data-action="openAddTx" data-kind="expense"
+                  data-preset="Panda" data-amount="300">🛒 بقالة</button>
+          <button class="quick" data-action="openAddTx" data-kind="expense"
+                  data-preset="مطعم" data-amount="85">🍔 مطعم</button>
+          <button class="quick" data-action="openAddTx" data-kind="expense"
+                  data-preset="فاتورة كهرباء" data-amount="650">⚡ كهرباء</button>
+          <button class="quick" data-action="openAddTx" data-kind="expense"
+                  data-preset="اشتراك" data-amount="56">🔁 اشتراك</button>
+          <button class="quick" data-action="openAddTx" data-kind="expense"
+                  data-preset="قسط سيارة" data-amount="900">🚗 قسط</button>
+        </div>
+        <div class="hero-actions">
+          <button class="btn primary" data-action="openAddTx" data-kind="expense">+ عملية مخصصة</button>
+          <button class="btn outline" data-goto="decision" data-load="جارٍ فتح محرك القرار...">اختبر قرارًا</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title"><h3>الالتزامات القادمة</h3><p>تدخل في حساب محرك القرار</p></div>
+    <div class="grid three">
+      ${obs.map(o=>`
+        <div class="card obligation-card">
+          <span class="ob-ico">${o.icon}</span>
+          <h4>${o.name}</h4>
+          <div class="metric-value">${riyal(o.amount)}</div>
+          <p>${DateU.formatArabic(o.dueDate)}</p>
+        </div>`).join('')}
+    </div>
+
+    <div class="section-title"><h3>العمليات</h3><p>${txs.length.toLocaleString('ar-SA')} عملية محفوظة</p></div>
+    <div class="card">${txRows}</div>`},
+
+  permissions(){return `${pageHero('إدارة الموافقات', 'تحكم واضح في البيانات المشاركة داخل النموذج التجريبي.', '✓')}<div class="card"><h4>مشاركة البيانات</h4>${permission('المعاملات',true)}${permission('الفواتير',true)}${permission('البطاقات',true)}${permission('الالتزامات',true)}${permission('البيانات الأسرية',true)}<button class="btn primary" data-action="savePermissions">حفظ الموافقات</button></div>`},
+  settings(){return `${pageHero('الإعدادات', 'إعدادات التجربة والخصوصية وإعادة ضبط البيانات.', '⚙')}<div class="grid two"><div class="card"><h4>بيانات الحساب</h4>${accountRow('اسم المستخدم','أحمد','👤')}${accountRow('نوع الأسرة','أسرة من 4 أفراد','◌')}${accountRow('الدخل الشهري','18,000 ر.س','💼')}</div><div class="card"><h4>الخصوصية</h4><p>قرار تستخدم البيانات التجريبية لأغراض التحليل والتوصيات داخل النموذج فقط.</p><button class="btn orange" data-action="resetDemo">إعادة ضبط البيانات التجريبية</button></div></div>`}
+};
+
+function demoBanner(){
+  const persist = QararStore.isPersistent();
+  return `<div class="demo-banner">
+    <span class="demo-ico">⚠️</span>
+    <div>
+      <b>بيئة تجريبية — لا توجد بيانات مصرفية حقيقية.</b>
+      <span>لا يوجد ربط بنكي فعلي. الأرقام لأغراض العرض فقط.
+      ${persist ? 'البيانات محفوظة محليًا في متصفحك (حفظ مؤقت للعرض).'
+                : '⚠️ التخزين المحلي معطّل — البيانات لن تُحفظ بعد إعادة التحميل.'}</span>
+    </div>
+  </div>`;
+}
+
+function metric(label,value,note,type='violet'){
+  const cls = type==='orange'?'orange':type==='mint'?'mint':'';
+  return `<div class="card metric-card"><span class="metric-label">${label}</span><div class="metric-value">${value}</div><div class="metric-note"><span class="pill ${cls}">${note}</span></div></div>`;
+}
+function insight(icon,title,text){return `<div class="insight"><span class="bubble">${icon}</span><div><b>${title}</b><span>${text}</span></div></div>`}
+function visualCard(title, text, visual){return `<div class="card chart-card"><h4>${title}</h4><p>${text}</p>${visual}</div>`}
+function timeline(items){return `<div class="timeline">${items.map(i=>`<div class="timeline-item"><div class="timeline-dot">${i[3]}</div><div class="timeline-box"><b>${i[0]} — ${i[1]}</b><span>${i[2]}</span></div></div>`).join('')}</div>`}
+function actionCard(title,value,note){return `<div class="card"><span class="metric-label">${title}</span><div class="metric-value">${value}</div><p>${note}</p></div>`}
+function pageHero(title,desc,icon){return `<div class="page-hero"><div><span class="pill">${icon} ${title}</span><h1>${title}</h1><p>${desc}</p></div><div class="collab-badge"><span>منصة قرار</span><strong>× مصرف الإنماء</strong></div></div>`}
+function familyCard(icon,name,meta,desc){return `<div class="card family-card"><span class="avatar">${icon}</span><div><h4>${name}</h4><p>${meta}<br>${desc}</p></div></div>`}
+function accountRow(title,desc,icon){return `<div class="account-row"><div><b>${title}</b><br><span style="color:var(--muted);font-weight:650">${desc}</span></div><span class="avatar" style="width:44px;height:44px;border-radius:16px;font-size:20px">${icon}</span></div>`}
+function permission(title,on){return `<div class="account-row"><b>${title}</b><button class="toggle ${on?'on':''}" data-action="toggle"></button></div>`}
+function scenario(title,amount,cat){return `<button class="card" data-action="scenario" data-title="${title}" data-amount="${amount}" data-cat="${cat}"><div class="feature-visual">${featureSvg('decision')}</div><h4>${title}</h4><p>${fmt(amount)} ر.س — ${cat}</p></button>`}
+function decisionPath(){return `<svg viewBox="0 0 760 170"><defs><linearGradient id="route" x1="0" x2="1"><stop stop-color="#27C7A8"/><stop offset=".52" stop-color="#6D5DFB"/><stop offset="1" stop-color="#FF7A59"/></linearGradient></defs><path d="M30 118 C155 12 235 148 360 74 S565 36 720 98" fill="none" stroke="url(#route)" stroke-width="9" stroke-linecap="round" opacity=".95"/><g class="path-dot"><circle cx="30" cy="118" r="13" fill="#27C7A8"/><circle cx="360" cy="74" r="15" fill="#fff"/><circle cx="720" cy="98" r="13" fill="#FF7A59"/></g><text x="50" y="145" fill="rgba(255,255,255,.72)" font-size="18">البيانات</text><text x="330" y="48" fill="rgba(255,255,255,.72)" font-size="18">التحليل</text><text x="650" y="130" fill="rgba(255,255,255,.72)" font-size="18">القرار</text></svg>`}
+function analysisOverview(){return `<div class="grid two"><div class="card"><h4>اتجاه الإنفاق</h4><p>يوضح الرسم ارتفاعًا تدريجيًا، مع توقع زيادة قريبة مرتبطة بالموسم المدرسي والفواتير.</p>${lineChart(DATA.trend)}</div><div class="card"><h4>رؤى ذكية</h4><div class="insight-list">${insight('🔁','إنفاق متكرر','62% من المصروفات ثابتة أو شبه ثابتة.')}${insight('🍽','زيادة غير معتادة','المطاعم زادت 34% مقارنة بالشهر السابق.')}${insight('⚡','توقع فاتورة','الكهرباء القادمة بين 540–620 ريال.')}</div></div></div><div class="grid three" style="margin-top:18px">${visualCard('توزيع الفئات','الفئات الأكثر تأثيرًا على الشهر الحالي.',`<div style="display:grid;place-items:center"> <div class="donut"><div class="donut-label"><b>6</b><br><span>فئات</span></div></div></div>`)}${visualCard('مقارنة شهرية','نمو الإنفاق يظهر قبل نهاية الشهر.',bars([52,61,48,70,83,74]))}${visualCard('خطة مقترحة','تخصيص مبلغ احتياطي وتقليل غير الأساسي.',timeline(DATA.forecast.slice(0,2)))}</div>`}
+function analysisSpending(){return `<div class="grid two"><div class="card"><h4>المصروفات حسب الفئة</h4>${bars(DATA.categories.map(c=>c[1]))}</div><div class="card"><h4>تفصيل الفئات</h4>${donutLegend()}</div></div>`}
+function analysisObligations(){return `<div class="grid two"><div class="card"><h4>الالتزامات الثابتة</h4>${accountRow('إيجار','3,500 ر.س','🏠')}${accountRow('فواتير','910 ر.س','⚡')}${accountRow('اشتراكات','420 ر.س','🔁')}</div><div class="card dark"><h4>القراءة الذكية</h4><p>كلما زادت الالتزامات الثابتة، قلت مرونة القرارات الجديدة. لذلك ينصح قرار باختبار أي التزام قبل إضافته.</p>${featureSvg('report')}</div></div>`}
+function analysisForecast(){return `<div class="grid two"><div class="card"><h4>توقعات 30 يوم</h4>${timeline(DATA.forecast)}</div><div class="card"><h4>المسار المتوقع</h4>${lineChart([11280,11600,12100,12600,11900], '#FF7A59')}</div></div>`}
+
+function afterRender(id){
+  if(id==='assistant') bootChat();
+  if(id==='analysis') bindTabs();
+}
+function bindTabs(){
+  document.querySelectorAll('[data-tab]').forEach(btn=>btn.addEventListener('click',()=>{
+    document.querySelectorAll('[data-tab]').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const id = btn.dataset.tab;
+    const map = {overview:analysisOverview, spending:analysisSpending, obligations:analysisObligations, forecastTab:analysisForecast};
+    $('#tabContent').innerHTML = (map[id]||analysisOverview)();
+  }));
+}
+function bootChat(){
+  const m = $('#messages');
+  if(!m) return;
+  m.innerHTML = `<div class="msg ai">مرحبًا أحمد، أنا مساعد قرار. أقدر أشرح وضعك المالي، أختبر قراراتك، وأحوّل أي سؤال إلى محاكاة واضحة.</div>`;
+  chatBooted = true;
+}
+function addMsg(text, who='ai'){
+  const m = $('#messages'); if(!m) return;
+  m.insertAdjacentHTML('beforeend', `<div class="msg ${who}">${text}</div>`);
+  m.scrollTop = m.scrollHeight;
+}
+/* ═══════════════════════════════════════════════════════════════════════
+ * محرك القرار — الربط الحقيقي
+ * كل رقم هنا يأتي من QararEngine. لا معادلات تجميلية. لا أرقام مكتوبة.
+ * ═════════════════════════════════════════════════════════════════════ */
+
+const Money = QararEngine.Money;
+const DateU = QararEngine.DateUtil;
+
+let lastAnalysis = null;   // آخر نتيجة تحليل (للبدائل)
+
+/** تنسيق مبلغ بالهللة → نص عربي */
+function riyal(halala){ return Money.formatWithCurrency(halala); }
+
+/** لون حسب مستوى الخطر */
+function riskColor(level){
+  return level === 'critical' ? '#DC2626'
+       : level === 'high'     ? '#FF7A59'
+       : level === 'medium'   ? '#F4A261'
+       :                        '#27C7A8';
+}
+function riskPillClass(level){
+  return (level === 'critical' || level === 'high') ? 'orange'
+       : level === 'medium' ? 'orange' : 'mint';
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+ * تحليل القرار — يستدعي المحرك الحقيقي
+ * ─────────────────────────────────────────────────────────────────── */
+
+function runDecisionAnalysis(){
+  const name        = $('#decisionName')?.value?.trim() || 'قرار جديد';
+  const type        = $('#decisionType')?.value || 'purchase';
+  const amountRiyal = Number($('#decisionAmount')?.value || 0);
+  const targetDate  = $('#decisionDate')?.value || QararDemo.TODAY;
+  const essential   = $('#decisionEssential')?.value === 'yes';
+  const payMode     = $('#decisionPayMode')?.value || 'one_time';
+  const months      = Number($('#decisionMonths')?.value || 6);
+
+  if (!amountRiyal || amountRiyal <= 0){
+    toast('أدخل مبلغًا صحيحًا أكبر من صفر');
+    return;
+  }
+
+  // بناء المُدخل من الحالة الفعلية المحفوظة (لا من أرقام ثابتة)
+  const input = QararStore.buildEngineInput({
+    type:        type,
+    name:        name,
+    amount:      Money.fromRiyal(amountRiyal),   // ريال → هللة
+    targetDate:  targetDate,
+    isEssential: essential,
+    paymentMode: payMode,
+    months:      months
+  });
+
+  // ⭐ استدعاء المحرك
+  const result = QararEngine.analyzeDecision(input);
+
+  if (!result.ok){
+    $('#decisionResult').innerHTML =
+      `<h4>تعذر التحليل</h4><ul>${result.errors.map(e=>`<li>${e}</li>`).join('')}</ul>`;
+    $('#decisionResult').classList.add('show');
+    return;
+  }
+
+  lastAnalysis = result;
+  renderDecisionResult(result);
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+ * عرض نتيجة التحليل
+ * ─────────────────────────────────────────────────────────────────── */
+
+function renderDecisionResult(r){
+  const el = $('#decisionResult');
+  const color = riskColor(r.riskLevel);
+  const below = r.gapFromSafeFloor < 0;
+
+  const reasons = r.riskReasons.map(x =>
+    `<div class="insight"><span class="bubble">${below?'⚠️':'✓'}</span><div><span>${x.text}</span></div></div>`
+  ).join('');
+
+  const alts = r.alternatives.map(a => `
+    <button class="card alt-card" data-action="applyAlt" data-alt="${a.id}">
+      <div class="alt-head"><span class="alt-ico">${a.icon}</span><b>${a.title}</b></div>
+      <p>${a.description}</p>
+      <span class="pill ${a.id==='cancel'?'':'mint'}">${a.impact}</span>
+    </button>`).join('');
+
+  // الخط الزمني حتى الراتب
+  const tl = r.timeline.slice(0, 8).map(t => `
+    <div class="timeline-item">
+      <div class="timeline-dot">${t.icon}</div>
+      <div class="timeline-box">
+        <b>${DateU.formatArabic(t.date)} — ${t.label}</b>
+        <span>${t.amount < 0 ? '−' : '+'}${riyal(Math.abs(t.amount))}
+          &nbsp;·&nbsp; الرصيد بعدها:
+          <b style="color:${t.balanceAfter < r.safeFloor ? '#DC2626' : '#11806E'}">
+            ${riyal(t.balanceAfter)}
+          </b>
+        </span>
+      </div>
+    </div>`).join('');
+
+  el.innerHTML = `
+    <div class="result-banner" style="border-right:6px solid ${color}">
+      <div>
+        <span class="pill ${riskPillClass(r.riskLevel)}">مستوى الخطر: ${r.riskLevelAr}</span>
+        <h3 style="margin:10px 0 4px">${r.recommendationAr}</h3>
+        <p style="margin:0">التحليل مبني على رصيدك والتزاماتك القادمة وموعد راتبك.</p>
+      </div>
+    </div>
+
+    <div class="grid four" style="margin-top:16px">
+      ${metric('الرصيد الحالي', riyal(r.currentBalance), 'قبل القرار', 'violet')}
+      ${metric('الرصيد بعد القرار', riyal(r.balanceAfterDecision), 'مباشرة بعد الدفع', 'orange')}
+      ${metric('⭐ أقل رصيد متوقع', riyal(r.minimumBalance),
+               DateU.formatArabic(r.minimumBalanceDate), below?'orange':'mint')}
+      ${metric('الفرق عن الحد الآمن', riyal(r.gapFromSafeFloor),
+               below?'تحت الحد الآمن':'فوق الحد الآمن', below?'orange':'mint')}
+    </div>
+
+    <div class="grid four" style="margin-top:14px">
+      ${metric('الالتزامات قبل الراتب', riyal(r.obligationsBeforeSalary), 'فواتير واشتراكات','violet')}
+      ${metric('حدك الآمن', riyal(r.safeFloor), 'الذي حددته أنت','violet')}
+      ${metric('⭐ أقصى مبلغ آمن الآن', riyal(r.safeMaximumAmount), 'يمكنك دفعه دون خطر','mint')}
+      ${metric('أيام تحت الحد الآمن', r.daysBelowSafeFloor.toLocaleString('ar-SA'), 'خلال الفترة القادمة',
+               r.daysBelowSafeFloor>0?'orange':'mint')}
+    </div>
+
+    <div class="section-title"><h3>سبب التقييم</h3><p>لماذا وصل المحرك إلى هذه النتيجة</p></div>
+    <div class="insight-list">${reasons}</div>
+
+    <div class="section-title"><h3>الخط الزمني المالي</h3><p>كيف يتحرك رصيدك يومًا بعد يوم</p></div>
+    <div class="timeline">${tl}</div>
+
+    ${r.alternatives.length ? `
+      <div class="section-title"><h3>البدائل المقترحة</h3><p>اضغط أي بديل لتطبيقه فورًا</p></div>
+      <div class="grid auto">${alts}</div>` : ''}
+
+    <div class="hero-actions" style="margin-top:18px">
+      <button class="btn outline" data-action="saveDecisionPlan">حفظ كقرار مخطط</button>
+      <button class="btn ghost-dark" data-action="proceedAnyway">المتابعة رغم التحذير</button>
+    </div>
+
+    <p class="engine-note">
+      🔒 كل الأرقام أعلاه محسوبة بواسطة محرك القرار المالي (Deterministic Engine).
+      لم يُستخدم الذكاء الاصطناعي في أي حساب.
+    </p>`;
+
+  el.classList.add('show');
+  el.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+ * تطبيق البدائل
+ * ─────────────────────────────────────────────────────────────────── */
+
+function applyAlternative(altId){
+  if (!lastAnalysis) return;
+  const alt = lastAnalysis.alternatives.find(a => a.id === altId);
+  if (!alt) return;
+
+  if (altId === 'cancel'){
+    $('#decisionResult').classList.remove('show');
+    lastAnalysis = null;
+    toast('تم إلغاء القرار');
+    return;
+  }
+
+  if (altId === 'convert_to_goal'){
+    QararStore.addGoal({
+      name:          $('#decisionName')?.value || 'هدف ادخار',
+      target:        lastAnalysis.input.decisionAmount,
+      monthlyAmount: alt.monthlyAmount,
+      months:        alt.months
+    });
+    toast('تم تحويل القرار إلى هدف ادخار ✓');
+    $('#decisionResult').classList.remove('show');
+    return;
+  }
+
+  if (alt.newDate){
+    $('#decisionDate').value = alt.newDate;
+    toast('تم تعديل التاريخ — جارٍ إعادة التحليل');
+  }
+  if (alt.newAmount){
+    $('#decisionAmount').value = Money.toRiyal(alt.newAmount);
+    toast('تم تعديل المبلغ — جارٍ إعادة التحليل');
+  }
+
+  // إعادة التحليل بالقيم الجديدة → الأرقام تتغير فعلًا
+  setTimeout(runDecisionAnalysis, 350);
+}
+
+/* ───────────────────────────────────────────────────────────────────────
+ * المساعد المالي
+ *
+ * ⚠️ ملاحظة صريحة: هذه *ليست* ذكاءً اصطناعيًا حقيقيًا بعد.
+ * إنها طبقة تفسير محلية تستدعي محرك القرار وتشرح نتائجه.
+ * الميزة الحقيقية: الأرقام التي يعطيها *مطابقة تمامًا* لأرقام
+ * النموذج اليدوي، لأن كليهما يستدعي نفس المحرك.
+ * سيُستبدل بـOpenAI من جهة الخادم في المرحلة القادمة.
+ * ─────────────────────────────────────────────────────────────────── */
+
+function assistantReply(question){
+  const q = String(question || '');
+
+  // استخراج مبلغ من السؤال (مثلًا "لابتوب بـ3000")
+  const numMatch = q.match(/(\d[\d,٬]*)/);
+  const amount = numMatch ? Number(numMatch[1].replace(/[,٬]/g,'')) : null;
+
+  const asksAffordability = /أقدر|اقدر|أشتري|اشتري|هل يمكن|ينفع|أستطيع|استطيع|أشتر/.test(q);
+  const asksBalance       = /رصيد|كم عندي|كم لدي/.test(q);
+  const asksObligations   = /فواتير|التزامات|مستحق|كم علي/.test(q);
+  const asksSafe          = /كم أقدر|أقصى|كم استطيع|حد آمن/.test(q);
+
+  // سؤال عن القدرة على الشراء بمبلغ محدد → استدعِ المحرك
+  if ((asksAffordability || asksSafe) && amount && amount > 0){
+    const input = QararStore.buildEngineInput({
+      type:'purchase', name: q.slice(0,40),
+      amount: Money.fromRiyal(amount),
+      targetDate: QararStore.getProfile().asOfDate,
+      isEssential:false, paymentMode:'one_time'
+    });
+    const r = QararEngine.analyzeDecision(input);
+    if (!r.ok) return 'لم أفهم المبلغ. جرّب صياغة أوضح.';
+
+    const below = r.gapFromSafeFloor < 0;
+    return `حلّلت هذا القرار بمحرك القرار المالي:
+
+• الرصيد الحالي: <b>${riyal(r.currentBalance)}</b>
+• بعد الشراء مباشرة: <b>${riyal(r.balanceAfterDecision)}</b>
+• التزاماتك قبل الراتب: <b>${riyal(r.obligationsBeforeSalary)}</b>
+• <b>أقل رصيد متوقع: ${riyal(r.minimumBalance)}</b> ${below?'⚠️':'✓'}
+• حدك الآمن: ${riyal(r.safeFloor)}
+
+<b>مستوى الخطر: ${r.riskLevelAr}</b>
+<b>التوصية: ${r.recommendationAr}</b>
+
+${below
+  ? `لا أنصح بهذا الشراء الآن. سيتبقى لديك <b>${riyal(r.minimumBalance)}</b> فقط قبل نزول الراتب، وهذا أقل من حدك الآمن.
+أقصى مبلغ يمكنك دفعه الآن بأمان: <b>${riyal(r.safeMaximumAmount)}</b>.`
+  : `القرار يبدو آمنًا — رصيدك يبقى فوق حدك الآمن.`}
+
+<i>(نفس الأرقام تمامًا التي يعطيها نموذج «اختبار القرار» — لأن كليهما يستدعي المحرك نفسه.)</i>`;
+  }
+
+  if (asksBalance){
+    const b = QararStore.getBalance();
+    const p = QararStore.getProfile();
+    return `رصيدك الحالي: <b>${riyal(b)}</b>
+حدك الآمن: ${riyal(p.safeFloor)}
+راتبك القادم: ${DateU.formatArabic(p.nextSalaryDate)}`;
+  }
+
+  if (asksObligations){
+    const obs = QararStore.getObligations();
+    const total = obs.reduce((s,o)=>s+o.amount, 0);
+    return `التزاماتك القادمة (المجموع <b>${riyal(total)}</b>):
+
+${obs.map(o=>`${o.icon} ${o.name} — ${riyal(o.amount)} في ${DateU.formatArabic(o.dueDate)}`).join('<br>')}`;
+  }
+
+  if (asksSafe){
+    const r = QararEngine.analyzeDecision(QararStore.buildEngineInput(null));
+    const safeInput = QararStore.buildEngineInput({
+      type:'purchase', name:'اختبار', amount: 100,
+      targetDate: QararStore.getProfile().asOfDate,
+      isEssential:false, paymentMode:'one_time'
+    });
+    const s = QararEngine.analyzeDecision(safeInput);
+    return `أقصى مبلغ يمكنك إنفاقه الآن بأمان: <b>${riyal(s.safeMaximumAmount)}</b>
+
+هذا محسوب من: رصيدك − التزاماتك القادمة − حدك الآمن.`;
+  }
+
+  return `أستطيع تحليل أي قرار مالي لك. جرّب أن تسألني بصيغة تتضمن المبلغ، مثل:
+
+• «هل أقدر أشتري لابتوب بـ3000؟»
+• «كم رصيدي؟»
+• «ما التزاماتي القادمة؟»
+• «كم أقدر أصرف بأمان؟»`;
+}
+
+function bootChat(){
+  const m = $('#messages');
+  if(!m) return;
+  const b = QararStore.getBalance();
+  m.innerHTML = `<div class="msg ai">مرحبًا ${QararStore.getProfile().name}، أنا مساعد قرار.
+رصيدك الحالي <b>${riyal(b)}</b>.
+اسألني عن أي قرار مالي — سأحلّله بمحرك القرار وأعطيك الأثر الحقيقي قبل أن تدفع.</div>`;
+  chatBooted = true;
+}
+
+function addMsg(text, who='ai'){
+  const m = $('#messages'); if(!m) return;
+  const div = document.createElement('div');
+  div.className = 'msg ' + who;
+  if (who === 'user'){
+    div.textContent = text;          // 🔒 آمن — يمنع حقن HTML (XSS)
+  } else {
+    div.innerHTML = text;            // ردودنا نحن فقط (نصوص نولّدها بأنفسنا)
+  }
+  m.appendChild(div);
+  m.scrollTop = m.scrollHeight;
+}
+
+function sendChat(text){
+  const q = text || $('#chatText')?.value?.trim();
+  if(!q) return;
+  addMsg(q, 'user');
+  if($('#chatText')) $('#chatText').value = '';
+
+  const typing = document.createElement('div');
+  typing.className = 'msg ai typing';
+  typing.textContent = 'يحلّل…';
+  $('#messages')?.appendChild(typing);
+
+  setTimeout(()=>{
+    typing.remove();
+    addMsg(assistantReply(q), 'ai');
+  }, 420);
+}
+
+function startExperience(){
+  const splash = $('#splash');
+  const loadingText = $('#loadingText');
+  const btn = splash?.querySelector('.start-experience-btn');
+  if(!splash) return;
+  splash.classList.add('starting');
+  if(btn) btn.disabled = true;
+  if(loadingText) loadingText.textContent = 'جارٍ تجهيز تجربة منصة قرار...';
+  setTimeout(()=>{
+    splash.classList.add('hide');
+    document.querySelector('.app-shell')?.classList.remove('prelaunch');
+    toast('مرحبًا بك في منصة قرار');
+  }, 1150);
+}
+
+function handleAction(action, el){
+  if(action==='startExperience') { startExperience(); return; }
+  if(action==='closeSheet') closeSheet();
+
+  /* ── محرك القرار ── */
+  if(action==='simulateDecision'){
+    showLoading('جارٍ تحليل أثر القرار...');
+    setTimeout(()=>{ hideLoading(); runDecisionAnalysis(); }, 600);
+  }
+  if(action==='applyAlt'){ applyAlternative(el.dataset.alt); }
+  if(action==='togglePayMode'){ /* يُعالَج في change listener */ }
+
+  if(action==='scenario'){
+    $('#decisionName').value      = el.dataset.title;
+    $('#decisionAmount').value    = el.dataset.amount;
+    $('#decisionType').value      = el.dataset.type;
+    $('#decisionEssential').value = el.dataset.essential === 'true' ? 'yes' : 'no';
+    toast(`تم اختيار: ${el.dataset.title}`);
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  if(action==='saveDecisionPlan'){
+    if(!lastAnalysis) return;
+    QararStore.saveDecision({
+      name:   $('#decisionName').value,
+      amount: lastAnalysis.input.decisionAmount,
+      date:   $('#decisionDate').value
+    }, lastAnalysis);
+    toast('تم حفظ القرار كخطة — لم يُخصم من رصيدك ✓');
+  }
+
+  if(action==='proceedAnyway'){
+    if(!lastAnalysis) return;
+    openSheet(`
+      <h3>⚠️ تأكيد المتابعة رغم التحذير</h3>
+      <p>مستوى الخطر: <b>${lastAnalysis.riskLevelAr}</b></p>
+      <p>سيتبقى لديك <b>${riyal(lastAnalysis.minimumBalance)}</b> فقط
+         عند ${DateU.formatArabic(lastAnalysis.minimumBalanceDate)} —
+         وهذا أقل من حدك الآمن (${riyal(lastAnalysis.safeFloor)}).</p>
+      <p>هل أنت متأكد أنك تريد المتابعة؟</p>
+      <div class="hero-actions">
+        <button class="btn orange" data-action="confirmProceed">نعم، أنا متأكد</button>
+        <button class="btn outline" data-action="closeSheet">تراجع</button>
+      </div>`);
+  }
+
+  if(action==='confirmProceed'){
+    closeSheet();
+    toast('تم تسجيل القرار مع تأكيدك الصريح');
+  }
+
+  /* ── Sandbox: إضافة عملية ── */
+  if(action==='openAddTx'){
+    const kind = el.dataset.kind || 'expense';
+    const preset = el.dataset.preset || '';
+    const amt = el.dataset.amount || '';
+    openSheet(`
+      <h3>${kind==='income'?'إضافة دخل':'إضافة مصروف'}</h3>
+      <p class="demo-note">بيئة تجريبية — لا توجد بيانات مصرفية حقيقية.</p>
+      <div class="form-grid">
+        <div class="field"><label>الاسم</label>
+          <input id="txName" value="${preset}" placeholder="مثال: بقالة"/></div>
+        <div class="field"><label>التاجر / المصدر</label>
+          <input id="txMerchant" value="${preset}" placeholder="مثال: Panda"/></div>
+        <div class="field"><label>المبلغ (ريال)</label>
+          <input id="txAmount" type="number" min="1" value="${amt}"/></div>
+        <div class="field"><label>التاريخ</label>
+          <input id="txDate" type="date" value="${QararStore.getProfile().asOfDate}"/></div>
+      </div>
+      <input type="hidden" id="txType" value="${kind}"/>
+      <button class="btn primary" data-action="saveTx">حفظ العملية</button>`);
+  }
+
+  if(action==='saveTx'){
+    const name = $('#txName')?.value?.trim();
+    const amt  = Number($('#txAmount')?.value || 0);
+    if(!name || !amt || amt<=0){ toast('أكمل الاسم والمبلغ'); return; }
+    QararStore.addTransaction({
+      name:     name,
+      merchant: $('#txMerchant')?.value?.trim() || name,
+      amount:   Money.fromRiyal(amt),
+      type:     $('#txType')?.value || 'expense',
+      date:     $('#txDate')?.value || QararStore.getProfile().asOfDate
+    });
+    closeSheet();
+    toast('تمت إضافة العملية — الرصيد تحدّث ✓');
+    navigate('sandbox','جارٍ تحديث الرصيد...');
+  }
+
+  if(action==='deleteTx'){
+    QararStore.deleteTransaction(el.dataset.id);
+    toast('تم حذف العملية');
+    navigate('sandbox','جارٍ تحديث الرصيد...');
+  }
+
+  /* ── المزيد (تنقل الجوال) ── */
+  if(action==='moreNav'){
+    openSheet(`<h3>جميع الأقسام</h3>
+      <div class="more-grid">
+        ${navItems.map(n=>`
+          <button class="more-item" data-goto="${n.id}" data-load="${n.load}">
+            <span class="ico">${n.icon}</span><span>${n.title}</span>
+          </button>`).join('')}
+      </div>`);
+  }
+
+  /* ── إعادة الضبط ── */
+  if(action==='resetDemo'){
+    openSheet(`<h3>إعادة ضبط البيانات التجريبية؟</h3>
+      <p>ستعود جميع البيانات إلى سيناريو العرض الأصلي
+         (رصيد 4,200 ريال، الفواتير، والحد الآمن).</p>
+      <button class="btn orange" data-action="confirmReset">تأكيد إعادة الضبط</button>`);
+  }
+  if(action==='confirmReset'){
+    QararStore.reset();
+    closeSheet();
+    showLoading('جارٍ إعادة ضبط البيانات...');
+    setTimeout(()=>{ hideLoading(); navigate('home','جارٍ فتح لوحة قرار...'); toast('تمت إعادة الضبط ✓'); }, 700);
+  }
+
+  /* ── أخرى ── */
+  if(action==='notifications'){
+    const r = QararEngine.analyzeDecision(QararStore.buildEngineInput(null));
+    const obs = QararStore.getObligations();
+    openSheet(`<h3>تنبيهات قرار</h3><div class="insight-list">
+      ${insight('💰','رصيدك الحالي', riyal(QararStore.getBalance()))}
+      ${obs.slice(0,3).map(o=>insight(o.icon, o.name,
+        `${riyal(o.amount)} — تُستحق في ${DateU.formatArabic(o.dueDate)}`)).join('')}
+    </div>`);
+  }
+  if(action==='sendChat') sendChat();
+  if(action==='toggle') el.classList.toggle('on');
+  if(action==='savePermissions') toast('تم حفظ إعدادات مشاركة البيانات');
+  if(action==='exportReport') toast('التقارير المتقدمة قيد التطوير');
+  if(action==='reminder') toast('التذكيرات قيد التطوير');
+}
+
+document.addEventListener('click', e => {
+  const goto = e.target.closest('[data-goto]');
+  if(goto) return navigate(goto.dataset.goto, goto.dataset.load);
+  const action = e.target.closest('[data-action]');
+  if(action) return handleAction(action.dataset.action, action);
+  const ask = e.target.closest('[data-ask]');
+  if(ask) return sendChat(ask.dataset.ask);
+});
+document.addEventListener('change', e=>{
+  if(e.target?.id === 'decisionPayMode'){
+    const mf = document.getElementById('monthsField');
+    if(mf) mf.style.display = e.target.value === 'installment' ? 'grid' : 'none';
+  }
+});
+document.addEventListener('keydown', e=>{
+  if(e.key==='Enter' && document.activeElement?.id==='chatText') sendChat();
+  if(e.key==='Escape') closeSheet();
+});
+
+renderNav();
+$('#view').innerHTML = views.home();
+hideLoading();
+
+</script>
+</body>
+</html>

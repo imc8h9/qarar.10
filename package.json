@@ -1,0 +1,20 @@
+{
+  "name": "qarar",
+  "version": "2.5.0",
+  "private": true,
+  "description": "منصة قرار — طبقة ذكاء القرار المالي",
+  "scripts": {
+    "test": "npm run test:integrity && npm run test:engine && npm run test:a && npm run test:b && npm run test:decision && npm run test:functional && npm run test:audit && npm run test:startup && npm run test:dashboard && npm run test:browser",
+    "test:integrity": "node tests/integrity.check.js",
+    "test:engine": "node tests/engine.test.js",
+    "test:a": "node tests/phase-a.test.js",
+    "test:b": "node tests/phase-b.test.js",
+    "test:functional": "python3 tests/functional.e2e.py",
+    "test:audit": "python3 tests/action-audit.py",
+    "test:startup": "python3 tests/startup.e2e.py",
+    "test:dashboard": "python3 tests/dashboard.e2e.py",
+    "test:browser": "python3 tests/browser.e2e.py",
+    "serve": "python3 -m http.server 8000",
+    "test:decision": "python3 tests/decision-flow.e2e.py"
+  }
+}
