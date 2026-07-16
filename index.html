@@ -2732,6 +2732,10 @@ function navigate(id, message){
    * الآن: خروج 130ms → دخول 240ms. أسرع بـ4 مرات.
    * ═══════════════════════════════════════════════════════════════════ */
 
+  /* مدة ظهور شاشة التحميل المميّزة قبل تبديل الصفحة (كما في التصميم المرجعي). */
+  const NAV_HOLD = 620;   // ظهور شاشة التحميل
+  const NAV_SWAP = 150;   // خروج المحتوى القديم قبل استبداله
+
   const commit = () => {
     try{
       currentView = id;
@@ -2747,6 +2751,8 @@ function navigate(id, message){
     }catch(err){
       console.error('[Nav] فشل رسم الصفحة:', err);
       view.classList.remove('view-out','view-in');
+    }finally{
+      try{ hideLoading(); }catch(e){}
     }
   };
 
@@ -2757,11 +2763,18 @@ function navigate(id, message){
     return;
   }
 
+  /* ═══════════════════════════════════════════════════════════════════
+   * ✨ شاشة التحميل المميّزة عند التنقّل بين الصفحات (كالتصميم المرجعي):
+   *   showLoading() → إمهال → خروج المحتوى → استبدال + دخول → hideLoading()
+   * ═══════════════════════════════════════════════════════════════════ */
   try{
-    view.classList.add('view-out');
-    setTimeout(commit, 130);
-    /* شبكة أمان: لو تعطّل المؤقت، ارسم على أي حال */
-    setTimeout(()=>{ if(currentView !== id) commit(); }, 600);
+    showLoading(message || 'جارٍ فتح الصفحة...');
+    setTimeout(() => {
+      view.classList.add('view-out');
+      setTimeout(commit, NAV_SWAP);
+    }, NAV_HOLD);
+    /* شبكة أمان: لو تعطّل أي مؤقت، ارسم على أي حال وأخفِ التحميل */
+    setTimeout(()=>{ if(currentView !== id) commit(); }, NAV_HOLD + 700);
   }catch(e){
     commit();
   }
