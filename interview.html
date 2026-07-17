@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>قرارات المال - ثروة</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "primary-container": "#00796b",
+                        "inverse-on-surface": "#f0f1f1",
+                        "secondary-fixed": "#98f994",
+                        "outline-variant": "#bdc9c5",
+                        "surface-dim": "#dadada",
+                        "tertiary-fixed-dim": "#b8cac9",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#7ad7c6",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed-dim": "#7ddc7a",
+                        "surface-bright": "#f9f9f9",
+                        "on-surface-variant": "#3e4946",
+                        "on-secondary-fixed-variant": "#005313",
+                        "on-tertiary-container": "#def0ef",
+                        "on-primary-container": "#a1feec",
+                        "inverse-surface": "#2f3131",
+                        "on-secondary-container": "#0c7521",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#7ad7c6",
+                        "on-primary-fixed": "#00201b",
+                        "on-background": "#1a1c1c",
+                        "surface-tint": "#006b5e",
+                        "surface-variant": "#e2e2e2",
+                        "on-tertiary-fixed-variant": "#3a4a49",
+                        "surface-container-highest": "#e2e2e2",
+                        "surface-container-high": "#e8e8e8",
+                        "outline": "#6e7a76",
+                        "tertiary": "#465655",
+                        "on-primary-fixed-variant": "#005047",
+                        "surface-container-low": "#f3f3f3",
+                        "surface": "#f9f9f9",
+                        "secondary-container": "#98f994",
+                        "tertiary-container": "#5d6e6e",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#002204",
+                        "primary-fixed": "#97f3e2",
+                        "error": "#ba1a1a",
+                        "background": "#f9f9f9",
+                        "primary": "#005e53",
+                        "on-surface": "#1a1c1c",
+                        "secondary": "#006e1c",
+                        "on-tertiary-fixed": "#0e1e1e",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#eeeeee",
+                        "tertiary-fixed": "#d4e6e5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["IBM Plex Sans Arabic", "sans-serif"],
+                        "label-sm": ["IBM Plex Sans Arabic", "sans-serif"],
+                        "display-lg": ["IBM Plex Sans Arabic", "sans-serif"],
+                        "headline-md": ["IBM Plex Sans Arabic", "sans-serif"],
+                        "body-lg": ["IBM Plex Sans Arabic", "sans-serif"],
+                        "display-lg-mobile": ["IBM Plex Sans Arabic", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-sm": ["13px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "display-lg": ["40px", { "lineHeight": "52px", "letterSpacing": "0", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'IBM Plex Sans Arabic', sans-serif; }
+        .step-content { display: none; }
+        .step-content.active { display: block; animation: fadeIn 0.3s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* Custom Checkbox/Radio Styling */
+        .custom-radio:checked + div, .custom-checkbox:checked + div {
+            border-color: #00796b;
+            background-color: #e0f2f1;
+        }
+        .custom-radio:checked + div .radio-icon { opacity: 1; }
+        .custom-checkbox:checked + div .checkbox-icon { opacity: 1; }
+        
+        /* Segment Progress Bar */
+        .segment-fill { transition: width 0.5s cubic-bezier(0.2, 0.9, 0.2, 1); }
+        
+        /* Custom Notification Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translate(-50%, -20px); }
+            to   { opacity: 1; transform: translate(-50%, 0); }
+        }
+        @keyframes fadeOutUp {
+            from { opacity: 1; transform: translate(-50%, 0); }
+            to   { opacity: 0; transform: translate(-50%, -20px); }
+        }
+        
+        /* Segment hover effect */
+        .segment:hover .segment-fill {
+            filter: brightness(1.15);
+        }
+        
+        /* Auto-fill button */
+        .autofill-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 600;
+            background: rgba(0,121,107,.10);
+            color: #00796b;
+            border: 1px solid rgba(0,121,107,.20);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .autofill-btn:hover {
+            background: rgba(0,121,107,.18);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,121,107,.15);
+        }
+        .autofill-btn:active {
+            transform: scale(0.96);
+        }
+        .autofill-btn .material-symbols-outlined {
+            font-size: 16px;
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col items-center justify-center p-4">
+<!-- Revisit Banner -->
+<div class="hidden fixed top-4 left-1/2 transform -translate-x-1/2 bg-primary-container text-on-primary-container px-6 py-3 rounded-lg shadow-lg z-50 flex items-center gap-2 font-label-sm" id="revisitBanner">
+<span class="material-symbols-outlined">refresh</span>
+<span class="" id="revisitText">لنكمل الأسئلة المتبقية (1 من 1)</span>
+</div>
+<!-- Custom Notification Banner (replaces alert()) -->
+<div id="notification" class="hidden fixed top-4 left-1/2 -translate-x-1/2 z-[60] px-6 py-4 rounded-xl shadow-2xl flex items-center gap-3 font-body-md transition-all duration-300" style="min-width:320px;max-width:90vw;direction:rtl;box-shadow:0 20px 60px rgba(0,0,0,.25)">
+  <span id="notificationIcon" class="material-symbols-outlined text-2xl">info</span>
+  <span id="notificationText" class="flex-1 text-[15px] font-semibold"></span>
+  <button onclick="hideNotification()" class="opacity-60 hover:opacity-100 transition-opacity mr-2" type="button" style="background:none;border:none;cursor:pointer">
+    <span class="material-symbols-outlined">close</span>
+  </button>
+</div>
+<!-- Main Container -->
+<main class="w-full max-w-2xl bg-surface rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.04)] p-6 md:p-10 relative overflow-hidden">
+<!-- Subtle Background Deco -->
+<div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-64 h-64 bg-secondary/5 rounded-full blur-3xl pointer-events-none"></div>
+<!-- Header & Progress -->
+<header class="mb-8 relative z-10">
+<h1 class="text-headline-md font-headline-md text-primary text-center mb-6">قرارات المال</h1>
+<!-- Progress Bar -->
+<div class="relative pt-1">
+<div class="flex mb-2 items-center justify-between">
+<div class="text-label-sm font-label-sm text-primary">الخطوة <span class="" id="currentStepText">1</span> من 5</div>
+<div class="text-label-sm font-label-sm text-primary" id="stepName">الهوية</div>
+</div>
+<div class="flex gap-1.5 mb-4" id="segmentProgress">
+<div class="segment h-2 flex-1 rounded-full bg-surface-variant overflow-hidden" data-step="1">
+<div class="segment-fill h-full rounded-full bg-primary" style="width:0%"></div>
+</div>
+<div class="segment h-2 flex-1 rounded-full bg-surface-variant overflow-hidden" data-step="2">
+<div class="segment-fill h-full rounded-full bg-primary" style="width:0%"></div>
+</div>
+<div class="segment h-2 flex-1 rounded-full bg-surface-variant overflow-hidden" data-step="3">
+<div class="segment-fill h-full rounded-full bg-primary" style="width:0%"></div>
+</div>
+<div class="segment h-2 flex-1 rounded-full bg-surface-variant overflow-hidden" data-step="4">
+<div class="segment-fill h-full rounded-full bg-primary" style="width:0%"></div>
+</div>
+<div class="segment h-2 flex-1 rounded-full bg-surface-variant overflow-hidden" data-step="5">
+<div class="segment-fill h-full rounded-full bg-primary" style="width:0%"></div>
+</div>
+</div>
+</div>
+<!-- Step Indicators (Visual Only) -->
+<div class="flex justify-between mt-2 text-label-sm text-outline px-1">
+<span class="">الهوية</span>
+<span class="">الدخل</span>
+<span class="">الصرف</span>
+<span class="">الراحة</span>
+<span class="">المراجعة</span>
+</div>
+</header>
+<!-- Form Container -->
+<form class="relative z-10" id="onboardingForm" onsubmit="return false;">
+<!-- STEP 1: IDENTITY -->
+<div class="step-content active space-y-6" data-step="1" id="step1">
+<h2 class="text-headline-md font-headline-md text-on-surface mb-2">أهلاً بك، لنتعرف عليك</h2>
+<p class="text-body-md text-on-surface-variant mb-6">هذه المعلومات تساعدنا في تخصيص تجربتك.</p>
+<p class="text-label-sm text-primary mb-4">هذا السؤال ضروري لتخصيص باقي الأسئلة</p>
+<button class="autofill-btn mb-4" onclick="startAutoFillTour()" type="button">
+<span class="material-symbols-outlined">auto_awesome</span>
+        تجربة سريعة 🚀
+</button>
+<div class="space-y-4">
+<div>
+<label class="block text-body-md font-body-md text-on-surface mb-2 text-right" for="fullName">الاسم الأول (أو لقبك المفضل)</label>
+<input class="w-full rounded-lg border-outline-variant bg-surface-container-low px-4 py-3 text-body-md focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-right" id="fullName" placeholder="أدخل اسمك" required="" type="text"/>
+</div>
+<div>
+<label class="block text-body-md font-body-md text-on-surface mb-2 text-right" for="age">العمر</label>
+<input class="w-full rounded-lg border-outline-variant bg-surface-container-low px-4 py-3 text-body-md focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-right" id="age" max="120" min="8" placeholder="مثال: 28" required="" type="number"/>
+</div>
+<div class="pt-2">
+<label class="block text-body-md font-body-md text-on-surface mb-4 text-right">ما هو وضعك المهني الحالي؟</label>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+<label class="cursor-pointer relative">
+<input class="custom-radio sr-only" name="employmentStatus" onchange="handleEmploymentChange()" required="" type="radio" value="employed"/>
+<div class="border border-outline-variant rounded-xl p-4 flex flex-col items-center justify-center text-center hover:bg-surface-container transition-colors h-24">
+<span class="material-symbols-outlined text-primary mb-2">work</span>
+<span class="text-body-md">موظف</span>
+</div>
+</label>
+<label class="cursor-pointer relative">
+<input class="custom-radio sr-only" name="employmentStatus" onchange="handleEmploymentChange()" type="radio" value="freelancer"/>
+<div class="border border-outline-variant rounded-xl p-4 flex flex-col items-center justify-center text-center hover:bg-surface-container transition-colors h-24">
+<span class="material-symbols-outlined text-primary mb-2">laptop_mac</span>
+<span class="text-body-md">عمل حر</span>
+</div>
+</label>
+<label class="cursor-pointer relative">
+<input class="custom-radio sr-only" name="employmentStatus" onchange="handleEmploymentChange()" type="radio" value="student"/>
+<div class="border border-outline-variant rounded-xl p-4 flex flex-col items-center justify-center text-center hover:bg-surface-container transition-colors h-24">
+<span class="material-symbols-outlined text-primary mb-2">school</span>
+<span class="text-body-md">طالب</span>
+</div>
+</label>
+<label class="cursor-pointer relative">
+<input class="custom-radio sr-only" name="employmentStatus" onchange="handleEmploymentChange()" type="radio" value="unemployed"/>
+<div class="border border-outline-variant rounded-xl p-4 flex flex-col items-center justify-center text-center hover:bg-surface-container transition-colors h-24">
+<span class="material-symbols-outlined text-primary mb-2">person_search</span>
+<span class="text-body-md">باحث عن عمل</span>
+</div>
+</label>
+<label class="cursor-pointer relative">
+<input class="custom-radio sr-only" name="employmentStatus" onchange="handleEmploymentChange()" type="radio" value="none"/>
+<div class="border border-outline-variant rounded-xl p-4 flex flex-col items-center justify-center text-center hover:bg-surface-container transition-colors h-24">
+<span class="material-symbols-outlined text-primary mb-2">block</span>
+<span class="text-body-md">لا يوجد</span>
+</div>
+</label>
+<label class="cursor-pointer relative">
+<input class="custom-radio sr-only" name="employmentStatus" onchange="handleEmploymentChange()" type="radio" value="other"/>
+<div class="border border-outline-variant rounded-xl p-4 flex flex-col items-center justify-center text-center hover:bg-surface-container transition-colors h-24">
+<span class="material-symbols-outlined text-primary mb-2">more_horiz</span>
+<span class="text-body-md">أخرى</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Hidden text field for "Other" employment -->
+<div class="hidden mt-4 transition-all" id="otherEmploymentContainer">
+<label class="block text-label-sm font-label-sm text-on-surface mb-2 text-right" for="otherEmployment">يرجى التوضيح</label>
+<input class="w-full rounded-lg border-outline-variant bg-surface-container-low px-4 py-3 text-body-md focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-right" id="otherEmployment" placeholder="أدخل حالتك المهنية" type="text"/>
+</div>
+</div>
+</div>
+<!-- STEP 2: INCOME -->
+<div class="step-content space-y-6" data-step="2" id="step2">
+<h2 class="text-headline-md font-headline-md text-on-surface mb-2">تأمين الدخل</h2>
+<p class="text-body-md text-on-surface-variant mb-6">لنلقِ نظرة على مصادر دخلك لترتيب أولوياتك.</p>
+<button class="autofill-btn mb-4" onclick="autoFillStep(2)" type="button">
+<span class="material-symbols-outlined">auto_awesome</span>
+        ملء تلقائي
+</button>
+<!-- Dynamic Content Area based on Step 1 -->
+<div class="space-y-6" id="incomeDynamicArea">
+<!-- Placeholder, will be populated by JS -->
+</div>
+</div>
+<!-- STEP 3: EXPENSES -->
+<div class="step-content space-y-6" data-step="3" id="step3">
+<h2 class="text-headline-md font-headline-md text-on-surface mb-2">أين يذهب مالك؟</h2>
+<p class="text-body-md text-on-surface-variant mb-6">حدد الفواتير الشهرية التي تلتزم بها.</p>
+<button class="autofill-btn mb-4" onclick="autoFillStep(3)" type="button">
+<span class="material-symbols-outlined">auto_awesome</span>
+        ملء تلقائي
+</button>
+<div>
+<div class="grid grid-cols-2 gap-3 mb-6" id="billsContainer">
+<label class="cursor-pointer relative">
+<input class="custom-checkbox sr-only" name="bills" onchange="handleBillsChange()" type="checkbox" value="rent"/>
+<div class="border border-outline-variant rounded-xl p-3 flex items-center gap-3 hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-tertiary">home</span>
+<span class="text-body-md">الإيجار/السكن</span>
+</div>
+</label>
+<label class="cursor-pointer relative">
+<input class="custom-checkbox sr-only" name="bills" onchange="handleBillsChange()" type="checkbox" value="utilities"/>
+<div class="border border-outline-variant rounded-xl p-3 flex items-center gap-3 hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-tertiary">bolt</span>
+<span class="text-body-md">كهرباء/ماء</span>
+</div>
+</label>
+<label class="cursor-pointer relative">
+<input class="custom-checkbox sr-only" name="bills" onchange="handleBillsChange()" type="checkbox" value="groceries"/>
+<div class="border border-outline-variant rounded-xl p-3 flex items-center gap-3 hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-tertiary">shopping_cart</span>
+<span class="text-body-md">مقاضي/بقالة</span>
+</div>
+</label>
+<label class="cursor-pointer relative">
+<input class="custom-checkbox sr-only" name="bills" onchange="handleBillsChange()" type="checkbox" value="transport"/>
+<div class="border border-outline-variant rounded-xl p-3 flex items-center gap-3 hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-tertiary">directions_car</span>
+<span class="text-body-md">مواصلات/وقود</span>
+</div>
+</label>
+<label class="cursor-pointer relative">
+<input class="custom-checkbox sr-only" id="billsNone" name="bills" onchange="handleBillsChange()" type="checkbox" value="none"/>
+<div class="border border-outline-variant rounded-xl p-3 flex items-center gap-3 hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-tertiary">block</span>
+<span class="text-body-md">لا يوجد</span>
+</div>
+</label>
+<label class="cursor-pointer relative">
+<input class="custom-checkbox sr-only" id="billsOther" name="bills" onchange="handleBillsChange()" type="checkbox" value="other"/>
+<div class="border border-outline-variant rounded-xl p-3 flex items-center gap-3 hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-tertiary">more_horiz</span>
+<span class="text-body-md">أخرى</span>
+</div>
+</label>
+</div>
+<div class="hidden mt-4 transition-all" id="otherBillsContainer">
+<label class="block text-label-sm font-label-sm text-on-surface mb-2 text-right" for="otherBillsText">يرجى التوضيح</label>
+<input class="w-full rounded-lg border-outline-variant bg-surface-container-low px-4 py-3 text-body-md focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-right" id="otherBillsText" placeholder="أدخل الفواتير الأخرى" type="text"/>
+</div>
+
+</div>
+</div>
+<!-- STEP 4: COMFORT -->
+<div class="step-content space-y-6" data-step="4" id="step4">
+<h2 class="text-headline-md font-headline-md text-on-surface mb-2">علاقتك مع المال</h2>
+<p class="text-body-md text-on-surface-variant mb-6">لا يوجد حكم هنا، كيف تصف شعورك المالي حالياً؟</p>
+<button class="autofill-btn mb-4" onclick="autoFillStep(4)" type="button">
+<span class="material-symbols-outlined">auto_awesome</span>
+        ملء تلقائي
+</button>
+<div class="space-y-3">
+<label class="cursor-pointer block relative">
+<input class="custom-radio sr-only" name="comfortLevel" type="radio" value="comfortable"/>
+<div class="border border-outline-variant rounded-xl p-4 flex items-center justify-between hover:bg-surface-container transition-colors">
+<span class="text-body-md">مرتاح ومستقر 😌</span>
+<span class="radio-icon opacity-0 material-symbols-outlined text-primary">check_circle</span>
+</div>
+</label>
+<label class="cursor-pointer block relative">
+<input class="custom-radio sr-only" name="comfortLevel" type="radio" value="tight"/>
+<div class="border border-outline-variant rounded-xl p-4 flex items-center justify-between hover:bg-surface-container transition-colors">
+<span class="text-body-md">الأمور مقبولة ولكن أعيش الراتب بالراتب 😐</span>
+<span class="radio-icon opacity-0 material-symbols-outlined text-primary">check_circle</span>
+</div>
+</label>
+<label class="cursor-pointer block relative">
+<input class="custom-radio sr-only" name="comfortLevel" type="radio" value="stressed"/>
+<div class="border border-outline-variant rounded-xl p-4 flex items-center justify-between hover:bg-surface-container transition-colors">
+<span class="text-body-md">مضغوط وعلي ديون 😥</span>
+<span class="radio-icon opacity-0 material-symbols-outlined text-primary">check_circle</span>
+</div>
+</label>
+<label class="cursor-pointer block relative">
+<input class="custom-radio sr-only" name="comfortLevel" type="radio" value="preferNot"/>
+<div class="border border-outline-variant rounded-xl p-4 flex items-center justify-between hover:bg-surface-container transition-colors">
+<span class="text-body-md">أفضل عدم الإجابة حالياً 🤐</span>
+<span class="radio-icon opacity-0 material-symbols-outlined text-primary">check_circle</span>
+</div>
+</label>
+</div>
+</div>
+<!-- STEP 5: REVIEW -->
+<div class="step-content space-y-6 text-center" data-step="5" id="step5">
+<h2 class="text-headline-md font-headline-md text-on-surface mb-2">ممتاز يا <span id="summaryName"></span>!</h2>
+<p class="text-body-md text-on-surface-variant mb-6">لقد أكملت إعداد ملفك الشخصي. نحن جاهزون للبدء في رحلتك المالية بثقة.</p>
+<div class="bg-surface-container-low p-6 rounded-xl text-right space-y-3 text-body-sm" id="summaryContainer">
+<p class=""><strong>الحالة المهنية:</strong> <span id="summaryEmployment"></span></p>
+<p class=""><strong>الدخل:</strong> <span class="cursor-pointer" id="summaryIncome" onclick="goToStep(2)"></span></p>
+<p class=""><strong>الفواتير:</strong> <span class="cursor-pointer" id="summaryBills" onclick="goToStep(3)"></span></p>
+<p class=""><strong>الشعور المالي:</strong> <span class="cursor-pointer" id="summaryComfort" onclick="goToStep(4)"></span></p>
+</div>
+</div>
+<!-- Navigation Buttons -->
+<div class="mt-10 flex flex-wrap gap-4 items-center border-t border-outline-variant/30 pt-6">
+<button class="hidden text-primary font-label-sm flex items-center gap-2 hover:bg-primary/5 px-4 py-2 rounded-lg transition-colors" id="btnBack" onclick="prevStep()" type="button">
+<span class="material-symbols-outlined text-lg transform scale-x-[-1]">arrow_forward</span>
+                    رجوع
+                </button>
+<div class="flex gap-2 mr-auto w-full md:w-auto" id="primaryNavButtons">
+<button class="hidden border border-outline text-primary px-6 py-3 rounded-xl font-label-sm font-semibold hover:bg-surface-container transition-all flex-1 md:flex-none justify-center" id="btnSkip" onclick="skipStep()" type="button">
+                        تخطي الآن
+                    </button>
+<button class="bg-primary text-on-primary px-8 py-3 rounded-xl font-label-sm font-semibold shadow-md hover:bg-surface-tint transition-all flex items-center justify-center gap-2 flex-1 md:flex-none" id="btnNext" onclick="nextStep()" type="button">
+                        التالي
+                        <span class="material-symbols-outlined text-lg transform scale-x-[-1]">arrow_back</span>
+</button>
+<button class="idkikd hidden bg-primary text-on-primary px-8 py-3 rounded-xl font-label-sm font-semibold shadow-lg hover:shadow-xl hover:bg-surface-tint transition-all w-full md:w-auto" id="btnSubmit" onclick="submitForm()" type="button">
+                        إنشاء حسابي
+                    </button>
+</div>
+</div>
+</form>
+</main>
+<script>
+        let currentStep = 1;
+        const totalSteps = 5;
+        const stepNames = ["الهوية", "الدخل", "الصرف", "الراحة", "المراجعة"];
+        
+        let skippedSteps = [];
+        let isRevisiting = false;
+        let currentRevisitIndex = 0;
+        let stepAnswers = {
+            1: false,
+            2: false,
+            3: false,
+            4: false
+        };
+        
+        function showNotification(message, type) {
+            if (type === undefined) type = 'error';
+            const el = document.getElementById('notification');
+            const icon = document.getElementById('notificationIcon');
+            const text = document.getElementById('notificationText');
+            if (!el) return;
+            text.textContent = message;
+            el.dir = 'rtl';
+            el.classList.remove('hidden', 'animate__animated');
+            if (type === 'success') {
+                el.style.background = '#00796b';
+                el.style.color = '#ffffff';
+                el.style.border = '1px solid rgba(255,255,255,.18)';
+                icon.textContent = 'check_circle';
+            } else if (type === 'warning') {
+                el.style.background = '#f9a825';
+                el.style.color = '#1a1a1a';
+                el.style.border = '1px solid rgba(0,0,0,.12)';
+                icon.textContent = 'warning';
+            } else {
+                el.style.background = '#ba1a1a';
+                el.style.color = '#ffffff';
+                el.style.border = '1px solid rgba(255,255,255,.18)';
+                icon.textContent = 'error';
+            }
+            el.style.animation = 'none';
+            void el.offsetHeight;
+            el.style.animation = 'fadeInDown 0.35s ease-out forwards';
+            
+            if (window.notificationTimeout) clearTimeout(window.notificationTimeout);
+            window.notificationTimeout = setTimeout(hideNotification, 5000);
+        }
+        
+        function hideNotification() {
+            const el = document.getElementById('notification');
+            if (el) {
+                el.style.animation = 'fadeOutUp 0.3s ease-in forwards';
+                setTimeout(function() {
+                    el.classList.add('hidden');
+                    el.style.animation = '';
+                }, 300);
+            }
+        }
+        
+        /*******************************************************
+         *  AUTO-FILL TOUR — walks through every step with
+         *  animated field filling so the user can watch.
+         *  Auto-advances to the next step after each fill.
+         *******************************************************/
+        function startAutoFillTour() {
+            // Prevent double-click
+            var btn = document.querySelector('.autofill-btn');
+            if (btn) { btn.disabled = true; btn.style.opacity = '0.5'; }
+            
+            showNotification('🚀 جاري تجهيز بياناتك التجريبية...', 'success');
+            
+            var delay = 0;
+            
+            // ── STEP 1: Fill name character by character ──
+            delay += 400;
+            setTimeout(function() {
+                goToStep(1);
+            }, delay);
+            
+            delay += 300;
+            setTimeout(function() {
+                var nameInput = document.getElementById('fullName');
+                nameInput.value = '';
+                nameInput.focus();
+                var name = 'أحمد';
+                var i = 0;
+                var typeInterval = setInterval(function() {
+                    if (i < name.length) {
+                        nameInput.value = name.substring(0, i + 1);
+                        i++;
+                    } else {
+                        clearInterval(typeInterval);
+                    }
+                }, 80);
+            }, delay);
+            
+            delay += 600;
+            setTimeout(function() {
+                document.getElementById('age').value = '28';
+            }, delay);
+            
+            delay += 500;
+            setTimeout(function() {
+                var empRadio = document.querySelector('input[name="employmentStatus"][value="employed"]');
+                if (empRadio) {
+                    empRadio.checked = true;
+                    handleEmploymentChange();
+                }
+                stepAnswers[1] = true;
+                updateSegmentProgress();
+            }, delay);
+            
+            // ── STEP 2: Fill income ──
+            delay += 1400;
+            setTimeout(function() {
+                goToStep(2);
+            }, delay);
+            
+            delay += 600;
+            setTimeout(function() {
+                var salaryInput = document.getElementById('monthlySalary');
+                if (salaryInput) {
+                    salaryInput.value = '';
+                    salaryInput.focus();
+                    var salaryStr = '12000';
+                    var si = 0;
+                    var sInterval = setInterval(function() {
+                        if (si < salaryStr.length) {
+                            salaryInput.value = salaryStr.substring(0, si + 1);
+                            si++;
+                        } else {
+                            clearInterval(sInterval);
+                        }
+                    }, 70);
+                }
+                stepAnswers[2] = true;
+                updateSegmentProgress();
+            }, delay);
+            
+            // ── STEP 3: Fill expenses ──
+            delay += 1400;
+            setTimeout(function() {
+                goToStep(3);
+            }, delay);
+            
+            var billsToCheck = ['rent', 'utilities', 'groceries', 'transport'];
+            billsToCheck.forEach(function(val, idx) {
+                delay += 400;
+                setTimeout(function() {
+                    var cb = document.querySelector('input[name="bills"][value="' + val + '"]');
+                    if (cb) {
+                        cb.checked = true;
+                        handleBillsChange();
+                    }
+                    if (idx === billsToCheck.length - 1) {
+                        stepAnswers[3] = true;
+                        updateSegmentProgress();
+                    }
+                }, delay);
+            });
+            
+            // ── STEP 4: Fill comfort ──
+            delay += 800;
+            setTimeout(function() {
+                goToStep(4);
+            }, delay);
+            
+            delay += 600;
+            setTimeout(function() {
+                var comfortRadio = document.querySelector('input[name="comfortLevel"][value="tight"]');
+                if (comfortRadio) {
+                    comfortRadio.checked = true;
+                }
+                stepAnswers[4] = true;
+                updateSegmentProgress();
+            }, delay);
+            
+            // ── STEP 5: Review page ──
+            delay += 1200;
+            setTimeout(function() {
+                goToStep(5);
+            }, delay);
+            
+            delay += 500;
+            setTimeout(function() {
+                showNotification('✅ تم تجهيز جميع البيانات! يمكنك الآن إنشاء الحساب', 'success');
+                if (btn) { btn.disabled = false; btn.style.opacity = '1'; }
+            }, delay);
+        }
+
+        /*******************************************************
+         *  Original auto-fill (fills current step instantly)
+         *******************************************************/
+        function autoFillStep(step) {
+            if (step === 1) {
+                document.getElementById('fullName').value = 'أحمد';
+                document.getElementById('age').value = '28';
+                var empRadio = document.querySelector('input[name="employmentStatus"][value="employed"]');
+                if (empRadio) {
+                    empRadio.checked = true;
+                    handleEmploymentChange();
+                }
+                stepAnswers[1] = true;
+                updateSegmentProgress();
+                showNotification('تم ملء بيانات الهوية تلقائياً ✅', 'success');
+            } else if (step === 2) {
+                var emp = document.querySelector('input[name="employmentStatus"]:checked');
+                if (!emp) {
+                    showNotification('يرجى تحديد الحالة المهنية أولاً في الخطوة الأولى', 'warning');
+                    return;
+                }
+                var salaryInput = document.getElementById('monthlySalary');
+                if (salaryInput) {
+                    salaryInput.value = '12000';
+                }
+                var avgIncome = document.getElementById('avgIncome');
+                if (avgIncome) {
+                    avgIncome.value = '8000';
+                }
+                var unempSelect = document.getElementById('unemployedIncomeSelect');
+                if (unempSelect) {
+                    unempSelect.value = 'regular';
+                    handleUnemployedIncomeChange();
+                    var regAmt = document.getElementById('unempRegularAmt');
+                    if (regAmt) regAmt.value = '3000';
+                }
+                var otherIncome = document.getElementById('otherIncome');
+                if (otherIncome) {
+                    otherIncome.value = 'دخل متنوع 5000';
+                }
+                stepAnswers[2] = true;
+                updateSegmentProgress();
+                showNotification('تم ملء بيانات الدخل تلقائياً ✅', 'success');
+            } else if (step === 3) {
+                var billsToCheck = ['rent', 'utilities', 'groceries', 'transport'];
+                billsToCheck.forEach(function(val) {
+                    var cb = document.querySelector('input[name="bills"][value="' + val + '"]');
+                    if (cb) cb.checked = true;
+                });
+                handleBillsChange();
+                stepAnswers[3] = true;
+                updateSegmentProgress();
+                showNotification('تم ملء بيانات المصروفات تلقائياً ✅', 'success');
+            } else if (step === 4) {
+                var comfortRadio = document.querySelector('input[name="comfortLevel"][value="tight"]');
+                if (comfortRadio) {
+                    comfortRadio.checked = true;
+                }
+                stepAnswers[4] = true;
+                updateSegmentProgress();
+                showNotification('تم ملء الشعور المالي تلقائياً ✅', 'success');
+            }
+        }
+
+        function updateSegmentProgress() {
+            for (let i = 1; i <= totalSteps; i++) {
+                const segment = document.querySelector(`.segment[data-step="${i}"] .segment-fill`);
+                if (!segment) continue;
+                if (stepAnswers[i]) {
+                    segment.style.width = '100%';
+                    segment.style.background = '#00796b';
+                } else if (i === currentStep && !isRevisiting) {
+                    segment.style.width = '50%';
+                    segment.style.background = '#00796b';
+                } else if (i < currentStep) {
+                    // Skipped — stays empty
+                    segment.style.width = '0%';
+                    segment.style.background = '#00796b';
+                } else {
+                    segment.style.width = '0%';
+                    segment.style.background = '#00796b';
+                }
+            }
+        }
+
+        function updateUI() {
+            // Update steps visibility
+            document.querySelectorAll('.step-content').forEach(el => el.classList.remove('active'));
+            
+            let displayStep = currentStep;
+            if (isRevisiting && skippedSteps.length > 0) {
+                displayStep = skippedSteps[currentRevisitIndex];
+                document.getElementById('revisitBanner').classList.remove('hidden');
+                document.getElementById('revisitText').innerText = `لنكمل الأسئلة المتبقية (${currentRevisitIndex + 1} من ${skippedSteps.length})`;
+            } else {
+                document.getElementById('revisitBanner').classList.add('hidden');
+            }
+            
+            document.getElementById(`step${displayStep}`).classList.add('active');
+
+            // Update segment progress
+            updateSegmentProgress();
+            document.getElementById('currentStepText').innerText = displayStep;
+            document.getElementById('stepName').innerText = stepNames[displayStep - 1];
+
+            // Update Buttons
+            const btnBack = document.getElementById('btnBack');
+            const btnNext = document.getElementById('btnNext');
+            const btnSkip = document.getElementById('btnSkip');
+            const btnSubmit = document.getElementById('btnSubmit');
+
+            if (displayStep === 1 || isRevisiting) {
+                btnBack.classList.add('hidden');
+            } else {
+                btnBack.classList.remove('hidden');
+            }
+
+            if (displayStep === 1 || displayStep === 5) {
+                btnSkip.classList.add('hidden');
+            } else {
+                btnSkip.classList.remove('hidden');
+            }
+
+            if (displayStep === totalSteps && !isRevisiting) {
+                btnNext.classList.add('hidden');
+                btnSkip.classList.add('hidden');
+                btnSubmit.classList.remove('hidden');
+                populateSummary();
+                checkFinalValidation();
+            } else {
+                btnNext.classList.remove('hidden');
+                btnSubmit.classList.add('hidden');
+            }
+            
+            if(isRevisiting) {
+                btnSkip.classList.add('hidden');
+            }
+        }
+
+        function validateStep(stepIndex) {
+            const currentStepDiv = document.getElementById(`step${stepIndex}`);
+            let isValid = true;
+            let shownError = false;
+            
+            if (stepIndex === 1) {
+                const name = document.getElementById('fullName').value.trim();
+                const age = document.getElementById('age').value;
+                const emp = document.querySelector('input[name="employmentStatus"]:checked');
+                
+                // Show only first error for cleaner UX
+                // Priority: name → age → employment
+                if(!name) {
+                    showNotification('يرجى إدخال الاسم', 'error');
+                    isValid = false; shownError = true;
+                } else if (!/^[a-zA-Z\u0600-\u06FF\s]+$/.test(name)) {
+                    showNotification('الاسم يجب أن يحتوي على حروف فقط', 'error');
+                    isValid = false; shownError = true;
+                }
+                
+                if(!shownError) {
+                    if(!age) {
+                        showNotification('يرجى إدخال العمر', 'error');
+                        isValid = false; shownError = true;
+                    } else {
+                        const ageNum = parseInt(age, 10);
+                        if(ageNum < 8) {
+                            showNotification('العمر يجب أن يكون 8 سنوات أو أكثر', 'error');
+                            isValid = false; shownError = true;
+                        }
+                    }
+                }
+                
+                if(!shownError && !emp) {
+                    showNotification('يرجى اختيار الحالة المهنية', 'error');
+                    isValid = false;
+                }
+            } else if (stepIndex === 2) {
+                // Dynamic validation
+                const inputs = currentStepDiv.querySelectorAll('input:not(.hidden), select:not(.hidden)');
+                inputs.forEach(input => {
+                    if (input.required && !input.value) isValid = false;
+                    if (input.type === 'radio' && input.name) {
+                       if(!document.querySelector(`input[name="${input.name}"]:checked`)) isValid = false;
+                    }
+                });
+                
+                const unempSelect = document.getElementById('unemployedIncomeSelect');
+                if(unempSelect && unempSelect.value) {
+                    if(unempSelect.value === 'regular' && !document.getElementById('unempRegularAmt').value) isValid = false;
+                    if(unempSelect.value === 'irregular' && !document.getElementById('unempIrregularDesc').value) isValid = false;
+                }
+
+            } else if (stepIndex === 3) {
+                const bills = document.querySelectorAll('input[name="bills"]:checked');
+                if(bills.length === 0) isValid = false;
+            } else if (stepIndex === 4) {
+                 if (!document.querySelector(`input[name="comfortLevel"]:checked`)) isValid = false;
+            }
+            
+            stepAnswers[stepIndex] = isValid;
+            return isValid;
+        }
+
+        function nextStep() {
+            let activeStep = isRevisiting ? skippedSteps[currentRevisitIndex] : currentStep;
+            
+            // Try validation — even if fails, skip forward
+            const isValid = validateStep(activeStep);
+            
+            if(isRevisiting && isValid) {
+                skippedSteps.splice(currentRevisitIndex, 1);
+                if(skippedSteps.length > 0) {
+                    // Stay on same index
+                } else {
+                    isRevisiting = false;
+                    currentStep = 5;
+                }
+            } else if (!isRevisiting) {
+                if (currentStep < 4) {
+                    currentStep++;
+                } else if (currentStep === 4) {
+                    if (skippedSteps.length > 0) {
+                        isRevisiting = true;
+                        currentRevisitIndex = 0;
+                    } else {
+                        currentStep = 5;
+                    }
+                }
+            } else {
+                // Revisiting but invalid — still move forward in revisit
+                skippedSteps.splice(currentRevisitIndex, 1);
+                if(skippedSteps.length > 0) {
+                    // Stay on same index
+                } else {
+                    isRevisiting = false;
+                    currentStep = 5;
+                }
+            }
+            
+            updateUI();
+        }
+
+        function prevStep() {
+            if (!isRevisiting && currentStep > 1) {
+                currentStep--;
+                updateUI();
+            }
+        }
+        
+        function skipStep() {
+            if(currentStep > 1 && currentStep < 5) {
+                if(!skippedSteps.includes(currentStep)) {
+                    skippedSteps.push(currentStep);
+                }
+                stepAnswers[currentStep] = false;
+                
+                if(currentStep < 4) {
+                    currentStep++;
+                } else {
+                     if (skippedSteps.length > 0) {
+                        isRevisiting = true;
+                        currentRevisitIndex = 0;
+                    } else {
+                        currentStep = 5;
+                    }
+                }
+                updateUI();
+            }
+        }
+        
+        function goToStep(step) {
+            isRevisiting = false;
+            currentStep = step;
+            updateUI();
+        }
+
+        function handleEmploymentChange() {
+            const statusEl = document.querySelector('input[name="employmentStatus"]:checked');
+            if(!statusEl) return;
+            const status = statusEl.value;
+            
+            const otherContainer = document.getElementById('otherEmploymentContainer');
+            const dynamicArea = document.getElementById('incomeDynamicArea');
+            
+            if (status === 'other') {
+                otherContainer.classList.remove('hidden');
+            } else {
+                otherContainer.classList.add('hidden');
+            }
+
+            let html = '';
+            if (status === 'employed') {
+                html = `
+                    <div>
+                        <label for="monthlySalary" class="block text-body-md font-body-md text-on-surface mb-2 text-right">الراتب الشهري (تقريبي)</label>
+                        <input type="number" id="monthlySalary" class="w-full rounded-lg border-outline-variant bg-surface-container-low px-4 py-3 text-body-md focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-right" placeholder="مثال: 10000" required>
+                    </div>
+                `;
+            } else if (status === 'freelancer') {
+                html = `
+                     <div>
+                        <label for="avgIncome" class="block text-body-md font-body-md text-on-surface mb-2 text-right">متوسط الدخل الشهري</label>
+                        <input type="number" id="avgIncome" class="w-full rounded-lg border-outline-variant bg-surface-container-low px-4 py-3 text-body-md focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-right" placeholder="مثال: 5000" required>
+                    </div>
+                `;
+            } else if (status === 'unemployed' || status === 'student' || status === 'none') {
+                 html = `
+                     <div>
+                        <label for="unemployedIncomeSelect" class="block text-body-md font-body-md text-on-surface mb-2 text-right">هل لديك أي مصدر دخل؟</label>
+                        <select id="unemployedIncomeSelect" class="w-full rounded-lg border-outline-variant bg-surface-container-low px-4 py-3 text-body-md focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-right appearance-none" onchange="handleUnemployedIncomeChange()" required>
+                            <option value="">اختر إجابة...</option>
+                            <option value="none">لا، لا يوجد دخل حاليًا</option>
+                            <option value="regular">نعم، يوجد دخل منتظم</option>
+                            <option value="irregular">نوعًا ما / دخل غير منتظم</option>
+                        </select>
+                    </div>
+                    <div id="unempRegularContainer" class="hidden mt-4">
+                         <label for="unempRegularAmt" class="block text-body-md font-body-md text-on-surface mb-2 text-right">كم تقريبًا شهريًا؟</label>
+                         <input type="number" id="unempRegularAmt" class="w-full rounded-lg border-outline-variant bg-surface-container-low px-4 py-3 text-body-md focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-right" placeholder="مثال: 1500">
+                    </div>
+                    <div id="unempIrregularContainer" class="hidden mt-4">
+                         <label for="unempIrregularDesc" class="block text-body-md font-body-md text-on-surface mb-2 text-right">صف الوضع بإيجاز</label>
+                         <input type="text" id="unempIrregularDesc" class="w-full rounded-lg border-outline-variant bg-surface-container-low px-4 py-3 text-body-md focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-right" placeholder="مثال: مكافأة جامعية، أعمال متقطعة">
+                    </div>
+                `;
+            } else {
+                 html = `
+                     <div>
+                        <label for="otherIncome" class="block text-body-md font-body-md text-on-surface mb-2 text-right">هل يوجد مصدر دخل منتظم؟</label>
+                        <input type="text" id="otherIncome" class="w-full rounded-lg border-outline-variant bg-surface-container-low px-4 py-3 text-body-md focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-right" placeholder="اذكر المصدر أو المبلغ التقريبي">
+                    </div>
+                `;
+            }
+            dynamicArea.innerHTML = html;
+        }
+
+        function handleUnemployedIncomeChange() {
+            const val = document.getElementById('unemployedIncomeSelect').value;
+            const regContainer = document.getElementById('unempRegularContainer');
+            const irregContainer = document.getElementById('unempIrregularContainer');
+            
+            if(val === 'regular') {
+                regContainer.classList.remove('hidden');
+                irregContainer.classList.add('hidden');
+            } else if (val === 'irregular') {
+                regContainer.classList.add('hidden');
+                irregContainer.classList.remove('hidden');
+            } else {
+                regContainer.classList.add('hidden');
+                irregContainer.classList.add('hidden');
+            }
+        }
+
+        function handleBillsChange() {
+            const noneCheckbox = document.getElementById('billsNone');
+            const otherCheckbox = document.getElementById('billsOther');
+            const otherContainer = document.getElementById('otherBillsContainer');
+            const allCheckboxes = document.querySelectorAll('input[name="bills"]');
+            
+            if(noneCheckbox.checked) {
+                allCheckboxes.forEach(cb => { if(cb !== noneCheckbox) cb.checked = false; });
+                otherContainer.classList.add('hidden');
+            } else if (otherCheckbox.checked) {
+                 otherContainer.classList.remove('hidden');
+            } else {
+                 otherContainer.classList.add('hidden');
+            }
+        }
+
+        function populateSummary() {
+            const name = document.getElementById('fullName').value || 'صديقنا';
+            document.getElementById('summaryName').innerText = name;
+
+            const empEl = document.querySelector('input[name="employmentStatus"]:checked');
+            let empVal = '<span class="text-error underline">لم تتم الإجابة</span>';
+            if (empEl) {
+                const textSpan = empEl.nextElementSibling.querySelector('.text-body-md');
+                empVal = textSpan ? textSpan.innerText.trim() : empEl.value;
+            }
+            document.getElementById('summaryEmployment').innerHTML = empVal;
+
+            document.getElementById('summaryIncome').innerHTML = stepAnswers[2] ? 'تم الإدخال' : '<span class="text-error underline">لم تتم الإجابة</span>';
+            document.getElementById('summaryBills').innerHTML = stepAnswers[3] ? 'تم الإدخال' : '<span class="text-error underline">لم تتم الإجابة</span>';
+
+            const comfEl = document.querySelector('input[name="comfortLevel"]:checked');
+            let comfVal = '<span class="text-error underline">لم تتم الإجابة</span>';
+            if (comfEl) {
+                const textSpan = comfEl.nextElementSibling.querySelector('.text-body-md');
+                comfVal = textSpan ? textSpan.innerText.trim() : comfEl.value;
+            }
+            document.getElementById('summaryComfort').innerHTML = comfVal;
+        }
+        
+        function checkFinalValidation() {
+            const allAnswered = Object.values(stepAnswers).every(v => v === true);
+            const btnSubmit = document.getElementById('btnSubmit');
+            
+            if(!allAnswered) {
+                btnSubmit.disabled = true;
+                btnSubmit.classList.add('opacity-50', 'cursor-not-allowed');
+            } else {
+                btnSubmit.disabled = false;
+                btnSubmit.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+        }
+
+        function submitForm() {
+            const allAnswered = Object.values(stepAnswers).every(v => v === true);
+            if(!allAnswered) {
+                showNotification('الرجاء الإجابة عن جميع الأسئلة قبل إنشاء الحساب', 'warning');
+                
+                // Find first missing and navigate to it
+                for(let i=1; i<=4; i++) {
+                    if(!stepAnswers[i]) {
+                        goToStep(i);
+                        break;
+                    }
+                }
+            } else {
+                // The actual submission is handled by interview.js
+                // This alerts so the user knows it's going through
+                showNotification('جاري إنشاء الحساب...', 'success');
+            }
+        }
+    </script>
+    <script src="src/interview.js"></script>
+</body></html>
