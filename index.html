@@ -515,6 +515,83 @@ button{cursor:pointer;border:0;background:none;color:inherit}
   color:var(--muted);font-size:17px;flex:0 0 auto}
 .tx-del:hover{background:rgba(255,122,89,.15);color:#C85435}
 
+/* بطاقة الرصيد (الصفحة الرئيسية) — بنفسجية واقعية */
+.home-credit-card{background:
+    radial-gradient(circle at 15% 10%,rgba(255,255,255,.20),transparent 40%),
+    radial-gradient(circle at 90% 100%,rgba(255,255,255,.10),transparent 45%),
+    linear-gradient(135deg,#7A5CFA 0%,#6D5DFB 38%,#4F3DD6 72%,#3B2CB0 100%);
+  border:1px solid rgba(255,255,255,.14);min-height:210px;display:flex;flex-direction:column;
+  color:#fff;box-shadow:0 22px 48px rgba(76,58,220,.32),0 2px 8px rgba(16,23,42,.10);
+  position:relative;overflow:hidden}
+.home-credit-card:before{content:"";position:absolute;left:-70px;top:-80px;width:240px;height:240px;
+  border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.16),transparent 70%)}
+.home-credit-card:after{content:"";position:absolute;right:-60px;bottom:-70px;width:220px;height:220px;
+  border-radius:50%;background:radial-gradient(circle,rgba(244,162,97,.28),transparent 70%)}
+.hcc-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;position:relative;z-index:1}
+.hcc-brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:15px;letter-spacing:.3px;color:#fff}
+.hcc-chip{width:38px;height:29px;border-radius:7px;
+  background:linear-gradient(135deg,#F4D9A0,#E8B95C 45%,#F4D9A0);
+  box-shadow:inset 0 0 0 1px rgba(120,84,0,.35);position:relative;overflow:hidden}
+.hcc-chip:before,.hcc-chip:after{content:"";position:absolute;background:rgba(120,84,0,.25)}
+.hcc-chip:before{left:0;right:0;top:50%;height:1px;transform:translateY(-50%)}
+.hcc-chip:after{top:0;bottom:0;left:50%;width:1px;transform:translateX(-50%)}
+.hcc-mode{font-size:11px;font-weight:900;letter-spacing:1.5px;padding:5px 11px;border-radius:999px;
+  background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.28);
+  backdrop-filter:blur(4px)}
+.hcc-balance{margin-bottom:auto;position:relative;z-index:1}
+.hcc-balance span{display:block;color:rgba(255,255,255,.70);font-weight:700;font-size:14px}
+.hcc-balance b{font-size:38px;letter-spacing:-1.5px;display:block;margin-top:4px;color:#fff;
+  text-shadow:0 2px 10px rgba(0,0,0,.12)}
+.hcc-meta{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0 4px;position:relative;z-index:1}
+.hcc-meta small{display:block;color:rgba(255,255,255,.62);font-weight:700;font-size:11px;
+  text-transform:uppercase;letter-spacing:.6px}
+.hcc-meta b{font-size:15px;color:#fff}
+.hcc-num{font-family:'Courier New',monospace;letter-spacing:3.5px;color:rgba(255,255,255,.92);
+  font-size:18px;font-weight:700;position:relative;z-index:1;margin-top:16px;text-shadow:0 1px 6px rgba(0,0,0,.10)}
+.hcc-bottom{display:flex;align-items:flex-end;justify-content:space-between;margin-top:16px;
+  position:relative;z-index:1}
+.hcc-holder{display:flex;flex-direction:column;gap:2px}
+.hcc-holder small{color:rgba(255,255,255,.60);font-weight:700;font-size:10.5px;text-transform:uppercase;letter-spacing:.6px}
+.hcc-holder b{font-size:14.5px;font-weight:800;letter-spacing:.5px;color:#fff}
+.hcc-network{display:flex;align-items:center;gap:-8px;position:relative;width:52px;height:32px}
+.hcc-network span{position:absolute;top:0;width:32px;height:32px;border-radius:50%;opacity:.92}
+.hcc-network span:first-child{right:16px;background:#EB5A2B}
+.hcc-network span:last-child{right:0;background:#F4A82A;mix-blend-mode:normal;opacity:.85}
+.hcc-contactless{position:absolute;left:20px;top:20px;width:22px;height:22px;opacity:.75;z-index:1}
+
+
+/* جدول آخر المشتريات */
+.purchases-card{padding:0;overflow:hidden}
+.purchases-head-row{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:18px 20px 14px}
+.purchases-head-row h4{margin:0}
+.purchases-table{display:flex;flex-direction:column}
+.purchases-cols{display:grid;grid-template-columns:2.1fr 1.1fr 1fr 1fr;gap:10px;
+  padding:10px 20px;background:var(--soft);color:var(--muted);font-weight:800;font-size:12.5px}
+.purchases-row{display:grid;grid-template-columns:2.1fr 1.1fr 1fr 1fr;gap:10px;align-items:center;
+  padding:13px 20px;border-top:1px solid rgba(20,33,61,.06);transition:.2s var(--ease)}
+.purchases-row:hover{background:rgba(109,93,251,.04)}
+.pr-item{display:flex;align-items:center;gap:11px;min-width:0}
+.pr-ico{width:38px;height:38px;border-radius:13px;display:grid;place-items:center;
+  background:var(--sand);font-size:17px;flex:0 0 auto}
+.pr-item b{display:block;color:var(--ink);font-size:14.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pr-date{color:var(--muted);font-weight:700;font-size:13.5px}
+.pr-price{font-weight:900;font-size:15px;color:var(--ink)}
+.cat-badge{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:6px 11px;
+  font-weight:800;font-size:12.5px;white-space:nowrap}
+.cat-badge:before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.cat-badge.cat-food{background:var(--warning-bg);color:var(--warning)}
+.cat-badge.cat-bills{background:var(--danger-bg);color:var(--danger)}
+.cat-badge.cat-shopping{background:var(--primary-soft);color:var(--primary)}
+.cat-badge.cat-transport{background:rgba(39,199,168,.13);color:var(--success)}
+.cat-badge.cat-subs{background:rgba(39,199,168,.13);color:var(--success)}
+.cat-badge.cat-other{background:rgba(113,128,150,.14);color:var(--muted)}
+@media (max-width:720px){
+  .purchases-cols{display:none}
+  .purchases-row{grid-template-columns:1fr;gap:6px;padding:14px 16px}
+  .pr-date,.pr-price{justify-self:start}
+}
+
 /* بطاقات الالتزامات */
 .obligation-card{text-align:center}
 .ob-ico{display:block;font-size:30px;margin-bottom:6px}
@@ -3098,9 +3175,67 @@ const views = {
     const flowTone = critical ? 'danger' : tight ? 'warn' : 'safe';
     const salaryProgress = Math.max(8, Math.min(92, 100 - Math.min(daysToSalary,30)/30*100));
 
+    /* ⭐ بطاقة الرصيد + جدول آخر المشتريات — أعلى الصفحة الرئيسية
+     * ملاحظة: عناصر الجدول أدناه بيانات عشوائية توضيحية فقط (وهمية بالكامل). */
+    const randomPurchases = [
+      { icon:'🍗', title:'دجاج KFC',            cls:'cat-food',      cat:'مطاعم',    date:'٢٠ فبراير', price:'٤٥ ر.س'   },
+      { icon:'☕', title:'ستاربكس',              cls:'cat-food',      cat:'مقاهي',    date:'١٩ فبراير', price:'٢٨ ر.س'   },
+      { icon:'🛒', title:'بندة — بقالة',          cls:'cat-shopping',  cat:'بقالة',    date:'١٨ فبراير', price:'١٦٠ ر.س'  },
+      { icon:'🚕', title:'رحلة أوبر',             cls:'cat-transport', cat:'تنقل',     date:'١٧ فبراير', price:'٣٤ ر.س'   },
+      { icon:'🎬', title:'اشتراك نتفلكس',         cls:'cat-subs',      cat:'اشتراكات', date:'١٦ فبراير', price:'٥٦ ر.س'   },
+      { icon:'👕', title:'زارا — ملابس',          cls:'cat-shopping',  cat:'تسوق',     date:'١٤ فبراير', price:'٢٤٠ ر.س'  },
+      { icon:'⚡', title:'فاتورة الكهرباء',        cls:'cat-bills',     cat:'فواتير',   date:'١٢ فبراير', price:'٣٨٠ ر.س'  }
+    ];
+
     return `
     <div class="home-command" data-home-entry="initial">
       ${demoBanner()}
+
+      <div class="grid two" style="margin-bottom:var(--sp-5); display:flex;flex:1; flex-direction: column;">
+        <div class="card home-credit-card" style="max-height: 300px;">
+          <svg class="hcc-contactless" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" aria-hidden="true">
+            <path d="M8 11a5 5 0 0 1 8 0" stroke-linecap="round"/>
+            <path d="M5.5 8.5a9 9 0 0 1 13 0" stroke-linecap="round"/>
+            <path d="M10.5 13.5a2.5 2.5 0 0 1 3 0" stroke-linecap="round"/>
+          </svg>
+          <div class="hcc-top">
+            <span class="hcc-brand"><span class="hcc-chip" aria-hidden="true"></span> بطاقة قرار</span>
+            <span class="hcc-mode">بطاقة رئيسية</span>
+          </div>
+          <div class="hcc-balance">
+            <span>الرصيد الحالي</span>
+            <b data-financial-value>${riyal(bal)}</b>
+          </div>
+          <div class="hcc-num">5412&nbsp; 7789&nbsp; 3324&nbsp; 1265</div>
+          <div class="hcc-bottom">
+            <div class="hcc-holder"><small>حامل البطاقة</small><b>${esc((p.name || 'المستخدم').toUpperCase())}</b></div>
+            <div class="hcc-holder"><small>تنتهي في</small><b>09/29</b></div>
+            <div class="hcc-network" aria-hidden="true"><span></span><span></span></div>
+          </div>
+        </div>
+
+        <div class="card purchases-card">
+          <div class="purchases-head-row">
+            <h4>آخر المشتريات</h4>
+            <button class="btn outline" data-goto="sandbox" style="min-height:36px;padding:0 12px;font-size:13px">عرض الكل</button>
+          </div>
+          <div class="purchases-table">
+            <div class="purchases-cols">
+              <span>العنصر</span><span>الفئة</span><span>التاريخ</span><span>السعر</span>
+            </div>
+            ${randomPurchases.map(t => `
+              <div class="purchases-row">
+                <div class="pr-item">
+                  <span class="pr-ico" aria-hidden="true">${t.icon}</span>
+                  <b title="${esc(t.title)}">${esc(t.title)}</b>
+                </div>
+                <span class="cat-badge ${t.cls}">${esc(t.cat)}</span>
+                <span class="pr-date">${t.date}</span>
+                <span class="pr-price">${t.price}</span>
+              </div>`).join('')}
+          </div>
+        </div>
+      </div>
 
       <section class="state-card ${state.tone} command-hero" aria-live="polite">
         <div class="command-copy">
