@@ -38,5 +38,5 @@ function showMessage(message, type) {
  * No validation, no server call — just go to index.html.
  */
 window.submitForm = function () {
-  window.location.href = "/index.html";
+  window.location.href = "index.html";
 };
