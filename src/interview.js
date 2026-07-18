@@ -38,5 +38,5 @@ function showMessage(message, type) {
  * No validation, no server call — just go to index.html.
  */
 window.submitForm = function () {
-  window.location.href = "index.html";
+  window.location = "https://imc8h9.github.io/qarar.10/index.html";
 };
